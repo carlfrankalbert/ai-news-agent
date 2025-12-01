@@ -17,6 +17,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Verktøy Radar – {period}</title>
+    <meta name="description" content="Oversikt over de beste AI-verktøyene akkurat nå, basert på data fra Hacker News, Reddit og Product Hunt.">
+    <link rel="canonical" href="https://fyrk.eu/">
+    <meta property="og:title" content="AI Verktøy Radar – {period}">
+    <meta property="og:description" content="Oversikt over de beste AI-verktøyene akkurat nå">
+    <meta property="og:url" content="https://fyrk.eu/">
+    <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
