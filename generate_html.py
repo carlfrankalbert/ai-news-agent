@@ -1,0 +1,531 @@
+#!/usr/bin/env python3
+"""
+Generate HTML report from rankings JSON.
+Output goes to docs/ for GitHub Pages publishing.
+"""
+import json
+import os
+from pathlib import Path
+from datetime import datetime
+
+OUTPUT_DIR = Path("output")
+DOCS_DIR = Path("docs")
+
+HTML_TEMPLATE = """<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Verktøy Radar – {period}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {{
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #f0f0f5;
+            --text-secondary: #8888a0;
+            --accent-gold: #ffd700;
+            --accent-silver: #c0c0c0;
+            --accent-bronze: #cd7f32;
+            --accent-blue: #4a9eff;
+            --accent-purple: #a855f7;
+            --accent-green: #22c55e;
+            --border-subtle: rgba(255,255,255,0.08);
+        }}
+        
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+        
+        body {{
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }}
+        
+        .noise {{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 1000;
+        }}
+        
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }}
+        
+        header {{
+            text-align: center;
+            padding: 4rem 0 3rem;
+            position: relative;
+        }}
+        
+        header::before {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(60px);
+        }}
+        
+        .logo {{
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            color: var(--accent-blue);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }}
+        
+        h1 {{
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }}
+        
+        .period {{
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+        }}
+        
+        .summary {{
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-purple);
+            border-radius: 0 8px 8px 0;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }}
+        
+        .categories {{
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }}
+        
+        .category {{
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-subtle);
+        }}
+        
+        .category h2 {{
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }}
+        
+        .category h2::before {{
+            content: '';
+            width: 4px;
+            height: 1.5rem;
+            background: var(--accent-blue);
+            border-radius: 2px;
+        }}
+        
+        .rankings {{
+            display: grid;
+            gap: 1rem;
+        }}
+        
+        .rank-item {{
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }}
+        
+        .rank-item:hover {{
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }}
+        
+        .medal {{
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }}
+        
+        .medal.gold {{
+            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+            color: #1a1a24;
+            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+        }}
+        
+        .medal.silver {{
+            background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%);
+            color: #1a1a24;
+        }}
+        
+        .medal.bronze {{
+            background: linear-gradient(135deg, #cd7f32 0%, #a05a20 100%);
+            color: #1a1a24;
+        }}
+        
+        .rank-info {{
+            min-width: 0;
+        }}
+        
+        .rank-name {{
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }}
+        
+        .rank-provider {{
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }}
+        
+        .rank-reason {{
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }}
+        
+        .scores {{
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }}
+        
+        .score {{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            min-width: 60px;
+        }}
+        
+        .score-value {{
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }}
+        
+        .score-label {{
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }}
+        
+        .tags {{
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.75rem;
+        }}
+        
+        .tag {{
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }}
+        
+        .new-noteworthy {{
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(74,158,255,0.1) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(168,85,247,0.2);
+        }}
+        
+        .new-noteworthy h2 {{
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }}
+        
+        .new-noteworthy h2::before {{
+            content: '✨';
+        }}
+        
+        .new-items {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+        }}
+        
+        .new-item {{
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+        }}
+        
+        .new-item-name {{
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }}
+        
+        .new-item-provider {{
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }}
+        
+        .new-item-reason {{
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }}
+        
+        footer {{
+            text-align: center;
+            padding: 4rem 0 2rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }}
+        
+        footer a {{
+            color: var(--accent-blue);
+            text-decoration: none;
+        }}
+        
+        .meta {{
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }}
+        
+        @media (max-width: 768px) {{
+            .container {{
+                padding: 1rem;
+            }}
+            
+            .rank-item {{
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }}
+            
+            .scores {{
+                grid-column: 1 / -1;
+                justify-content: flex-start;
+            }}
+            
+            .category {{
+                padding: 1.5rem;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="noise"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">FYRK AI Radar</div>
+            <h1>AI Verktøy Ranking</h1>
+            <div class="period">{period}</div>
+        </header>
+        
+        {summary_html}
+        
+        <div class="categories">
+            {categories_html}
+        </div>
+        
+        {new_noteworthy_html}
+        
+        <footer>
+            <p>Generert {generated_at} • Data fra Hacker News</p>
+            <p class="meta">Analysert {total_posts} posts med Claude</p>
+            <p style="margin-top: 1rem;">
+                <a href="https://github.com/DITT_BRUKERNAVN/ai-news-agent">GitHub</a> •
+                <a href="https://fyrk.no">FYRK</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
+"""
+
+
+def generate_category_html(category: dict) -> str:
+    rankings_html = ""
+    
+    for item in category.get("top3", []):
+        medal = item.get("medal", "")
+        rank = item.get("rank", 0)
+        
+        # Scores HTML
+        scores_html = ""
+        scores = item.get("scores", {})
+        score_labels = {
+            "buzz_momentum": "Buzz",
+            "sentiment": "Sent.",
+            "utility_for_knowledge_work": "Nytte",
+            "price_performance": "Pris"
+        }
+        for key, label in score_labels.items():
+            if key in scores:
+                scores_html += f"""
+                <div class="score">
+                    <span class="score-value">{scores[key]}</span>
+                    <span class="score-label">{label}</span>
+                </div>"""
+        
+        # Tags HTML
+        tags_html = ""
+        for tag in item.get("tags", []):
+            tags_html += f'<span class="tag">{tag}</span>'
+        
+        rankings_html += f"""
+        <div class="rank-item">
+            <div class="medal {medal}">{rank}</div>
+            <div class="rank-info">
+                <div class="rank-name">{item.get("name", "")}</div>
+                <div class="rank-provider">{item.get("provider", "")}</div>
+                <div class="rank-reason">{item.get("short_reason", "")}</div>
+                <div class="tags">{tags_html}</div>
+            </div>
+            <div class="scores">{scores_html}</div>
+        </div>"""
+    
+    return f"""
+    <div class="category">
+        <h2>{category.get("name", "")}</h2>
+        <div class="rankings">
+            {rankings_html}
+        </div>
+    </div>"""
+
+
+def generate_new_noteworthy_html(items: list) -> str:
+    if not items:
+        return ""
+    
+    items_html = ""
+    for item in items:
+        tags_html = "".join(f'<span class="tag">{t}</span>' for t in item.get("tags", []))
+        items_html += f"""
+        <div class="new-item">
+            <div class="new-item-name">{item.get("name", "")}</div>
+            <div class="new-item-provider">{item.get("provider", "")}</div>
+            <div class="new-item-reason">{item.get("short_reason", "")}</div>
+            <div class="tags" style="margin-top: 0.5rem;">{tags_html}</div>
+        </div>"""
+    
+    return f"""
+    <div class="new-noteworthy">
+        <h2>Nytt & Spennende</h2>
+        <div class="new-items">
+            {items_html}
+        </div>
+    </div>"""
+
+
+def generate_html(rankings: dict) -> str:
+    # Summary
+    summary = rankings.get("summary", "")
+    summary_html = f'<div class="summary">{summary}</div>' if summary else ""
+    
+    # Categories
+    categories_html = ""
+    for cat in rankings.get("categories", []):
+        categories_html += generate_category_html(cat)
+    
+    # New & noteworthy
+    new_noteworthy_html = generate_new_noteworthy_html(
+        rankings.get("new_and_noteworthy", [])
+    )
+    
+    # Format timestamp
+    generated_at = rankings.get("generated_at", "")
+    if generated_at:
+        try:
+            dt = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+            generated_at = dt.strftime("%d. %B %Y kl. %H:%M")
+        except:
+            pass
+    
+    return HTML_TEMPLATE.format(
+        period=rankings.get("period", ""),
+        summary_html=summary_html,
+        categories_html=categories_html,
+        new_noteworthy_html=new_noteworthy_html,
+        generated_at=generated_at,
+        total_posts=rankings.get("total_posts_analyzed", 0)
+    )
+
+
+def main():
+    # Finn nyeste rankings-fil
+    rankings_files = list(OUTPUT_DIR.glob("rankings_*.json"))
+    if not rankings_files:
+        print("Ingen rankings-filer funnet i output/")
+        return
+    
+    latest_file = max(rankings_files, key=lambda f: f.stat().st_mtime)
+    print(f"Genererer HTML fra {latest_file}")
+    
+    with open(latest_file) as f:
+        rankings = json.load(f)
+    
+    html = generate_html(rankings)
+    
+    # Lagre til docs/ for GitHub Pages
+    DOCS_DIR.mkdir(exist_ok=True)
+    output_path = DOCS_DIR / "index.html"
+    
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    
+    print(f"✅ HTML generert: {output_path}")
+    
+    # Kopier også til output/
+    with open(OUTPUT_DIR / "index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+
+
+if __name__ == "__main__":
+    main()

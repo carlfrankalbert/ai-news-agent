@@ -1,0 +1,141 @@
+# AI News Agent
+
+## Prosjektbeskrivelse
+
+Dette er en AI-agent som scanner Hacker News for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format. Agenten kjører automatisk daglig via GitHub Actions og publiserer resultater til GitHub Pages.
+
+## Arkitektur
+
+```
+┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────┐
+│   main.py   │────▶│  collectors/ │────▶│  analyzer   │────▶│  output/ │
+│ (orkestrer) │     │ (HN API)     │     │  (Claude)   │     │  (JSON)  │
+└─────────────┘     └──────────────┘     └─────────────┘     └──────────┘
+                                                                   │
+                                                                   ▼
+                                                            ┌──────────┐
+                                                            │  docs/   │
+                                                            │  (HTML)  │
+                                                            └──────────┘
+```
+
+## Filstruktur
+
+- `main.py` - Hovedscript som orkestrerer hele pipelinen (samle → analysere → lagre)
+- `config.py` - Konfigurasjon: søkeord, kategorier, API-URLer, konstanter
+- `analyzer.py` - Sender data til Claude API for analyse og rangering
+- `generate_html.py` - Konverterer rankings JSON til publiserbar HTML
+- `collectors/hackernews.py` - Henter AI-relaterte posts fra Hacker News Firebase API
+- `.github/workflows/daily.yml` - GitHub Actions workflow for daglig kjøring
+- `output/` - JSON-output fra agenten (rankings og rådata)
+- `docs/` - HTML-output for GitHub Pages
+
+## Teknisk stack
+
+- **Python 3.11+**
+- **httpx** - Async HTTP-klient for API-kall
+- **anthropic** - Offisiell Claude SDK
+- **GitHub Actions** - Scheduler og CI/CD
+- **GitHub Pages** - Hosting av HTML-output
+
+## Dataflyt
+
+1. `collectors/hackernews.py` henter top/best/new stories fra HN Firebase API
+2. Filtrerer på AI-relevante keywords definert i `config.py`
+3. `analyzer.py` sender filtrerte posts til Claude med en strukturert prompt
+4. Claude returnerer rangert JSON med kategorier, scores og begrunnelser
+5. `generate_html.py` konverterer JSON til en styled HTML-side
+6. GitHub Actions committer og pusher output til repo
+7. GitHub Pages serverer `docs/index.html`
+
+## Nøkkelkonsepter
+
+### Keywords (config.py)
+Liste over søkeord som brukes til å identifisere AI-relaterte posts:
+- Modellnavn: gpt-4, claude, llama, mistral, gemini
+- Konsepter: llm, rag, fine-tuning, agentic
+- Verktøy: langchain, ollama, cursor, copilot
+
+### Kategorier (config.py)
+Forhåndsdefinerte kategorier for rangering:
+- core-llms: Hovedmodeller for chat og reasoning
+- code-assistants: Kodeverktøy
+- builder-platform: APIer og open source
+- image-video: Bildegenerering
+- audio-voice: Lyd og tale
+- agents-automation: AI-agenter
+
+### Output-format (rankings JSON)
+```json
+{
+  "period": "2025-11",
+  "categories": [
+    {
+      "name": "Kategori",
+      "slug": "kategori-slug",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Verktøy",
+          "provider": "Leverandør",
+          "short_reason": "Begrunnelse",
+          "scores": { "buzz_momentum": 5, ... }
+        }
+      ]
+    }
+  ],
+  "new_and_noteworthy": [ ... ],
+  "summary": "Oppsummering av trender"
+}
+```
+
+## Vanlige oppgaver
+
+### Kjøre lokalt
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+python main.py --days 7
+python generate_html.py
+```
+
+### Bare samle data (uten analyse)
+```bash
+python main.py --collect-only
+```
+
+### Bare analysere eksisterende data
+```bash
+python main.py --analyze-only
+```
+
+### Legge til nye keywords
+Rediger `AI_KEYWORDS` listen i `config.py`
+
+### Legge til ny kategori
+Legg til i `CATEGORIES` listen i `config.py`
+
+### Endre HTML-design
+Rediger `HTML_TEMPLATE` og CSS i `generate_html.py`
+
+### Endre kjørefrekvens
+Rediger cron-uttrykket i `.github/workflows/daily.yml`
+
+## Miljøvariabler
+
+- `ANTHROPIC_API_KEY` - Påkrevd for Claude API (settes som GitHub secret)
+
+## Begrensninger
+
+- Hacker News API har ingen autentisering men rate limits
+- Firebase API returnerer kun aktive stories (ikke historisk søk)
+- Claude-analyse koster ~$0.01-0.05 per kjøring
+- GitHub Actions har 2000 minutter/måned på gratisplan
+
+## Utvidelsesmuligheter
+
+- Legge til Reddit-collector (r/MachineLearning, r/LocalLLaMA)
+- Legge til Product Hunt API
+- Historisk trending (sammenligne med forrige måned)
+- Slack/Discord-notifikasjoner
+- RSS-feed output
