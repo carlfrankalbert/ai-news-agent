@@ -80,9 +80,20 @@ Genererer to filer i `output/`:
 }
 ```
 
-## Cloud Deployment
+## Deployment
 
-### Option 1: GitHub Actions (enklest)
+### Cloudflare Pages (Nåværende setup)
+
+Nettsiden er deployet til **Cloudflare Pages** på domenet **fyrk.eu**.
+
+- **Automatisk deployment:** Når GitHub Actions pusher endringer til `docs/` mappen
+- **Custom domain:** fyrk.eu
+- **Build:** Ingen build nødvendig (statisk HTML)
+- **Output directory:** `docs/`
+
+Se [CLOUDFLARE_SETUP.md](./CLOUDFLARE_SETUP.md) for detaljer.
+
+### Option 1: GitHub Actions (alternativ)
 
 Lag `.github/workflows/daily-run.yml`:
 
