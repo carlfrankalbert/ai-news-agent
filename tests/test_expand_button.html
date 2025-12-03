@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expand Button Test</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .test-result.pass {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .test-result.fail {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        .test-summary {
+            padding: 20px;
+            background: #f4f4f5;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 8px 16px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            background: white;
+        }
+        button:hover {
+            background: #f5f5f5;
+        }
+        .ranking-row {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+        }
+        .ranking-row.collapsed {
+            display: none;
+        }
+        .ranking-row.expanded {
+            display: block;
+        }
+        .expand-button {
+            margin: 10px 0;
+        }
+        .expand-button.expanded::after {
+            content: ' ↑';
+        }
+        .expand-button:not(.expanded)::after {
+            content: ' ↓';
+        }
+    </style>
+</head>
+<body>
+    <h1>Expand Button Functionality Test</h1>
+    
+    <div class="test-container">
+        <h2>Test Requirements</h2>
+        <p>This test verifies the "vis alle" / "vis færre" button functionality:</p>
+        <ul>
+            <li><strong>Initial state:</strong> Display only the first 3 items. Button shows "Vis alle (X)" where X is total number of hidden items.</li>
+            <li><strong>On expand:</strong> Reveal all remaining items. Button text changes to "Vis færre".</li>
+            <li><strong>On collapse:</strong> Hide all items except the first 3. Button text changes back to "Vis alle (X)".</li>
+            <li><strong>Edge case:</strong> If the list contains 3 or fewer items, the button should not be rendered at all.</li>
+        </ul>
+    </div>
+
+    <!-- Test HTML Structure (mimics the actual page) -->
+    <div class="test-container">
+        <h2>Test HTML Structure - Normal Case (6 items)</h2>
+        <div class="rankings-table" id="test-table-1">
+            <div class="ranking-row">Row 1 (always visible)</div>
+            <div class="ranking-row">Row 2 (always visible)</div>
+            <div class="ranking-row">Row 3 (always visible)</div>
+            <div class="ranking-row collapsed">Row 4 (hidden by default)</div>
+            <div class="ranking-row collapsed">Row 5 (hidden by default)</div>
+            <div class="ranking-row collapsed">Row 6 (hidden by default)</div>
+            <div class="expand-section">
+                <button class="expand-button" data-category="test-category-1" onclick="toggleExpand('test-category-1')">
+                    <span class="expand-text">Vis alle (3)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test HTML Structure - Edge Case (3 items, no button)</h2>
+        <div class="rankings-table" id="test-table-2">
+            <div class="ranking-row">Row 1 (always visible)</div>
+            <div class="ranking-row">Row 2 (always visible)</div>
+            <div class="ranking-row">Row 3 (always visible)</div>
+            <div class="expand-section">
+                <button class="expand-button" data-category="test-category-2" onclick="toggleExpand('test-category-2')" style="display: none;">
+                    <span class="expand-text">Vis alle (0)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test HTML Structure - Edge Case (2 items, no button)</h2>
+        <div class="rankings-table" id="test-table-3">
+            <div class="ranking-row">Row 1 (always visible)</div>
+            <div class="ranking-row">Row 2 (always visible)</div>
+            <div class="expand-section">
+                <button class="expand-button" data-category="test-category-3" onclick="toggleExpand('test-category-3')" style="display: none;">
+                    <span class="expand-text">Vis alle (0)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test Results</h2>
+        <div id="test-results"></div>
+    </div>
+
+    <div class="test-summary">
+        <h2>Test Summary</h2>
+        <div id="test-summary"></div>
+    </div>
+
+    <script>
+        // Copy the toggleExpand function from the main page
+        function toggleExpand(categoryId) {
+            try {
+                let button = document.querySelector('.expand-toggle[data-category="' + categoryId + '"]');
+                if (!button) {
+                    button = document.querySelector('.expand-button[data-category="' + categoryId + '"]');
+                }
+                if (!button) return;
+                
+                const expandSection = button.closest('.expand-section');
+                if (!expandSection) return;
+                
+                const table = expandSection.parentElement;
+                if (!table || !table.classList.contains('rankings-table')) return;
+                
+                const allRows = Array.from(table.querySelectorAll('.ranking-row'));
+                const visibleRows = allRows.slice(0, 3);
+                const hiddenRows = allRows.slice(3);
+                
+                const expandText = button.querySelector('.expand-text');
+                const isExpanded = button.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Collapse
+                    hiddenRows.forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    button.classList.remove('expanded');
+                    const count = Math.min(hiddenRows.length, 10);
+                    if (expandText) {
+                        expandText.textContent = 'Vis alle (' + count + ')';
+                    }
+                    localStorage.setItem('fyrk-expanded-' + categoryId, 'false');
+                } else {
+                    // Expand - limit to 10 items
+                    const rowsToShow = hiddenRows.slice(0, 10);
+                    rowsToShow.forEach(row => {
+                        row.classList.remove('collapsed');
+                        row.classList.add('expanded');
+                    });
+                    hiddenRows.slice(10).forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    button.classList.add('expanded');
+                    if (expandText) {
+                        expandText.textContent = 'Vis færre';
+                    }
+                    localStorage.setItem('fyrk-expanded-' + categoryId, 'true');
+                }
+            } catch (error) {
+                console.error('Error in toggleExpand:', error);
+            }
+        }
+
+        // Test framework
+        const TestRunner = {
+            results: [],
+            
+            assert: function(condition, message) {
+                const result = {
+                    pass: condition,
+                    message: message
+                };
+                this.results.push(result);
+                return result;
+            },
+            
+            run: function() {
+                const resultsDiv = document.getElementById('test-results');
+                const summaryDiv = document.getElementById('test-summary');
+                resultsDiv.innerHTML = '';
+                
+                // Clear localStorage for clean test
+                localStorage.removeItem('fyrk-expanded-test-category-1');
+                localStorage.removeItem('fyrk-expanded-test-category-2');
+                localStorage.removeItem('fyrk-expanded-test-category-3');
+                
+                // Test normal case (6 items)
+                const table1 = document.getElementById('test-table-1');
+                const button1 = table1.querySelector('.expand-button[data-category="test-category-1"]');
+                const expandText1 = button1.querySelector('.expand-text');
+                const allRows1 = Array.from(table1.querySelectorAll('.ranking-row'));
+                const visibleRows1 = allRows1.slice(0, 3);
+                const hiddenRows1 = allRows1.slice(3);
+                
+                // Test 1: Initial state - button should NOT be expanded
+                const initialExpanded = button1.classList.contains('expanded');
+                this.assert(!initialExpanded, 'Test 1: Button should NOT be expanded initially');
+                
+                // Test 2: Initial state - only first 3 items should be visible
+                const first3Visible = visibleRows1.every(row => !row.classList.contains('collapsed'));
+                const restHidden = hiddenRows1.every(row => row.classList.contains('collapsed'));
+                this.assert(first3Visible && restHidden, 'Test 2: Only first 3 items should be visible initially');
+                
+                // Test 3: Initial text should be "Vis alle (X)" where X is total hidden items
+                const initialText = expandText1.textContent;
+                const expectedInitialText = `Vis alle (${hiddenRows1.length})`;
+                this.assert(initialText === expectedInitialText, `Test 3: Initial text should be "${expectedInitialText}" (got: "${initialText}")`);
+                
+                // Test 4: Button should be visible when more than 3 items
+                const buttonVisible = button1.style.display !== 'none' && getComputedStyle(button1).display !== 'none';
+                this.assert(buttonVisible, 'Test 4: Button should be visible when more than 3 items');
+                
+                // Click button to expand
+                button1.click();
+                
+                // Test 5: After click, button should be expanded
+                const afterClickExpanded = button1.classList.contains('expanded');
+                this.assert(afterClickExpanded, 'Test 5: Button should be expanded after click');
+                
+                // Test 6: After click, text should be "Vis færre" (Show less)
+                const afterClickText = expandText1.textContent;
+                this.assert(afterClickText === 'Vis færre', `Test 6: Text should be "Vis færre" after expand (got: "${afterClickText}")`);
+                
+                // Test 7: After click, all items should be visible
+                const allVisible = allRows1.every(row => 
+                    row.classList.contains('expanded') && !row.classList.contains('collapsed')
+                );
+                this.assert(allVisible, 'Test 7: All items should be visible after expand');
+                
+                // Click button again to collapse
+                button1.click();
+                
+                // Test 8: After second click, button should NOT be expanded
+                const afterSecondClickExpanded = button1.classList.contains('expanded');
+                this.assert(!afterSecondClickExpanded, 'Test 8: Button should NOT be expanded after second click');
+                
+                // Test 9: After second click, text should be "Vis alle (X)" again
+                const afterSecondClickText = expandText1.textContent;
+                const expectedCollapsedText = `Vis alle (${hiddenRows1.length})`;
+                this.assert(afterSecondClickText === expectedCollapsedText, `Test 9: Text should be "${expectedCollapsedText}" after collapse (got: "${afterSecondClickText}")`);
+                
+                // Test 10: After second click, only first 3 items should be visible
+                const first3VisibleAgain = visibleRows1.every(row => !row.classList.contains('collapsed'));
+                const restHiddenAgain = hiddenRows1.every(row => row.classList.contains('collapsed'));
+                this.assert(first3VisibleAgain && restHiddenAgain, 'Test 10: Only first 3 items should be visible after collapse');
+                
+                // Test edge case: 3 items (no button)
+                const table2 = document.getElementById('test-table-2');
+                const button2 = table2.querySelector('.expand-button[data-category="test-category-2"]');
+                const allRows2 = Array.from(table2.querySelectorAll('.ranking-row'));
+                const hiddenRows2 = allRows2.slice(3);
+                
+                // Test 11: Edge case - button should be hidden when 3 or fewer items
+                const button2Hidden = button2.style.display === 'none' || getComputedStyle(button2).display === 'none';
+                this.assert(button2Hidden, 'Test 11: Button should be hidden when exactly 3 items');
+                
+                // Test 12: Edge case - no hidden rows when 3 items
+                this.assert(hiddenRows2.length === 0, 'Test 12: No hidden rows when exactly 3 items');
+                
+                // Test edge case: 2 items (no button)
+                const table3 = document.getElementById('test-table-3');
+                const button3 = table3.querySelector('.expand-button[data-category="test-category-3"]');
+                const allRows3 = Array.from(table3.querySelectorAll('.ranking-row'));
+                const hiddenRows3 = allRows3.slice(3);
+                
+                // Test 13: Edge case - button should be hidden when 2 items
+                const button3Hidden = button3.style.display === 'none' || getComputedStyle(button3).display === 'none';
+                this.assert(button3Hidden, 'Test 13: Button should be hidden when 2 items');
+                
+                // Test 14: Edge case - no hidden rows when 2 items
+                this.assert(hiddenRows3.length === 0, 'Test 14: No hidden rows when 2 items');
+                
+                // Display results
+                let passCount = 0;
+                let failCount = 0;
+                
+                this.results.forEach((result, index) => {
+                    const div = document.createElement('div');
+                    div.className = `test-result ${result.pass ? 'pass' : 'fail'}`;
+                    div.textContent = `${result.pass ? '✓' : '✗'} ${result.message}`;
+                    resultsDiv.appendChild(div);
+                    
+                    if (result.pass) passCount++;
+                    else failCount++;
+                });
+                
+                // Display summary
+                const totalTests = this.results.length;
+                const summary = `
+                    <p><strong>Total Tests:</strong> ${totalTests}</p>
+                    <p><strong>Passed:</strong> <span style="color: #166534;">${passCount}</span></p>
+                    <p><strong>Failed:</strong> <span style="color: #dc2626;">${failCount}</span></p>
+                    <p><strong>Success Rate:</strong> ${((passCount / totalTests) * 100).toFixed(1)}%</p>
+                `;
+                summaryDiv.innerHTML = summary;
+                
+                // Add visual indicator
+                if (failCount === 0) {
+                    summaryDiv.style.background = '#dcfce7';
+                    summaryDiv.style.color = '#166534';
+                } else {
+                    summaryDiv.style.background = '#fef2f2';
+                    summaryDiv.style.color = '#dc2626';
+                }
+            }
+        };
+        
+        // Helper function to initialize button visibility based on item count
+        function initializeButtonVisibility() {
+            document.querySelectorAll('.rankings-table').forEach(table => {
+                const allRows = Array.from(table.querySelectorAll('.ranking-row'));
+                const hiddenRows = allRows.slice(3);
+                const button = table.querySelector('.expand-button');
+                const expandText = button?.querySelector('.expand-text');
+                
+                if (hiddenRows.length === 0) {
+                    // Edge case: 3 or fewer items - hide button
+                    if (button) button.style.display = 'none';
+                } else {
+                    // Normal case: More than 3 items - show button
+                    if (button) {
+                        button.style.display = '';
+                        if (expandText) {
+                            expandText.textContent = `Vis alle (${hiddenRows.length})`;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Run tests when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            // Initialize button visibility
+            initializeButtonVisibility();
+            
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                TestRunner.run();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+

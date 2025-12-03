@@ -1,0 +1,94 @@
+name: Check Provider Links
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC (04:00 CET / 03:00 CEST)
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          # httpx is already in requirements.txt
+      
+      - name: Run link checker
+        run: python check_links.py
+        continue-on-error: true  # Don't fail workflow, just report
+      
+      - name: Upload link check report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: link-check-report
+          path: output/link_check_report.json
+          retention-days: 30
+      
+      - name: Create issue for broken links
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = 'output/link_check_report.json';
+            
+            if (fs.existsSync(reportPath)) {
+              const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+              
+              if (report.invalid_links && report.invalid_links.length > 0) {
+                const title = `🔗 Broken Links Detected - ${new Date().toISOString().split('T')[0]}`;
+                const body = `## Broken Links Report\n\n` +
+                  `**Timestamp:** ${report.timestamp}\n\n` +
+                  `**Summary:**\n` +
+                  `- Total links checked: ${report.summary.total_links}\n` +
+                  `- Invalid links: ${report.summary.invalid_links}\n\n` +
+                  `### Invalid Links:\n\n` +
+                  report.invalid_links.map(link => 
+                    `- **${link.provider}** - ${link.type.toUpperCase()}\n` +
+                    `  - URL: ${link.url}\n` +
+                    `  - Status: ${link.status} | Error: ${link.error}`
+                  ).join('\n\n') +
+                  `\n\n---\n\n*This issue was automatically created by the link checker workflow.*`;
+                
+                // Check if issue already exists
+                const { data: issues } = await github.rest.issues.listForRepo({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  state: 'open',
+                  labels: 'broken-links'
+                });
+                
+                const existingIssue = issues.find(issue => issue.title === title);
+                
+                if (!existingIssue) {
+                  await github.rest.issues.create({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    title: title,
+                    body: body,
+                    labels: ['broken-links', 'automated']
+                  });
+                } else {
+                  // Update existing issue
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: existingIssue.number,
+                    body: `## Updated Report - ${new Date().toISOString()}\n\n${body.split('---')[0]}`
+                  });
+                }
+              }
+            }
+

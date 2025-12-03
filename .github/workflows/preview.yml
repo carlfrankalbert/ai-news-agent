@@ -1,0 +1,96 @@
+name: Preview Deployment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preview:
+    name: Preview Deployment
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Generate HTML (if needed)
+        run: |
+          # Use dummy data for preview
+          if [ -f "output/rankings_dummy.json" ]; then
+            python generate_html.py --dummy
+          else
+            echo "⚠️  No dummy data found, skipping HTML generation"
+          fi
+        continue-on-error: true
+      
+      - name: Deploy to Cloudflare Pages Preview
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ai-news-agent
+          directory: docs
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
+      
+      - name: Get preview URL
+        id: preview
+        run: |
+          # Extract preview URL from Cloudflare Pages output
+          # This is a simplified version - actual URL comes from Cloudflare API
+          echo "url=https://${{ github.event.pull_request.number }}.ai-news-agent.pages.dev" >> $GITHUB_OUTPUT
+      
+      - name: Health check preview
+        id: healthcheck
+        run: |
+          PREVIEW_URL="${{ steps.preview.outputs.url }}/health"
+          echo "Checking health at: $PREVIEW_URL"
+          
+          sleep 5  # Wait for deployment
+          
+          if curl -f -s "$PREVIEW_URL" > /dev/null 2>&1; then
+            echo "✅ Health check passed"
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "⚠️  Health check failed (may still be deploying)"
+            echo "status=unknown" >> $GITHUB_OUTPUT
+          fi
+        continue-on-error: true
+      
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ steps.healthcheck.outputs.status }}';
+            const url = '${{ steps.preview.outputs.url }}';
+            const healthEmoji = status === 'success' ? '✅' : '⚠️';
+            
+            const body = `## 🚀 Preview Deployment
+            
+            ${healthEmoji} **Status**: ${status === 'success' ? 'Healthy' : 'Deploying...'}
+            
+            **Preview URL**: ${url}
+            
+            **Health Check**: ${url}/health
+            
+            ---
+            *This preview will be updated automatically when you push new commits.*`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+

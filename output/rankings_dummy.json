@@ -1,0 +1,1214 @@
+{
+  "period": "2025-12",
+  "generated_at": "2025-12-02T12:00:00",
+  "data_source": "hackernews,github",
+  "total_posts_analyzed": 200,
+  "categories": [
+    {
+      "name": "Kjerne-LLM-er",
+      "slug": "core-llms",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Claude 3.5 Sonnet",
+          "provider": "Anthropic",
+          "short_reason": "Topper alle kategorier med avansert reasoning og tool use",
+          "tags": ["reasoning", "coding", "paid"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 2,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "GPT-4o",
+          "provider": "OpenAI",
+          "short_reason": "Sterk multimodal ytelse med vision og audio",
+          "tags": ["multimodal", "vision", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Gemini 2.0 Flash",
+          "provider": "Google",
+          "short_reason": "Best på video-analyse og rask inference",
+          "tags": ["video", "multimodal", "free"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "Llama 3.3 70B",
+          "provider": "Meta",
+          "short_reason": "Best open source modell med sterk ytelse",
+          "tags": ["open-source", "local", "free"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 5,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "Mistral Large",
+          "provider": "Mistral AI",
+          "short_reason": "Europeisk alternativ med god ytelse",
+          "tags": ["european", "paid", "multilingual"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 5,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "DeepSeek-R1",
+          "provider": "DeepSeek",
+          "short_reason": "Ny reasoning-modell med imponerende matematikk",
+          "tags": ["reasoning", "math", "chinese"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "Grok-2",
+          "provider": "xAI",
+          "short_reason": "X/Twitter-integrasjon og real-time data",
+          "tags": ["twitter", "real-time", "paid"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 4,
+            "rank_change": -3
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "Command R+",
+          "provider": "Cohere",
+          "short_reason": "Sterk på enterprise use cases",
+          "tags": ["enterprise", "rag", "paid"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 8,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "Qwen 2.5",
+          "provider": "Alibaba",
+          "short_reason": "Kinesisk modell med god multilanguage support",
+          "tags": ["chinese", "multilingual", "open-source"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 10,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "Phi-3",
+          "provider": "Microsoft",
+          "short_reason": "Kompakt modell for edge devices",
+          "tags": ["small", "edge", "mobile"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 7,
+            "rank_change": -3
+          }
+        }
+      ]
+    },
+    {
+      "name": "Kode-assistenter",
+      "slug": "code-assistants",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Cursor",
+          "provider": "Anysphere",
+          "short_reason": "AI-native editor med best-in-class kodehjelp",
+          "tags": ["editor", "ai-native", "paid"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 2,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "GitHub Copilot",
+          "provider": "Microsoft/GitHub",
+          "short_reason": "Etablert markedsleder med bred integrasjon",
+          "tags": ["github", "microsoft", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 1,
+            "rank_change": -1
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Continue",
+          "provider": "Continue",
+          "short_reason": "Open-source alternativ med VS Code integrasjon",
+          "tags": ["open-source", "vscode", "free"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 4,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "Aider",
+          "provider": "Aider",
+          "short_reason": "CLI-basert kodehjelp med git-integrasjon",
+          "tags": ["cli", "git", "open-source"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "Windsurf",
+          "provider": "Codeium",
+          "short_reason": "Moderne editor med AI-assistenter",
+          "tags": ["editor", "modern", "paid"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 5,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "Cody",
+          "provider": "Sourcegraph",
+          "short_reason": "Kodehjelp med codebase-kontekst",
+          "tags": ["codebase", "context", "free"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 6,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "Tabnine",
+          "provider": "Tabnine",
+          "short_reason": "Tidlig AI-kodehjelp med privacy-fokus",
+          "tags": ["privacy", "enterprise", "paid"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 3,
+            "rank_change": -4
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "Codeium",
+          "provider": "Codeium",
+          "short_reason": "Gratis alternativ med god ytelse",
+          "tags": ["free", "coding", "alternative"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 8,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "JetBrains AI Assistant",
+          "provider": "JetBrains",
+          "short_reason": "Integrert i JetBrains IDEs",
+          "tags": ["jetbrains", "ide", "paid"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 9,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "CodeWhisperer",
+          "provider": "Amazon",
+          "short_reason": "AWS-integrasjon for cloud-utvikling",
+          "tags": ["aws", "cloud", "paid"],
+          "scores": {
+            "buzz_momentum": 1,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 7,
+            "rank_change": -3
+          }
+        }
+      ]
+    },
+    {
+      "name": "Byggeklosser & plattform",
+      "slug": "builder-platform",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Ollama",
+          "provider": "Ollama",
+          "short_reason": "Enkleste måten å kjøre lokale LLM-er",
+          "tags": ["local", "deployment", "easy"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 1,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "LangChain",
+          "provider": "LangChain",
+          "short_reason": "Domenerende rammeverk for LLM-applikasjoner",
+          "tags": ["framework", "python", "applications"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Transformers",
+          "provider": "Hugging Face",
+          "short_reason": "Grunnleggende bibliotek for ML-modeller",
+          "tags": ["huggingface", "pytorch", "models"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "LlamaIndex",
+          "provider": "LlamaIndex",
+          "short_reason": "Leder innen RAG og data-tilkoblede apper",
+          "tags": ["rag", "data", "indexing"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 5,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "vLLM",
+          "provider": "vLLM Team",
+          "short_reason": "Høy-ytelse inference server",
+          "tags": ["inference", "performance", "production"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 5,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "OpenAI API",
+          "provider": "OpenAI",
+          "short_reason": "Standard API for GPT-modeller",
+          "tags": ["api", "openai", "standard"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 6,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "Anthropic API",
+          "provider": "Anthropic",
+          "short_reason": "API for Claude-modeller",
+          "tags": ["api", "anthropic", "claude"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 8,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "Together AI",
+          "provider": "Together",
+          "short_reason": "Inference API for open source modeller",
+          "tags": ["api", "open-source", "inference"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 8,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "Groq",
+          "provider": "Groq",
+          "short_reason": "Ultra-rask inference med LPU",
+          "tags": ["fast", "inference", "hardware"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 10,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "Replicate",
+          "provider": "Replicate",
+          "short_reason": "Enkel hosting av ML-modeller",
+          "tags": ["hosting", "ml", "easy"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 9,
+            "rank_change": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bilde & video-generering",
+      "slug": "image-video",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Midjourney v6",
+          "provider": "Midjourney",
+          "short_reason": "Best kvalitet på bildegenerering",
+          "tags": ["image", "quality", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 1,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "DALL-E 3",
+          "provider": "OpenAI",
+          "short_reason": "Integrert i ChatGPT med god tekst-forståelse",
+          "tags": ["openai", "chatgpt", "text-to-image"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Stable Diffusion WebUI",
+          "provider": "AUTOMATIC1111",
+          "short_reason": "Mest populære lokale løsning",
+          "tags": ["local", "open-source", "webui"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "FLUX",
+          "provider": "Black Forest Labs",
+          "short_reason": "Ny generasjon bildegenerering",
+          "tags": ["frontier", "high-quality", "commercial"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "Runway Gen-3",
+          "provider": "Runway",
+          "short_reason": "Leder innen video-generering",
+          "tags": ["video", "generation", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 6,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "Diffusers",
+          "provider": "Hugging Face",
+          "short_reason": "Bibliotek for diffusjonsmodeller",
+          "tags": ["huggingface", "diffusion", "python"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 6,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "ComfyUI",
+          "provider": "ComfyUI",
+          "short_reason": "Node-basert UI for Stable Diffusion",
+          "tags": ["ui", "nodes", "workflow"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 7,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "Leonardo.ai",
+          "provider": "Leonardo",
+          "short_reason": "Bruker-vennlig bildegenerering",
+          "tags": ["user-friendly", "image", "paid"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 5,
+            "rank_change": -3
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "Ideogram",
+          "provider": "Ideogram",
+          "short_reason": "Best på tekst i bilder",
+          "tags": ["text", "typography", "image"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 9,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "Kling AI",
+          "provider": "Kling",
+          "short_reason": "Kinesisk video-generering",
+          "tags": ["video", "chinese", "generation"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lyd & tale",
+      "slug": "audio-voice",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "ElevenLabs",
+          "provider": "ElevenLabs",
+          "short_reason": "Best tekst-til-tale kvalitet",
+          "tags": ["tts", "voice", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 2,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "Whisper",
+          "provider": "OpenAI",
+          "short_reason": "Best tale-til-tekst med open source",
+          "tags": ["stt", "open-source", "accurate"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Suno",
+          "provider": "Suno AI",
+          "short_reason": "Leder innen AI-musikkgenerering",
+          "tags": ["music", "generation", "paid"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 4,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "Udio",
+          "provider": "Udio",
+          "short_reason": "Alternativ til Suno med god kvalitet",
+          "tags": ["music", "alternative", "paid"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 3,
+            "rank_change": -1
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "ChatTTS",
+          "provider": "2noise",
+          "short_reason": "Open-source tekst-til-tale",
+          "tags": ["tts", "open-source", "conversational"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "Bark",
+          "provider": "Suno",
+          "short_reason": "Open-source tekst-til-tale og musikk",
+          "tags": ["open-source", "tts", "music"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 6,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "Piper",
+          "provider": "Piper",
+          "short_reason": "Lokal TTS med lav latency",
+          "tags": ["local", "tts", "fast"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 7,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "Coqui TTS",
+          "provider": "Coqui",
+          "short_reason": "Open-source TTS med mange språk",
+          "tags": ["open-source", "multilingual", "tts"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 5,
+            "rank_change": -3
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "RVC",
+          "provider": "RVC",
+          "short_reason": "Voice cloning og conversion",
+          "tags": ["voice-cloning", "conversion", "open-source"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 2,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 9,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "MeloTTS",
+          "provider": "MeloTTS",
+          "short_reason": "Høy-kvalitet TTS for kinesisk",
+          "tags": ["chinese", "tts", "quality"],
+          "scores": {
+            "buzz_momentum": 1,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 2,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "AI-agenter & automatisering",
+      "slug": "agents-automation",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "AutoGPT",
+          "provider": "Significant Gravitas",
+          "short_reason": "Leder innen autonomous agents",
+          "tags": ["autonomous", "agent", "python"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 1,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "n8n",
+          "provider": "n8n",
+          "short_reason": "Workflow-automatisering med AI",
+          "tags": ["workflow", "automation", "no-code"],
+          "scores": {
+            "buzz_momentum": 5,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 3,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "CrewAI",
+          "provider": "joaomdmoura",
+          "short_reason": "Multi-agent framework",
+          "tags": ["multi-agent", "collaboration", "framework"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 2,
+            "rank_change": -1
+          }
+        },
+        {
+          "rank": 4,
+          "medal": null,
+          "name": "LangGraph",
+          "provider": "LangChain",
+          "short_reason": "Stateful agent workflows",
+          "tags": ["workflow", "stateful", "langchain"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 5,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 5,
+          "medal": null,
+          "name": "Claude Computer Use",
+          "provider": "Anthropic",
+          "short_reason": "Claude kan bruke datamaskiner",
+          "tags": ["claude", "computer-use", "anthropic"],
+          "scores": {
+            "buzz_momentum": 4,
+            "sentiment": 5,
+            "utility_for_knowledge_work": 5,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        },
+        {
+          "rank": 6,
+          "medal": null,
+          "name": "AutoGen",
+          "provider": "Microsoft",
+          "short_reason": "Multi-agent conversations",
+          "tags": ["multi-agent", "microsoft", "conversations"],
+          "scores": {
+            "buzz_momentum": 3,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 4,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 4,
+            "rank_change": -2
+          }
+        },
+        {
+          "rank": 7,
+          "medal": null,
+          "name": "AgentGPT",
+          "provider": "AgentGPT",
+          "short_reason": "Web-basert agent builder",
+          "tags": ["web", "builder", "easy"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 7,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 8,
+          "medal": null,
+          "name": "SuperAGI",
+          "provider": "SuperAGI",
+          "short_reason": "Open-source agent framework",
+          "tags": ["open-source", "framework", "agents"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 4,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 5
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 8,
+            "rank_change": 0
+          }
+        },
+        {
+          "rank": 9,
+          "medal": null,
+          "name": "BabyAGI",
+          "provider": "BabyAGI",
+          "short_reason": "Enkel task-based agent",
+          "tags": ["simple", "tasks", "python"],
+          "scores": {
+            "buzz_momentum": 2,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 4
+          },
+          "trend": {
+            "status": "falling",
+            "previous_rank": 6,
+            "rank_change": -3
+          }
+        },
+        {
+          "rank": 10,
+          "medal": null,
+          "name": "Swarm",
+          "provider": "Swarm",
+          "short_reason": "Distributed agent system",
+          "tags": ["distributed", "swarm", "agents"],
+          "scores": {
+            "buzz_momentum": 1,
+            "sentiment": 3,
+            "utility_for_knowledge_work": 3,
+            "price_performance": 3
+          },
+          "trend": {
+            "status": "new",
+            "previous_rank": null,
+            "rank_change": null
+          }
+        }
+      ]
+    }
+  ],
+  "new_and_noteworthy": [
+    {
+      "name": "DeepSeek-R1",
+      "provider": "DeepSeek",
+      "category_hint": "core-llms",
+      "short_reason": "Ny reasoning-modell med imponerende matematikk",
+      "tags": ["reasoning", "math", "new"]
+    },
+    {
+      "name": "Browser Use",
+      "provider": "browser-use",
+      "category_hint": "agents-automation",
+      "short_reason": "Agent som kan navigere nettlesere autonomt",
+      "tags": ["browser", "automation", "web-agent"]
+    },
+    {
+      "name": "Fara-7B",
+      "provider": "Faraday",
+      "category_hint": "core-llms",
+      "short_reason": "Effektiv agentic modell for computer use",
+      "tags": ["computer-use", "efficient", "7b-params"]
+    }
+  ],
+  "summary": "Claude dominerer diskusjonene med avanserte verktøyfunksjoner, mens lokale løsninger som Ollama og Stable Diffusion WebUI fortsetter å vokse sterkt. Det er økende fokus på praktiske agenter som kan utføre reelle oppgaver, med browser automation og computer use som fremvoksende trender.",
+  "trend_analysis": {
+    "has_previous_data": true,
+    "previous_period": "2025-11",
+    "trends": {}
+  }
+}
+

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ – FYRK AI Radar</title>
+    <meta name="description" content="Ofte stilte spørsmål om FYRK AI Radar - en månedlig oversikt over AI-verktøy og modeller.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #fafafa;
+            --bg-card: #ffffff;
+            --bg-muted: #f4f4f5;
+            --text-primary: #18181b;
+            --text-secondary: #71717a;
+            --text-muted: #a1a1aa;
+            --border: #e4e4e7;
+            --border-subtle: #f4f4f5;
+            --accent-primary: #2563eb;
+            --accent-primary-light: #dbeafe;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        /* Header */
+        .site-header {
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-header .container {
+            max-width: 1080px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--text-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .header-nav a:hover,
+        .header-nav a.active {
+            color: var(--text-primary);
+        }
+
+        .logo-img {
+            height: 24px;
+            width: auto;
+            display: block;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: var(--space-xl) 0 var(--space-lg);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--space-xl);
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* FAQ Section */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            padding-bottom: var(--space-2xl);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: var(--space-xl);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-sm);
+            line-height: 1.4;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .faq-answer a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-answer ul {
+            margin: var(--space-sm) 0;
+            padding-left: var(--space-lg);
+        }
+
+        .faq-answer li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .faq-answer strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: var(--space-lg);
+            transition: color 0.15s;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: var(--space-xl) 0;
+            margin-top: var(--space-2xl);
+        }
+
+        .site-footer .container {
+            max-width: 1080px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer-brand .logo-mark {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-logo-img {
+            height: 18px;
+            width: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-nav {
+                gap: var(--space-md);
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .faq-question {
+                font-size: 16px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="https://fyrk.no/fyrk-logo.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-mark" style="display: none;">F</div>
+                <span class="logo-text">FYRK</span>
+            </a>
+            <nav class="header-nav">
+                <a href="index.html">AI Radar</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Radar">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+        
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <h1>Ofte stilte spørsmål</h1>
+                <p>Alt du trenger å vite om FYRK AI Radar</p>
+            </section>
+
+            <!-- FAQ List -->
+            <section class="faq-list">
+                <article class="faq-item">
+                    <h2 class="faq-question">Hva er FYRK AI Radar?</h2>
+                    <p class="faq-answer">
+                        FYRK AI Radar er en månedlig oversikt over AI-verktøy og modeller. Vi samler signaler fra Hacker News, GitHub, X (Twitter), og andre kilder for å gi deg et objektivt bilde av hva som faktisk skjer i AI-landskapet – ikke bare hva som får mest markedsføring.
+                    </p>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvordan beregnes scorene?</h2>
+                    <p class="faq-answer">
+                        Hver modell eller verktøy får fire scorer på en skala fra 0–100:
+                    </p>
+                    <ul class="faq-answer">
+                        <li><strong>Buzz:</strong> Hvor mye verktøyet diskuteres i relevante communities</li>
+                        <li><strong>Sentiment:</strong> Om omtalen er positiv eller negativ</li>
+                        <li><strong>Nytte:</strong> Hvor praktisk nyttig verktøyet oppleves</li>
+                        <li><strong>Pris:</strong> Opplevd verdi for pengene (høyere = bedre verdi)</li>
+                    </ul>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvilke kilder bruker dere?</h2>
+                    <p class="faq-answer">
+                        Vi henter data fra flere kilder for å få et helhetlig bilde:
+                    </p>
+                    <ul class="faq-answer">
+                        <li><strong>Hacker News:</strong> Tekniske diskusjoner og nyheter</li>
+                        <li><strong>GitHub:</strong> Aktivitet i repositories, stars, forks</li>
+                        <li><strong>X (Twitter):</strong> Diskusjoner og sentiment i AI-communityet</li>
+                        <li><strong>Sentimentanalyse:</strong> AI-drevet analyse av kommentarer og diskusjoner</li>
+                    </ul>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvor ofte oppdateres dataene?</h2>
+                    <p class="faq-answer">
+                        AI Radar oppdateres månedlig. Datainnsamling og analyse kjører automatisk via GitHub Actions, og resultatene publiseres til denne nettsiden.
+                    </p>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hva betyr trend-pilene?</h2>
+                    <p class="faq-answer">
+                        Trend-pilene viser endring fra forrige måned:
+                    </p>
+                    <ul class="faq-answer">
+                        <li><strong>↑</strong> Økning i aktivitet/interesse</li>
+                        <li><strong>↓</strong> Nedgang i aktivitet/interesse</li>
+                        <li><strong>→</strong> Stabil, ingen vesentlig endring</li>
+                        <li><strong>—</strong> Nytt denne måneden, ingen historikk</li>
+                    </ul>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvorfor mangler [verktøy X] på listen?</h2>
+                    <p class="faq-answer">
+                        Vi fokuserer på verktøy og modeller som har tilstrekkelig aktivitet i de kildene vi overvåker. Nye verktøy legges til når de når en terskel for diskusjonsvolum. Savner du noe? <a href="mailto:hei@fyrk.no?subject=Forslag%20til%20AI%20Radar">Send oss en e-post</a>.
+                    </p>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Kan jeg bruke dataene til mine egne analyser?</h2>
+                    <p class="faq-answer">
+                        Ja! Rådataene er tilgjengelige i JSON-format. Ta kontakt hvis du trenger tilgang til historiske data eller API.
+                    </p>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvem står bak FYRK AI Radar?</h2>
+                    <p class="faq-answer">
+                        FYRK AI Radar er utviklet av <a href="https://fyrk.no">FYRK</a>, et norsk konsulentselskap som hjelper bedrifter med AI-strategi og implementering. Vi bygget dette verktøyet for å gi oss selv og våre kunder et bedre beslutningsgrunnlag.
+                    </p>
+                </article>
+
+                <article class="faq-item">
+                    <h2 class="faq-question">Hvordan kan FYRK hjelpe min bedrift?</h2>
+                    <p class="faq-answer">
+                        Vi tilbyr rådgivning innen AI-strategi, verktøyvalg, og implementering av AI-drevne arbeidsflyter. <a href="mailto:hei@fyrk.no?subject=AI-rådgivning">Ta kontakt</a> for en uforpliktende prat.
+                    </p>
+                </article>
+            </section>
+
+            <a href="index.html" class="back-link">← Tilbake til AI Radar</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="https://fyrk.no/fyrk-logo.svg" alt="FYRK" class="footer-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-mark" style="display: none;">F</div>
+                    <span>© FYRK – AI Product Leadership</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://fyrk.no">fyrk.no</a>
+                    <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Radar">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+

@@ -3,29 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Verktøy Radar – 2025-12</title>
-    <meta name="description" content="Oversikt over de beste AI-verktøyene akkurat nå, basert på data fra Hacker News, Reddit og Product Hunt.">
-    <link rel="canonical" href="https://fyrk.eu/">
-    <meta property="og:title" content="AI Verktøy Radar – 2025-12">
-    <meta property="og:description" content="Oversikt over de beste AI-verktøyene akkurat nå">
-    <meta property="og:url" content="https://fyrk.eu/">
-    <meta property="og:type" content="website">
+    <title>FYRK AI Score – desember 2025</title>
+    <meta name="description" content="FYRK AI Score – månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a24;
-            --text-primary: #f0f0f5;
-            --text-secondary: #8888a0;
-            --accent-gold: #ffd700;
-            --accent-silver: #c0c0c0;
-            --accent-bronze: #cd7f32;
-            --accent-blue: #4a9eff;
-            --accent-purple: #a855f7;
-            --accent-green: #22c55e;
-            --border-subtle: rgba(255,255,255,0.08);
+            --bg-base: #fafafa;
+            --bg-card: #ffffff;
+            --bg-muted: #f4f4f5;
+            --text-primary: #18181b;
+            --text-secondary: #71717a;
+            --text-muted: #a1a1aa;
+            --border: rgba(0, 0, 0, 0.05);
+            --border-subtle: rgba(0, 0, 0, 0.03);
+            --accent-primary: #2563eb;
+            --accent-primary-light: #dbeafe;
+            --accent-success: #16a34a;
+            --accent-success-light: #dcfce7;
+            --accent-warning: #ea580c;
+            --accent-warning-light: #fed7aa;
+            --accent-danger: #dc2626;
+            --gold: #ca8a04;
+            --silver: #71717a;
+            --bronze: #a16207;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-2xl: 48px;
+            --space-3xl: 64px;
+            --transition-base: 150ms ease;
+            --transition-fast: 120ms ease;
+            --transition-slow: 180ms ease;
         }
         
         * {
@@ -35,708 +52,3389 @@
         }
         
         body {
-            font-family: 'Space Grotesk', system-ui, sans-serif;
-            background: var(--bg-primary);
+            font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(180deg, #fafafa 0%, #f8f8f8 100%);
             color: var(--text-primary);
             line-height: 1.6;
+            font-size: 15px;
+            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
         
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            z-index: 1000;
-        }
-        
         .container {
-            max-width: 1200px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 var(--space-lg);
         }
-        
-        header {
+
+        /* Header / Logo */
+        .site-header {
+            padding: var(--space-md) 0;
+            border-bottom: 0.5px solid var(--border);
+            transition: border-color var(--transition-base);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            flex: 0 0 auto;
+        }
+
+        .header-center {
+            flex: 1;
             text-align: center;
-            padding: 4rem 0 3rem;
-            position: relative;
         }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
-            opacity: 0.15;
-            filter: blur(60px);
+
+        .header-product-name {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            flex: 0 0 auto;
+        }
+
+        .header-contact {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition-base);
+        }
+
+        .header-contact:hover {
+            color: var(--text-primary);
         }
         
         .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            color: var(--accent-blue);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-        
-        .period {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-        }
-        
-        .summary {
-            max-width: 700px;
-            margin: 2rem auto;
-            padding: 1.5rem 2rem;
-            background: var(--bg-secondary);
-            border-left: 3px solid var(--accent-purple);
-            border-radius: 0 8px 8px 0;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-        
-        .categories {
-            display: grid;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .category {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--border-subtle);
-        }
-        
-        .category h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: var(--space-sm);
+            text-decoration: none;
+            color: var(--text-primary);
         }
-        
-        .category h2::before {
-            content: '';
-            width: 4px;
-            height: 1.5rem;
-            background: var(--accent-blue);
-            border-radius: 2px;
+
+        .logo:hover {
+            opacity: 0.8;
         }
-        
-        .rankings {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .rank-item {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: 1.5rem;
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--text-primary);
+            border-radius: var(--radius-sm);
+            display: flex;
             align-items: center;
-            padding: 1.25rem;
-            background: var(--bg-secondary);
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .header-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition-base);
+        }
+
+        .header-nav a:hover {
+            color: var(--text-primary);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 2px;
+            background: var(--bg-muted);
+            border-radius: var(--radius-sm);
+            padding: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: all var(--transition-base);
+        }
+
+        .lang-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .lang-btn.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo-picture {
+            display: block;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-img[style*="display: none"] {
+            display: none !important;
+        }
+
+        /* Hide logo text when image is visible */
+        .logo:has(.logo-img:not([style*="display: none"])) .logo-text {
+            display: none;
+        }
+
+        /* Show logo text only as fallback when image fails */
+        .logo:has(.logo-img[style*="display: none"]) .logo-text {
+            display: inline;
+        }
+
+
+        /* Highlights Bar - Single compact line */
+        .highlights-bar {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-muted);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .highlights-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .highlights-bar strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .highlights-bar .separator {
+            color: var(--text-muted);
+            opacity: 0.3;
+        }
+
+        .highlights-bar .highlight-item {
+            display: inline;
+        }
+
+        .highlights-bar .new-badge {
+            background: var(--accent-success-light);
+            color: var(--accent-success);
+            font-size: 10px;
+            font-weight: 600;
+            padding: 1px 6px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            margin-left: 4px;
+        }
+
+        .highlights-bar .trend-up {
+            color: var(--accent-success);
+        }
+
+        .highlights-bar .trend-down {
+            color: var(--accent-danger);
+        }
+
+        @media (max-width: 640px) {
+            .highlights-bar {
+                display: none;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .highlights-bar {
+                white-space: nowrap;
+                gap: var(--space-sm);
+                padding: var(--space-xs) var(--space-sm);
+            }
+        }
+
+
+        /* Filter Controls */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        .filter-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        @media (max-width: 768px) {
+            .filter-pills {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding-bottom: 4px;
+            }
+
+            .filter-pills::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .filter-pill {
+            background: var(--bg-muted);
+            border: 0.5px solid transparent;
+            border-radius: 100px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+        }
+
+        .filter-pill:hover {
+            background: var(--bg-card);
+            border-color: var(--border);
+            color: var(--text-primary);
+            transform: scale(1.02);
+        }
+
+        .filter-pill.active {
+            background: linear-gradient(135deg, var(--text-primary) 0%, #2a2a2e 100%);
+            color: white;
+            border-color: var(--text-primary);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Capabilities Section */
+        .capabilities-section {
+            margin-bottom: var(--space-lg);
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .capabilities-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        .capabilities-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .capabilities-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .capabilities-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .capabilities-legend {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .capabilities-toggle {
+            display: none;
+            background: transparent;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+            margin: var(--space-md) var(--space-lg);
+        }
+
+        .capabilities-toggle:hover {
+            background: var(--bg-muted);
+            color: var(--text-primary);
+        }
+
+        .capabilities-content {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            position: relative;
+        }
+
+        .capabilities-content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.03));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .capabilities-content::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .capabilities-content::-webkit-scrollbar-track {
+            background: var(--bg-muted);
+        }
+
+        .capabilities-content::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        /* Desktop: CSS Grid table */
+        .capabilities-table {
+            display: grid;
+            grid-template-columns: 140px repeat(6, 1fr);
+            width: 100%;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg-card);
+            align-items: start;
+        }
+
+        .capabilities-table thead {
+            display: contents;
+        }
+
+        .capabilities-table thead tr {
+            display: contents;
+        }
+
+        .capabilities-table tbody {
+            display: contents;
+        }
+
+        .capabilities-content {
+            overflow: visible;
+            width: 100%;
+        }
+
+        .capabilities-table-wrapper {
+            width: 100%;
+            overflow: visible;
+        }
+
+
+        @media (min-width: 769px) {
+            .capabilities-table thead {
+                position: sticky;
+                top: 0;
+                z-index: 5;
+            }
+        }
+
+        .capabilities-table th {
+            padding: 8px var(--space-sm);
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 0.5px solid var(--border);
+            background: var(--bg-muted);
+            white-space: nowrap;
+        }
+
+        .capabilities-table th:first-child {
+            min-width: 140px;
+            width: 140px;
+        }
+
+        .capabilities-table th:not(:first-child) {
+            text-align: center;
+            min-width: 90px;
+        }
+
+        .capabilities-table tbody tr:not(.category-header) {
+            display: contents;
+        }
+
+        .capabilities-table tbody tr:not(.category-header) td:first-child {
+            border-bottom: 0.5px solid var(--border-subtle);
+        }
+
+        .capabilities-table tbody tr:not(.category-header):nth-child(even) td:first-child {
+            background: rgba(0,0,0,0.01);
+        }
+
+        .capabilities-table tbody tr:not(.category-header):hover td:first-child {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .capabilities-table tbody tr.category-header {
+            display: contents;
+        }
+
+        .capabilities-table tbody tr.category-header td {
+            grid-column: 1 / -1;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #71717a;
+            padding: 16px var(--space-sm) 8px;
+            text-align: left;
+            background: transparent;
+            border-top: 1px solid #e4e4e7;
+            border-bottom: none;
+            min-height: auto;
+            align-items: flex-start;
+            height: auto;
+        }
+
+        .capabilities-table td {
+            padding: 8px var(--space-sm);
+            font-size: 13px;
+            text-align: center;
+            border-bottom: 0.5px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            box-sizing: border-box;
+        }
+
+        .capabilities-table td:first-child {
+            background: var(--bg-card);
+            font-weight: 500;
+            color: var(--text-primary);
+            text-align: left;
+            min-width: 140px;
+            width: 140px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .capabilities-table td:not(:first-child) {
+            border-bottom: 0.5px solid var(--border-subtle);
+        }
+
+        .capabilities-table tbody tr:not(.category-header):nth-child(even) td:first-child {
+            background: rgba(0,0,0,0.01);
+        }
+
+        .capabilities-table tbody tr:not(.category-header):hover td:first-child {
+            background: rgba(0,0,0,0.02);
+        }
+
+
+        .capability-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 16px;
+            border-radius: 4px;
+            padding: 4px;
+            box-sizing: border-box;
+        }
+
+        .capability-best {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .capability-yes {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .capability-no {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .capabilities-table td:not(:first-child) {
+            padding: 4px var(--space-sm);
+        }
+
+        /* Tablet layout (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .capabilities-table {
+                grid-template-columns: 140px repeat(6, 1fr);
+            }
+
+            .capabilities-table th:not(:first-child) {
+                min-width: 80px;
+            }
+
+            .capabilities-table td {
+                font-size: 13px;
+            }
+        }
+
+        /* Mobile layout (< 768px) - Hide table, show cards */
+        @media (max-width: 767px) {
+            .capabilities-table {
+                display: none;
+            }
+
+            .capabilities-mobile {
+                display: block;
+            }
+
+            .capabilities-section {
+                margin: 0 calc(-1 * var(--space-lg)) var(--space-lg);
+            }
+
+            .capabilities-legend {
+                display: none;
+            }
+
+            .capabilities-header {
+                padding: var(--space-sm) var(--space-md);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .capabilities-mobile {
+                display: none;
+            }
+        }
+
+        /* Mobile card view */
+        .capabilities-mobile {
+            display: none;
+        }
+
+        .model-tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-xs);
+        }
+
+        .model-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .model-tab {
+            padding: 8px 16px;
+            height: 36px;
+            background: transparent;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .model-tab:hover {
+            background: var(--bg-muted);
+            color: var(--text-primary);
+        }
+
+        .model-tab.active {
+            background: var(--text-primary);
+            color: white;
+            border-color: var(--text-primary);
+        }
+
+        .model-card {
+            display: none;
+            background: var(--bg-card);
+            border: 1px solid #e4e4e7;
             border-radius: 12px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 16px;
+        }
+
+        .model-card.active {
+            display: block;
+        }
+
+        .model-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-sm);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .model-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-primary);
+        }
+
+        .model-provider {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .capability-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .capability-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f4f4f5;
+            font-size: 14px;
+        }
+
+        .capability-list li:last-child {
+            border-bottom: none;
+        }
+
+        .capability-list li span:first-child {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .capability-list li span:last-child {
+            font-size: 13px;
+        }
+
+        .cap-best {
+            background: #dcfce7;
+            border-radius: var(--radius-sm);
+            padding: 12px var(--space-sm) !important;
+        }
+
+        .cap-yes {
+            background: #f0fdf4;
+            border-radius: var(--radius-sm);
+            padding: 12px var(--space-sm) !important;
+        }
+
+        .cap-no {
+            background: #fef2f2;
+            border-radius: var(--radius-sm);
+            padding: 12px var(--space-sm) !important;
+        }
+
+        /* Category Sections */
+        .category-section {
+            margin-bottom: var(--space-lg);
+            transition: background var(--transition-base);
+            position: relative;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        .category-section:nth-child(even) {
+            background: rgba(0,0,0,0.01);
+            margin: 0 calc(-1 * var(--space-lg));
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-header {
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        /* Collapse functionality */
+        .ranking-row.collapsed {
+            display: none !important;
+        }
+
+        .ranking-row.collapsed.expanded {
+            display: grid !important;
+        }
+
+        .expand-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            background: transparent;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+            min-height: 44px;
+            margin-top: var(--space-sm);
+        }
+
+        .expand-toggle:hover {
+            background: var(--bg-muted);
+            color: var(--text-primary);
+        }
+
+        .expand-toggle::after {
+            content: '↓';
+            transition: transform var(--transition-base);
+            display: inline-block;
+        }
+
+        .expand-toggle.expanded::after {
+            transform: rotate(180deg);
+        }
+
+        .category-count {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Rankings Table */
+        .rankings-table {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0.5px 0 rgba(255,255,255,0.8);
+        }
+
+        .rankings-table::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 0.5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(0,0,0,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .rankings-header {
+            display: grid;
+            grid-template-columns: 50px 1fr 80px 80px 80px 80px 60px 30px;
+            gap: var(--space-sm) var(--space-md);
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--bg-muted);
+            border-bottom: 0.5px solid var(--border);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            background: rgba(244, 244, 245, 0.95);
         }
         
-        .rank-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        .rankings-header span {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            user-select: none;
         }
-        
-        .medal {
-            width: 48px;
-            height: 48px;
+
+        .rankings-header span:hover {
+            color: var(--text-primary);
+        }
+
+        .sort-icon {
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        .sort-icon.active {
+            opacity: 1;
+        }
+
+        .ranking-row {
+            display: grid;
+            grid-template-columns: 50px 1fr 80px 80px 80px 80px 60px 30px;
+            gap: var(--space-sm) var(--space-md);
+            padding: 8px var(--space-lg);
+            border-bottom: 0.5px solid var(--border-subtle);
+            align-items: center;
+            transition: all var(--transition-base);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ranking-row:last-child {
+            border-bottom: none;
+        }
+
+        .ranking-row:hover {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .ranking-row::after {
+            content: '›';
+            position: absolute;
+            right: var(--space-lg);
+            color: var(--text-muted);
+            font-size: 18px;
+            opacity: 0;
+            transition: opacity var(--transition-base), transform var(--transition-base);
+            transform: translateX(-4px);
+        }
+
+        .ranking-row:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .rank-badge {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             font-weight: 700;
+            font-size: 13px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
-        
-        .medal.gold {
-            background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
-            color: #1a1a24;
-            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+
+        .rank-1 { 
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 237, 78, 0.2), rgba(255, 215, 0, 0.15));
+            color: #b8860b;
+            border-color: rgba(184, 134, 11, 0.2);
+            box-shadow: 0 1px 3px rgba(184, 134, 11, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
         }
-        
-        .medal.silver {
-            background: linear-gradient(135deg, #e0e0e0 0%, #a0a0a0 100%);
-            color: #1a1a24;
+        .rank-2 { 
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.15), rgba(232, 232, 232, 0.2), rgba(192, 192, 192, 0.15));
+            color: #6b6b6b;
+            border-color: rgba(107, 107, 107, 0.2);
+            box-shadow: 0 1px 3px rgba(107, 107, 107, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
         }
-        
-        .medal.bronze {
-            background: linear-gradient(135deg, #cd7f32 0%, #a05a20 100%);
-            color: #1a1a24;
+        .rank-3 { 
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.15), rgba(230, 168, 87, 0.2), rgba(205, 127, 50, 0.15));
+            color: #8b4513;
+            border-color: rgba(139, 69, 19, 0.2);
+            box-shadow: 0 1px 3px rgba(139, 69, 19, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
         }
-        
-        .rank-info {
-            min-width: 0;
+        .rank-default { 
+            background: var(--bg-muted); 
+            color: var(--text-muted);
+            border-color: transparent;
+            box-shadow: none;
         }
-        
-        .rank-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .rank-provider {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .rank-reason {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        .scores {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-        
-        .score {
+
+        .item-info {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 0.5rem 0.75rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            min-width: 60px;
+            gap: 2px;
         }
-        
-        .score-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
+
+        .item-name {
             font-weight: 600;
-            color: var(--accent-green);
+            color: var(--text-primary);
+            font-size: 14px;
         }
-        
-        .score-label {
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.75rem;
-        }
-        
-        .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-subtle);
-            border-radius: 4px;
-            color: var(--text-secondary);
-        }
-        
-        .new-noteworthy {
-            margin-top: 3rem;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(74,158,255,0.1) 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(168,85,247,0.2);
-        }
-        
-        .new-noteworthy h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .new-noteworthy h2::before {
-            content: '✨';
-        }
-        
-        .new-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-        
-        .new-item {
-            padding: 1.25rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-        }
-        
-        .new-item-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-        
-        .new-item-provider {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .new-item-reason {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 4rem 0 2rem;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-        
-        footer a {
-            color: var(--accent-blue);
+
+        .item-name a {
+            color: inherit;
             text-decoration: none;
         }
-        
-        .meta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+
+        .item-name a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .item-name {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 140px;
+            }
+        }
+
+        .item-provider {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .item-provider a,
+        .provider-text a {
+            color: #71717a;
+            text-decoration: none;
+        }
+
+        .item-provider a:hover,
+        .provider-text a:hover {
+            text-decoration: underline;
+            color: #52525b;
+        }
+
+        .item-provider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .provider-logo {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .provider-text {
+            display: inline;
+        }
+
+        .provider-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .provider-link:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
+        }
+
+        .score-cell {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .score-high { color: var(--accent-success); }
+        .score-mid { color: var(--text-secondary); }
+        .score-low { color: var(--accent-danger); }
+
+        .trend-cell {
+            display: flex;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .trend-cell.up { color: var(--accent-success); }
+        .trend-cell.down { color: var(--accent-danger); }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            text-align: center;
+            margin: var(--space-3xl) 0;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0.5px 0 rgba(255,255,255,0.8);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 0.5px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), rgba(0,0,0,0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .cta-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: var(--space-sm);
+            letter-spacing: -0.3px;
+        }
+
+        .cta-section p {
             color: var(--text-secondary);
-            margin-top: 0.5rem;
+            margin-bottom: var(--space-lg);
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            background: var(--text-primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition-base);
+        }
+
+        .cta-button:hover {
+            background: #3f3f46;
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Tab Navigation */
+        .tab-bar {
+            display: flex;
+            gap: var(--space-xl);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--space-lg);
+            padding: 0 var(--space-lg);
+        }
+
+        .tab {
+            padding: var(--space-md) 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            font-family: inherit;
+            transition: color var(--transition-base);
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .tab.active {
+            color: var(--text-primary);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--text-primary);
+        }
+
+        .tab:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        .tab-content {
+            display: block;
+        }
+
+        .tab-content.hidden {
+            display: none;
+        }
+
+        /* Lab Banner */
+        .lab-banner {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--bg-muted);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .lab-banner.hidden {
+            display: none;
+        }
+
+        .lab-badge {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .lab-text {
+            flex: 1;
+        }
+
+        .lab-text a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .lab-text a:hover {
+            text-decoration: underline;
+        }
+
+        .lab-dismiss {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-base);
+            font-family: inherit;
+        }
+
+        .lab-dismiss:hover {
+            background: rgba(0,0,0,0.05);
+            color: var(--text-primary);
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 600px;
+            margin: var(--space-2xl) auto 0;
+            padding: var(--space-xl);
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .about-section h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            letter-spacing: -0.3px;
+        }
+
+        .about-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .about-section p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-md);
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-sm) 0 var(--space-md);
+        }
+
+        .about-section ul li {
+            padding: var(--space-xs) 0;
+            padding-left: var(--space-lg);
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .about-section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .about-section .disclaimer {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 0.5px solid var(--border-subtle);
+        }
+
+        @media (max-width: 768px) {
+            .lab-banner {
+                flex-wrap: wrap;
+                gap: var(--space-sm);
+            }
+
+            .lab-text {
+                flex: 1 1 100%;
+            }
+
+            .about-section {
+                margin: var(--space-xl) var(--space-md) 0;
+                padding: var(--space-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tab-bar {
+                gap: var(--space-lg);
+                padding: 0 var(--space-md);
+            }
+
+            .tab {
+                font-size: 13px;
+                padding: var(--space-sm) 0;
+            }
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 0.5px solid var(--border);
+            padding: calc(var(--space-xl) * 1.2) 0;
+            margin-top: var(--space-2xl);
+            position: relative;
+        }
+
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, rgba(250, 250, 250, 1) 100%);
+            pointer-events: none;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .footer-brand .logo-mark {
+            width: 24px;
+            height: 24px;
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: var(--space-lg);
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-family: 'IBM Plex Mono', monospace;
+            opacity: 0.8;
+        }
+
+        .footer-logo-img {
+            height: 32px;
+            width: auto;
+            display: inline-block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-product-name {
+                font-size: 12px;
+                letter-spacing: 0.5px;
+            }
+
+            .category-section {
+                margin-bottom: var(--space-lg);
+            }
+
+            .category-section:nth-child(even) {
+                margin: 0 calc(-1 * var(--space-md)) var(--space-lg);
+                padding: var(--space-md);
+            }
+
+            .rankings-header,
+            .ranking-row {
+                grid-template-columns: 40px 1fr 60px 60px 30px;
+            }
+
+            .rankings-header span:nth-child(5),
+            .rankings-header span:nth-child(6),
+            .rankings-header span:nth-child(7),
+            .ranking-row > *:nth-child(5),
+            .ranking-row > *:nth-child(6),
+            .ranking-row > *:nth-child(7) {
+                display: none;
+            }
+
+            .ranking-row::after {
+                right: var(--space-md);
+            }
+
+            .header-right .header-contact {
+                display: none;
+            }
+
+            .header-center {
+                flex: 0;
+            }
+
+            .site-header .container {
+                flex-wrap: nowrap;
+            }
+
+            .header-left {
+                flex: 0 0 auto;
+            }
+
+            .header-right {
+                flex: 0 0 auto;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .capabilities-content::after {
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .header-product-name {
+                font-size: 11px;
+                letter-spacing: 0.3px;
+            }
+        }
+
+        /* Hidden category sections */
+        .category-section.hidden {
+            display: none;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .rank-item {
-                grid-template-columns: auto 1fr;
-                grid-template-rows: auto auto;
-            }
-            
-            .scores {
-                grid-column: 1 / -1;
-                justify-content: flex-start;
-            }
-            
-            .category {
-                padding: 1.5rem;
-            }
+        /* Expandable rows */
+        .ranking-row.collapsed {
+            display: none !important;
+        }
+        
+        .ranking-row.collapsed.expanded {
+            display: grid !important;
+        }
+        
+        .expand-section {
+            padding: var(--space-md) var(--space-lg);
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+        }
+        
+        .expand-button {
+            background: transparent;
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            min-height: 44px;
+        }
+        
+        .expand-button:hover {
+            background: var(--bg-muted);
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+        
+        .expand-button::after {
+            content: '↓';
+            transition: transform var(--transition-base);
+            display: inline-block;
+        }
+        
+        .expand-button.expanded::after {
+            transform: rotate(180deg);
+        }
+        
+        .expand-text {
+            margin-right: 4px;
         }
     </style>
 </head>
 <body>
-    <div class="noise"></div>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-left">
+                <a href="#" class="logo" onclick="scrollToTop(); return false;">
+                    <picture class="logo-picture">
+                        <source srcset="assets/fyrk-logo-secondary-cyan.svg" media="(prefers-color-scheme: dark)">
+                        <img src="assets/fyrk-logo-primary-navy.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" onload="this.parentElement.parentElement.querySelector('.logo-text').style.display='none';">
+                    </picture>
+                    <div class="logo-mark" style="display: none;">F</div>
+                    <span class="logo-text" style="display: none;">FYRK</span>
+                </a>
+            </div>
+            <div class="header-center">
+                <span class="header-product-name" data-i18n="product-name">AI Score</span>
+            </div>
+            <div class="header-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="no">NO</button>
+                    <button class="lang-btn" data-lang="sv">SV</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Score" class="header-contact" data-i18n="contact">Kontakt</a>
+            </div>
+        </div>
+    </header>
+        
+    <main>
+        <div class="container">
+            <!-- Tab Navigation -->
+            <nav class="tab-bar" role="tablist">
+                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Scores</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Kapabiliteter</button>
+            </nav>
+
+            <!-- Lab Banner -->
+            <div class="lab-banner" id="lab-banner">
+                <span class="lab-badge" data-i18n="lab-badge">🧪 FYRK Lab</span>
+                <span class="lab-text"><span data-i18n="lab-text">Et eksperiment – ikke en benchmark.</span> <a href="#om" data-i18n="les-mer">Les mer</a></span>
+                <button class="lab-dismiss" aria-label="Lukk" onclick="dismissLabBanner()">×</button>
+            </div>
+
+            <!-- Scores Tab Content -->
+            <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
+                <!-- Highlights Bar - Single compact line -->
+            <section class="highlights-bar">
+                <span><strong data-i18n="new-this-month">Ny:</strong> <span class="highlight-item">Gemini 2.0 Flash<span class="new-badge">Ny</span></span>, <span class="highlight-item">DeepSeek-R1<span class="new-badge">Ny</span></span>, <span class="highlight-item">Aider<span class="new-badge">Ny</span></span>, <span class="highlight-item">Transformers<span class="new-badge">Ny</span></span></span>
+                <span class="separator">|</span>
+                <span><strong data-i18n="biggest-changes">Movers:</strong> <span class="highlight-item">Tabnine<span class="trend-down"> ↓</span></span>, <span class="highlight-item">Grok-2<span class="trend-down"> ↓</span></span>, <span class="highlight-item">CodeWhisperer<span class="trend-down"> ↓</span></span></span>
+            </section>
+
+            <!-- Filter Controls -->
+            <section class="filter-bar">
+                <span class="filter-label" data-i18n="filter-label">Filtrer etter kategori:</span>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-category="all" data-i18n="filter-all">Alle</button>
+                    <button class="filter-pill" data-category="core-llm" data-i18n="cat-core-llm">Kjerne-LLM-er</button>
+                    <button class="filter-pill" data-category="code-assistants" data-i18n="cat-code">Kodeassistenter</button>
+                    <button class="filter-pill" data-category="builder-platform">Builder & API</button>
+                    <button class="filter-pill" data-category="image-video" data-i18n="cat-image">Bilde & Video</button>
+                    <button class="filter-pill" data-category="audio-voice" data-i18n="cat-audio">Lyd & Stemme</button>
+                    <button class="filter-pill" data-category="agents" data-i18n="cat-agents">Agenter</button>
+                </div>
+            </section>
+
+
+            <!-- Kjerne-LLM-er Category -->
+            <section class="category-section" data-category="core-llm">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-core-llms">Kjerne-LLM-er</h2>
+                    <span class="category-count">10 <span data-i18n="modeller">modeller</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">Claude 3.5 Sonnet</span>
+                            <span class="item-provider"><img src="https://www.anthropic.com/favicon.ico" alt="Anthropic" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" class="provider-link">Anthropic</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">GPT-4o</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="provider-link">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="60" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">Gemini 2.0 Flash</span>
+                            <span class="item-provider"><img src="https://www.google.com/favicon.ico" alt="Google" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ai.google.dev" target="_blank" rel="noopener noreferrer" class="provider-link">Google</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="100" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">Llama 3.3 70B</span>
+                            <span class="item-provider"><img src="https://www.meta.com/favicon.ico" alt="Meta" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ai.meta.com" target="_blank" rel="noopener noreferrer" class="provider-link">Meta</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">Mistral Large</span>
+                            <span class="item-provider"><img src="https://mistral.ai/favicon.ico" alt="Mistral AI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://mistral.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Mistral AI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">DeepSeek-R1</span>
+                            <span class="item-provider"><img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer" class="provider-link">DeepSeek</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">Grok-2</span>
+                            <span class="item-provider"><img src="https://x.ai/favicon.ico" alt="xAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://x.ai" target="_blank" rel="noopener noreferrer" class="provider-link">xAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Command R+</span>
+                            <span class="item-provider"><img src="https://cohere.com/favicon.ico" alt="Cohere" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://cohere.com" target="_blank" rel="noopener noreferrer" class="provider-link">Cohere</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">Qwen 2.5</span>
+                            <span class="item-provider"><img src="https://www.alibaba.com/favicon.ico" alt="Alibaba" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.alibaba.com" target="_blank" rel="noopener noreferrer" class="provider-link">Alibaba</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">Phi-3</span>
+                            <span class="item-provider"><img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer" class="provider-link">Microsoft</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-toggle" data-category="core-llm" onclick="toggleExpand('core-llm')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Kodeassistenter Category -->
+            <section class="category-section" data-category="code-assistants">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-code-assistants">Kodeassistenter</h2>
+                    <span class="category-count">10 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">Cursor</span>
+                            <span class="item-provider"><img src="https://cursor.sh/favicon.ico" alt="Anysphere" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://cursor.sh" target="_blank" rel="noopener noreferrer" class="provider-link">Anysphere</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="60" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">GitHub Copilot</span>
+                            <span class="item-provider"><img src="https://github.com/favicon.ico" alt="Microsoft/GitHub" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer" class="provider-link">Microsoft/GitHub</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="100" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">Continue</span>
+                            <span class="item-provider"><img src="https://continue.dev/favicon.ico" alt="Continue" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://continue.dev" target="_blank" rel="noopener noreferrer" class="provider-link">Continue</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">Aider</span>
+                            <span class="item-provider"><img src="https://aider.chat/favicon.ico" alt="Aider" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://aider.chat" target="_blank" rel="noopener noreferrer" class="provider-link">Aider</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">Windsurf</span>
+                            <span class="item-provider"><img src="https://codeium.com/favicon.ico" alt="Codeium" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://codeium.com" target="_blank" rel="noopener noreferrer" class="provider-link">Codeium</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">Cody</span>
+                            <span class="item-provider"><img src="https://sourcegraph.com/favicon.ico" alt="Sourcegraph" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://sourcegraph.com" target="_blank" rel="noopener noreferrer" class="provider-link">Sourcegraph</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">Tabnine</span>
+                            <span class="item-provider"><img src="https://www.tabnine.com/favicon.ico" alt="Tabnine" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.tabnine.com" target="_blank" rel="noopener noreferrer" class="provider-link">Tabnine</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Codeium</span>
+                            <span class="item-provider"><img src="https://codeium.com/favicon.ico" alt="Codeium" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://codeium.com" target="_blank" rel="noopener noreferrer" class="provider-link">Codeium</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">JetBrains AI Assistant</span>
+                            <span class="item-provider"><img src="https://www.jetbrains.com/favicon.ico" alt="JetBrains" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.jetbrains.com" target="_blank" rel="noopener noreferrer" class="provider-link">JetBrains</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="20" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">CodeWhisperer</span>
+                            <span class="item-provider"><img src="https://aws.amazon.com/favicon.ico" alt="Amazon" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://aws.amazon.com/codewhisperer" target="_blank" rel="noopener noreferrer" class="provider-link">Amazon</a></span></span>
+                        </div>
+                        <span class="score-cell score-low">20</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="code-assistants" onclick="toggleExpand('code-assistants')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Builder & API Category -->
+            <section class="category-section" data-category="builder-platform">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-builder-platform">Builder & API</h2>
+                    <span class="category-count">10 <span data-i18n="plattformer">plattformer</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="100">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">Ollama</span>
+                            <span class="item-provider"><img src="https://ollama.com/favicon.ico" alt="Ollama" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ollama.com" target="_blank" rel="noopener noreferrer" class="provider-link">Ollama</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="100" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">LangChain</span>
+                            <span class="item-provider"><img src="https://www.langchain.com/favicon.ico" alt="LangChain" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.langchain.com/langgraph" target="_blank" rel="noopener noreferrer" class="provider-link">LangChain</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">Transformers</span>
+                            <span class="item-provider"><img src="https://huggingface.co/favicon.ico" alt="Hugging Face" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="provider-link">Hugging Face</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">LlamaIndex</span>
+                            <span class="item-provider"><img src="https://www.llamaindex.ai/favicon.ico" alt="LlamaIndex" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.llamaindex.ai" target="_blank" rel="noopener noreferrer" class="provider-link">LlamaIndex</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="100" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">vLLM</span>
+                            <span class="item-provider"><img src="https://vllm.readthedocs.io/favicon.ico" alt="vLLM Team" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://vllm.ai" target="_blank" rel="noopener noreferrer" class="provider-link">vLLM Team</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="80" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">OpenAI API</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="provider-link">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="100" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">Anthropic API</span>
+                            <span class="item-provider"><img src="https://www.anthropic.com/favicon.ico" alt="Anthropic" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" class="provider-link">Anthropic</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Together AI</span>
+                            <span class="item-provider"><img src="https://together.ai/favicon.ico" alt="Together" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://together.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Together</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">Groq</span>
+                            <span class="item-provider"><img src="https://groq.com/favicon.ico" alt="Groq" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://groq.com" target="_blank" rel="noopener noreferrer" class="provider-link">Groq</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">Replicate</span>
+                            <span class="item-provider"><img src="https://replicate.com/favicon.ico" alt="Replicate" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://replicate.com" target="_blank" rel="noopener noreferrer" class="provider-link">Replicate</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="builder-platform" onclick="toggleExpand('builder-platform')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Bilde & Video Category -->
+            <section class="category-section" data-category="image-video">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-image-video">Bilde & Video</h2>
+                    <span class="category-count">10 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="80" data-sentiment="100" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">Midjourney v6</span>
+                            <span class="item-provider"><img src="https://www.midjourney.com/favicon.ico" alt="Midjourney" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.midjourney.com" target="_blank" rel="noopener noreferrer" class="provider-link">Midjourney</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">DALL-E 3</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="provider-link">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">Stable Diffusion WebUI</span>
+                            <span class="item-provider"><img src="https://github.com/AUTOMATIC1111/stable-diffusion-webui/favicon.ico" alt="AUTOMATIC1111" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener noreferrer" class="provider-link">AUTOMATIC1111</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="100" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">FLUX</span>
+                            <span class="item-provider"><img src="https://blackforestlabs.ai/favicon.ico" alt="Black Forest Labs" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://blackforestlabs.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Black Forest Labs</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="80" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">Runway Gen-3</span>
+                            <span class="item-provider"><img src="https://runwayml.com/favicon.ico" alt="Runway" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://runwayml.com" target="_blank" rel="noopener noreferrer" class="provider-link">Runway</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">Diffusers</span>
+                            <span class="item-provider"><img src="https://huggingface.co/favicon.ico" alt="Hugging Face" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="provider-link">Hugging Face</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">ComfyUI</span>
+                            <span class="item-provider"><img src="https://github.com/comfyanonymous/ComfyUI/favicon.ico" alt="ComfyUI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener noreferrer" class="provider-link">ComfyUI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Leonardo.ai</span>
+                            <span class="item-provider"><img src="https://leonardo.ai/favicon.ico" alt="Leonardo" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://leonardo.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Leonardo</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">Ideogram</span>
+                            <span class="item-provider"><img src="https://ideogram.ai/favicon.ico" alt="Ideogram" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ideogram.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Ideogram</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">Kling AI</span>
+                            <span class="item-provider"><img src="https://klingai.com/favicon.ico" alt="Kling" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://klingai.com" target="_blank" rel="noopener noreferrer" class="provider-link">Kling</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="image-video" onclick="toggleExpand('image-video')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Lyd & Stemme Category -->
+            <section class="category-section" data-category="audio-voice">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-audio-voice">Lyd & Stemme</h2>
+                    <span class="category-count">10 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="80" data-sentiment="100" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">ElevenLabs</span>
+                            <span class="item-provider"><img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://elevenlabs.io" target="_blank" rel="noopener noreferrer" class="provider-link">ElevenLabs</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="100" data-utility="100" data-price="100">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">Whisper</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="provider-link">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="100" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">Suno</span>
+                            <span class="item-provider"><img src="https://suno.ai/favicon.ico" alt="Suno AI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://suno.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Suno AI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">Udio</span>
+                            <span class="item-provider"><img src="https://udio.com/favicon.ico" alt="Udio" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://udio.com" target="_blank" rel="noopener noreferrer" class="provider-link">Udio</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">ChatTTS</span>
+                            <span class="item-provider"><img src="https://github.com/2noise/ChatTTS/favicon.ico" alt="2noise" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/2noise/ChatTTS" target="_blank" rel="noopener noreferrer" class="provider-link">2noise</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">Bark</span>
+                            <span class="item-provider"><img src="https://suno.ai/favicon.ico" alt="Suno" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://suno.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Suno</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">Piper</span>
+                            <span class="item-provider"><img src="https://github.com/rhasspy/piper/favicon.ico" alt="Piper" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/rhasspy/piper" target="_blank" rel="noopener noreferrer" class="provider-link">Piper</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Coqui TTS</span>
+                            <span class="item-provider"><img src="https://coqui.ai/favicon.ico" alt="Coqui" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://coqui.ai" target="_blank" rel="noopener noreferrer" class="provider-link">Coqui</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="40" data-price="80">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">RVC</span>
+                            <span class="item-provider"><img src="https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI/favicon.ico" alt="RVC" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI" target="_blank" rel="noopener noreferrer" class="provider-link">RVC</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="20" data-sentiment="80" data-utility="40" data-price="80">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">MeloTTS</span>
+                            <span class="item-provider"><img src="https://github.com/myshell-ai/MeloTTS/favicon.ico" alt="MeloTTS" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/myshell-ai/MeloTTS" target="_blank" rel="noopener noreferrer" class="provider-link">MeloTTS</a></span></span>
+                        </div>
+                        <span class="score-cell score-low">20</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="audio-voice" onclick="toggleExpand('audio-voice')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Agenter & Automatisering Category -->
+            <section class="category-section" data-category="agents">
+                <div class="category-header">
+                    <h2 class="category-title" data-i18n="cat-agents-automation">Agenter & Automatisering</h2>
+                    <span class="category-count">10 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">AutoGPT</span>
+                            <span class="item-provider"><img src="https://github.com/Significant-Gravitas/AutoGPT/favicon.ico" alt="Significant Gravitas" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener noreferrer" class="provider-link">Significant Gravitas</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">n8n</span>
+                            <span class="item-provider"><img src="https://n8n.io/favicon.ico" alt="n8n" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://n8n.io" target="_blank" rel="noopener noreferrer" class="provider-link">n8n</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">CrewAI</span>
+                            <span class="item-provider"><img src="https://github.com/joaomdmoura/crewAI/favicon.ico" alt="joaomdmoura" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/joaomdmoura/crewAI" target="_blank" rel="noopener noreferrer" class="provider-link">joaomdmoura</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">LangGraph</span>
+                            <span class="item-provider"><img src="https://www.langchain.com/favicon.ico" alt="LangChain" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.langchain.com/langgraph" target="_blank" rel="noopener noreferrer" class="provider-link">LangChain</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell up">↑</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="80" data-sentiment="100" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">Claude Computer Use</span>
+                            <span class="item-provider"><img src="https://www.anthropic.com/favicon.ico" alt="Anthropic" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.anthropic.com" target="_blank" rel="noopener noreferrer" class="provider-link">Anthropic</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">AutoGen</span>
+                            <span class="item-provider"><img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer" class="provider-link">Microsoft</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">AgentGPT</span>
+                            <span class="item-provider"><img src="https://agentgpt.reworkd.ai/favicon.ico" alt="AgentGPT" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://agentgpt.reworkd.ai" target="_blank" rel="noopener noreferrer" class="provider-link">AgentGPT</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">SuperAGI</span>
+                            <span class="item-provider"><img src="https://superagi.com/favicon.ico" alt="SuperAGI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://superagi.com" target="_blank" rel="noopener noreferrer" class="provider-link">SuperAGI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="40" data-sentiment="60" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">BabyAGI</span>
+                            <span class="item-provider"><img src="https://github.com/yoheinakajima/babyagi/favicon.ico" alt="BabyAGI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/yoheinakajima/babyagi" target="_blank" rel="noopener noreferrer" class="provider-link">BabyAGI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row collapsed" data-buzz="20" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">Swarm</span>
+                            <span class="item-provider"><img src="https://github.com/swarmdotai/swarm/favicon.ico" alt="Swarm" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/swarmdotai/swarm" target="_blank" rel="noopener noreferrer" class="provider-link">Swarm</a></span></span>
+                        </div>
+                        <span class="score-cell score-low">20</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="agents" onclick="toggleExpand('agents')">
+                            <span class="expand-text">Vis alle</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            </div>
+
+            <!-- Kapabiliteter Tab Content -->
+            <div class="tab-content hidden" id="tab-kapabiliteter" role="tabpanel" aria-labelledby="tab-btn-kapabiliteter">
+                <!-- Capabilities Matrix -->
+                <section class="capabilities-section" id="capabilities-section">
+                    <div class="capabilities-header">
+                        <div class="capabilities-title-group">
+                            <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
+                            <p class="capabilities-subtitle" data-i18n="capabilities-subtitle">Hva kan hver modell?</p>
+                        </div>
+                        <div class="capabilities-legend">
+                            <span class="legend-item">
+                                <span>⭐</span>
+                                <span data-i18n="legend-best">Best</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✓</span>
+                                <span data-i18n="legend-yes">Ja</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✗</span>
+                                <span data-i18n="legend-no">Nei</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="capabilities-content">
+                        <table class="capabilities-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th data-tool-index="0">Claude</th>
+                                    <th data-tool-index="1">GPT-4o</th>
+                                    <th data-tool-index="2">Gemini</th>
+                                    <th data-tool-index="3">Llama</th>
+                                    <th data-tool-index="4">DeepSeek</th>
+                                    <th data-tool-index="5">Grok</th>
+                                </tr>
+                            </thead>
+                            <tbody id="capabilities-tbody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile card view -->
+                    <div class="capabilities-mobile" id="capabilities-mobile">
+                        <div class="model-tabs" id="model-tabs">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                        <div id="model-cards">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- About Section -->
+            <section id="om" class="about-section">
+                <h2 data-i18n="about-title">Om AI Score</h2>
+                <p data-i18n="about-intro">Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.</p>
+                
+                <h3 data-i18n="about-sources-title">Datakilder</h3>
+                <ul>
+                    <li data-i18n="source-1">Offentlig tilgjengelig informasjon</li>
+                    <li data-i18n="source-2">Egne praktiske tester</li>
+                    <li data-i18n="source-3">Inntrykk fra utviklere og AI-miljøer</li>
+                    <li data-i18n="source-4">Vurderinger generert og validert med AI</li>
+                </ul>
+                
+                <p class="disclaimer" data-i18n="disclaimer">Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.</p>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h3 data-i18n="cta-title">Vil du bruke AI mer effektivt i teamet ditt?</h3>
+                <p data-i18n="cta-text">FYRK hjelper bedrifter å velge riktige verktøy og bygge AI-drevne arbeidsflyter.</p>
+                <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Score" class="cta-button">
+                    <span data-i18n="cta-button">Kontakt oss</span>
+                    <span>→</span>
+                </a>
+            </section>
+    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/fyrk-monogram-secondary-cyan.svg" alt="FYRK" class="footer-logo-img" onerror="this.style.display='none';">
+                    <span data-i18n="footer-brand">© FYRK Lab – Eksperimenter innen AI og produktledelse</span>
+                </div>
+                <div class="footer-links">
+                    <span data-i18n="footer-ai-score">AI Score</span> – <span data-i18n="last-updated">Sist oppdatert: 2. des 2025</span> | <a href="https://fyrk.no">fyrk.no</a> | <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Score" data-i18n="contact">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightweight JS for filtering, sorting & i18n -->
+    <script>
+        // Translations
+        const translations = {
+            no: {
+                'hero-badge': 'Oppdatert desember 2025',
+                'hero-subtitle': 'En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.',
+                'new-this-month': 'Ny denne måneden',
+                'biggest-changes': 'Største endringer',
+                'metrics-title': 'Slik leser du dataene',
+                'metric-buzz': 'Hvor mye modellen/verktøyet diskuteres (0–100)',
+                'metric-sentiment': 'Hvor positivt/negativt det omtales i communityet',
+                'metric-utility': 'Opplevd praktisk nytteverdi',
+                'metric-price': 'Opplevd kost/nytte (lavere = bedre verdi)',
+                'label-utility': 'Nytte',
+                'label-price': 'Pris',
+                'filter-label': 'Filtrer etter kategori:',
+                'filter-all': 'Alle',
+                'cat-core-llm': 'Kjerne-LLM-er',
+                'cat-code': 'Kodeassistenter',
+                'cat-image': 'Bilde & Video',
+                'cat-audio': 'Lyd & Stemme',
+                'cat-agents': 'Agenter & Automatisering',
+                'models': 'modeller',
+                'tools': 'verktøy',
+                'platforms': 'plattformer',
+                'product-name': 'AI Score',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Kapabiliteter',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'Et eksperiment – ikke en benchmark.',
+                'les-mer': 'Les mer',
+                'about-title': 'Om AI Score',
+                'about-intro': 'Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.',
+                'about-sources-title': 'Datakilder',
+                'source-1': 'Offentlig tilgjengelig informasjon',
+                'source-2': 'Egne praktiske tester',
+                'source-3': 'Inntrykk fra utviklere og AI-miljøer',
+                'source-4': 'Vurderinger generert og validert med AI',
+                'disclaimer': 'Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.',
+                'footer-brand': '© FYRK Lab – Eksperimenter innen AI og produktledelse',
+                'footer-ai-score': 'AI Score',
+                'capabilities-title': 'Kapabiliteter',
+                'capabilities-subtitle': 'Hva kan hver modell?',
+                'capabilities-toggle': 'Vis kapabiliteter',
+                'capabilities-hide': 'Skjul kapabiliteter',
+                'legend-best': 'Best',
+                'legend-yes': 'Ja',
+                'legend-no': 'Nei',
+                'cap-header-cognitive': 'Kognitive evner',
+                'cap-header-visual': 'Visuelle evner',
+                'cap-header-audio': 'Lyd & Tale',
+                'cap-header-system': 'Systemevner',
+                'cap-header-automation': 'Automatisering',
+                'cap-koding': 'Koding',
+                'cap-resonnering': 'Resonnering',
+                'cap-norsk': 'Norsk språk',
+                'cap-bildegenerering': 'Bildegenerering',
+                'cap-bildeanalyse': 'Bildeanalyse',
+                'cap-stemme': 'Stemme/tale',
+                'cap-websok': 'Websøk',
+                'cap-dokument': 'Dokument/PDF',
+                'cap-api': 'API tilgjengelig',
+                'cap-computer-use': 'Computer use',
+                'cap-agent-handlinger': 'Agent-handlinger',
+                'cap-multi-steg': 'Multi-steg workflows',
+                'show-all-models': 'Vis alle modeller',
+                'show-fewer-models': 'Vis færre modeller',
+                'cap-norsk-short': 'Norsk',
+                'cap-bildegenerering-short': 'Bilde Gen',
+                'cap-stemme-short': 'Stemme',
+                'cap-dokument-short': 'Dokumenter',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'cta-title': 'Vil du bruke AI mer effektivt i teamet ditt?',
+                'cta-text': 'FYRK hjelper bedrifter å velge riktige verktøy og bygge AI-drevne arbeidsflyter.',
+                'cta-button': 'Kontakt oss',
+                'contact': 'Kontakt',
+                'last-updated': 'Sist oppdatert: 2. des 2025'
+            },
+            sv: {
+                'hero-badge': 'Uppdaterad desember 2025',
+                'hero-subtitle': 'En månadsvis översikt över vad som faktiskt händer inom AI. Baserat på signaler från Hacker News, Github, X och sentimentanalys.',
+                'new-this-month': 'Nytt denna månad',
+                'biggest-changes': 'Största förändringarna',
+                'metrics-title': 'Så här läser du datan',
+                'metric-buzz': 'Hur mycket modellen/verktyget diskuteras (0–100)',
+                'metric-sentiment': 'Hur positivt/negativt det omtalas i communityt',
+                'metric-utility': 'Upplevd praktisk nytta',
+                'metric-price': 'Upplevd kostnad/nytta (lägre = bättre värde)',
+                'label-utility': 'Nytta',
+                'label-price': 'Pris',
+                'filter-label': 'Filtrera efter kategori:',
+                'filter-all': 'Alla',
+                'cat-core-llm': 'Kärn-LLM:er',
+                'cat-code': 'Kodassistenter',
+                'cat-image': 'Bild & Video',
+                'cat-audio': 'Ljud & Röst',
+                'cat-agents': 'Agenter & Automatisering',
+                'models': 'modeller',
+                'tools': 'verktyg',
+                'platforms': 'plattformar',
+                'product-name': 'AI Score',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Kapabiliteter',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'Ett experiment – inte ett benchmark.',
+                'les-mer': 'Läs mer',
+                'about-title': 'Om AI Score',
+                'about-intro': 'Ett experiment från FYRK Lab där vi utforskar hur man kan jämföra AI-modeller på ett enkelt sätt.',
+                'about-sources-title': 'Datakällor',
+                'source-1': 'Offentligt tillgänglig information',
+                'source-2': 'Egna praktiska tester',
+                'source-3': 'Intryck från utvecklare och AI-miljöer',
+                'source-4': 'Bedömningar genererade och validerade med AI',
+                'disclaimer': 'Inte vetenskapligt – använd som inspiration, inte facit.',
+                'footer-brand': '© FYRK Lab – Experiment inom AI och produktledning',
+                'footer-ai-score': 'AI Score',
+                'capabilities-title': 'Kapabiliteter',
+                'capabilities-subtitle': 'Vad kan varje modell?',
+                'capabilities-toggle': 'Visa kapabiliteter',
+                'capabilities-hide': 'Dölj kapabiliteter',
+                'legend-best': 'Bäst',
+                'legend-yes': 'Ja',
+                'legend-no': 'Nej',
+                'cap-header-cognitive': 'Kognitiva förmågor',
+                'cap-header-visual': 'Visuella förmågor',
+                'cap-header-audio': 'Ljud & Tal',
+                'cap-header-system': 'Systemförmågor',
+                'cap-header-automation': 'Automatisering',
+                'cap-koding': 'Kodning',
+                'cap-resonnering': 'Resonemang',
+                'cap-norsk': 'Norska språket',
+                'cap-bildegenerering': 'Bildgenerering',
+                'cap-bildeanalyse': 'Bildanalys',
+                'cap-stemme': 'Röst/tal',
+                'cap-websok': 'Webbsök',
+                'cap-dokument': 'Dokument/PDF',
+                'cap-api': 'API tillgänglig',
+                'cap-computer-use': 'Computer use',
+                'cap-agent-handlinger': 'Agent-åtgärder',
+                'cap-multi-steg': 'Multi-steg arbetsflöden',
+                'show-all-models': 'Visa alla modeller',
+                'show-fewer-models': 'Visa färre modeller',
+                'cap-norsk-short': 'Norska',
+                'cap-bildegenerering-short': 'Bild Gen',
+                'cap-stemme-short': 'Röst',
+                'cap-dokument-short': 'Dokument',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'cta-title': 'Vill du använda AI mer effektivt i ditt team?',
+                'cta-text': 'FYRK hjälper företag att välja rätt verktyg och bygga AI-drivna arbetsflöden.',
+                'cta-button': 'Kontakta oss',
+                'contact': 'Kontakt',
+                'last-updated': 'Senast uppdaterad: 2. des 2025'
+            },
+            en: {
+                'hero-badge': 'Updated desember 2025',
+                'hero-subtitle': 'A monthly overview of what\'s actually happening in AI. Based on signals from Hacker News, Github, X, and sentiment analysis.',
+                'new-this-month': 'New This Month',
+                'biggest-changes': 'Biggest Movers',
+                'metrics-title': 'How to Read the Data',
+                'metric-buzz': 'How much the model/tool is being discussed (0–100)',
+                'metric-sentiment': 'How positively/negatively it\'s talked about in the community',
+                'metric-utility': 'Perceived practical usefulness',
+                'metric-price': 'Perceived cost/value (lower = better value)',
+                'label-utility': 'Utility',
+                'label-price': 'Price',
+                'filter-label': 'Filter by category:',
+                'filter-all': 'All',
+                'cat-core-llm': 'Core LLMs',
+                'cat-code': 'Code Assistants',
+                'cat-image': 'Image & Video',
+                'cat-audio': 'Audio & Voice',
+                'cat-agents': 'Agents & Automation',
+                'models': 'models',
+                'tools': 'tools',
+                'platforms': 'platforms',
+                'product-name': 'AI Score',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Capabilities',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'An experiment – not a benchmark.',
+                'les-mer': 'Learn more',
+                'about-title': 'About AI Score',
+                'about-intro': 'An experiment from FYRK Lab exploring how to compare AI models in a simple way.',
+                'about-sources-title': 'Data Sources',
+                'source-1': 'Publicly available information',
+                'source-2': 'Our own practical tests',
+                'source-3': 'Impressions from developers and AI communities',
+                'source-4': 'Assessments generated and validated with AI',
+                'disclaimer': 'Not scientific – use as inspiration, not gospel.',
+                'footer-brand': '© FYRK Lab – Experiments in AI and product leadership',
+                'footer-ai-score': 'AI Score',
+                'capabilities-title': 'Capabilities',
+                'capabilities-subtitle': 'What can each model do?',
+                'capabilities-toggle': 'Show capabilities',
+                'capabilities-hide': 'Hide capabilities',
+                'legend-best': 'Best',
+                'legend-yes': 'Yes',
+                'legend-no': 'No',
+                'cap-header-cognitive': 'Cognitive Abilities',
+                'cap-header-visual': 'Visual Abilities',
+                'cap-header-audio': 'Audio & Voice',
+                'cap-header-system': 'System Capabilities',
+                'cap-header-automation': 'Automation',
+                'cap-koding': 'Coding',
+                'cap-resonnering': 'Reasoning',
+                'cap-norsk': 'Norwegian Language',
+                'cap-bildegenerering': 'Image Generation',
+                'cap-bildeanalyse': 'Image Analysis',
+                'cap-stemme': 'Voice/Speech',
+                'cap-websok': 'Web Search',
+                'cap-dokument': 'Document/PDF',
+                'cap-api': 'API Available',
+                'cap-computer-use': 'Computer use',
+                'cap-agent-handlinger': 'Agent Actions',
+                'cap-multi-steg': 'Multi-step Workflows',
+                'show-all-models': 'Show all models',
+                'show-fewer-models': 'Show fewer models',
+                'cap-norsk-short': 'Norwegian',
+                'cap-bildegenerering-short': 'Image Gen',
+                'cap-stemme-short': 'Voice',
+                'cap-dokument-short': 'Documents',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'cta-title': 'Want to use AI more effectively in your team?',
+                'cta-text': 'FYRK helps companies choose the right tools and build AI-powered workflows.',
+                'cta-button': 'Contact Us',
+                'contact': 'Contact',
+                'last-updated': 'Last updated: 2. des 2025'
+            }
+        };
+
+        let currentLang = localStorage.getItem('fyrk-lang') || 'no';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('fyrk-lang', lang);
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Translate all elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Re-render capabilities to update translations
+            renderCapabilitiesTable();
+            renderCapabilitiesMobile();
+            
+            // Update html lang attribute
+            document.documentElement.lang = lang === 'no' ? 'no' : lang === 'sv' ? 'sv' : 'en';
+        }
+
+        // Tab Navigation
+        function switchTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                const isActive = tab.dataset.tab === tabName;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', isActive);
+            });
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                const isActive = content.id === 'tab-' + tabName;
+                content.classList.toggle('hidden', !isActive);
+                content.setAttribute('aria-hidden', !isActive);
+            });
+
+            // Update URL hash
+            window.location.hash = tabName;
+
+            // Store in localStorage
+            localStorage.setItem('fyrk-active-tab', tabName);
+        }
+
+        function scrollToTop() {
+            // Switch to scores tab (first tab)
+            switchTab('scores');
+            
+            // Scroll to top smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        window.scrollToTop = scrollToTop;
+
+        function initializeTabs() {
+            // Check URL hash first
+            const hash = window.location.hash.slice(1);
+            const savedTab = localStorage.getItem('fyrk-active-tab');
+            const defaultTab = hash || savedTab || 'scores';
+
+            switchTab(defaultTab);
+
+            // Add click handlers
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+
+                // Keyboard support
+                tab.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        switchTab(this.dataset.tab);
+                    }
+                });
+            });
+
+            // Handle browser back/forward
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.slice(1);
+                if (hash === 'scores' || hash === 'kapabiliteter') {
+                    switchTab(hash);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize language
+            setLanguage(currentLang);
+            
+            // Language switcher
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+            });
+
+            // Initialize tabs
+            initializeTabs();
+
+            // Category filtering
+            const filterPills = document.querySelectorAll('.filter-pill');
+            const categorySections = document.querySelectorAll('.category-section');
+
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    
+                    // Update active state
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide categories
+                    categorySections.forEach(section => {
+                        if (category === 'all' || section.dataset.category === category) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Column sorting
+            document.querySelectorAll('.rankings-header span[data-sort]').forEach(header => {
+                header.addEventListener('click', function() {
+                    const sortKey = this.dataset.sort;
+                    const table = this.closest('.rankings-table');
+                    const expandSection = table.querySelector('.expand-section');
+                    const rows = Array.from(table.querySelectorAll('.ranking-row'));
+                    const isAsc = this.classList.contains('sort-asc');
+                    
+                    // Reset all sort indicators in this table
+                    table.querySelectorAll('.rankings-header span[data-sort]').forEach(h => {
+                        h.classList.remove('sort-asc', 'sort-desc');
+                    });
+                    
+                    // Set new sort direction
+                    this.classList.add(isAsc ? 'sort-desc' : 'sort-asc');
+                    
+                    // Sort rows
+                    rows.sort((a, b) => {
+                        let valA, valB;
+                        
+                        if (sortKey === 'name') {
+                            valA = a.querySelector('.item-name').textContent.toLowerCase();
+                            valB = b.querySelector('.item-name').textContent.toLowerCase();
+                            return isAsc ? valB.localeCompare(valA) : valA.localeCompare(valB);
+                        } else {
+                            valA = parseInt(a.dataset[sortKey]) || 0;
+                            valB = parseInt(b.dataset[sortKey]) || 0;
+                            return isAsc ? valA - valB : valB - valA;
+                        }
+                    });
+                    
+                    // Re-append rows and update rank badges
+                    rows.forEach((row, index) => {
+                        if (expandSection) {
+                            table.insertBefore(row, expandSection);
+                        } else {
+                            table.appendChild(row);
+                        }
+                        const badge = row.querySelector('.rank-badge');
+                        badge.textContent = index + 1;
+                        badge.className = 'rank-badge';
+                        if (index === 0) badge.classList.add('rank-1');
+                        else if (index === 1) badge.classList.add('rank-2');
+                        else if (index === 2) badge.classList.add('rank-3');
+                        else badge.classList.add('rank-default');
+                    });
+                });
+            });
+        });
+    </script>
     
-    <div class="container">
-        <header>
-            <div class="logo">FYRK AI Radar</div>
-            <h1>AI Verktøy Ranking</h1>
-            <div class="period">2025-12</div>
-        </header>
+    <script>
+        // Expand/collapse functionality with localStorage
+        function toggleExpand(categoryId) {
+            try {
+                // Try both expand-toggle and expand-button classes
+                let button = document.querySelector('.expand-toggle[data-category="' + categoryId + '"]');
+                if (!button) {
+                    button = document.querySelector('.expand-button[data-category="' + categoryId + '"]');
+                }
+                if (!button) return;
+                
+                const expandSection = button.closest('.expand-section');
+                if (!expandSection) return;
+                
+                const table = expandSection.parentElement;
+                if (!table || !table.classList.contains('rankings-table')) return;
+                
+                // Find all rows after the first 3 (both collapsed and collapsed classes)
+                const allRows = Array.from(table.querySelectorAll('.ranking-row'));
+                const visibleRows = allRows.slice(0, 3);
+                const hiddenRows = allRows.slice(3);
+                
+                const expandText = button.querySelector('.expand-text');
+                const isExpanded = button.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Collapse
+                    hiddenRows.forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    button.classList.remove('expanded');
+                    if (expandText) {
+                        // Remove arrow from text since it's handled by CSS ::after
+                        expandText.textContent = 'Vis alle';
+                    }
+                    localStorage.setItem('fyrk-expanded-' + categoryId, 'false');
+                } else {
+                    // Expand - limit to 10 items
+                    const rowsToShow = hiddenRows.slice(0, 10);
+                    rowsToShow.forEach(row => {
+                        row.classList.remove('collapsed');
+                        row.classList.add('expanded');
+                    });
+                    // Hide any rows beyond 10
+                    hiddenRows.slice(10).forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    button.classList.add('expanded');
+                    if (expandText) {
+                        // Remove arrow from text since it's handled by CSS ::after
+                        expandText.textContent = 'Vis færre';
+                    }
+                    localStorage.setItem('fyrk-expanded-' + categoryId, 'true');
+                }
+            } catch (error) {
+                console.error('Error in toggleExpand:', error);
+            }
+        }
         
-        <div class="summary">DeepSeek-v3.2 dominates discussions as a frontier open-source model, while Anthropic's Bun acquisition and Claude documentation improvements show strong developer focus. AI agents are proving real-world value with concrete ROI examples, and there's growing interest in local, controllable AI implementations.</div>
+        // Initialize collapse state from localStorage
+        function initializeCollapseState() {
+            document.querySelectorAll('.category-section').forEach(section => {
+                const categoryId = section.dataset.category;
+                if (!categoryId) return;
+                
+                const table = section.querySelector('.rankings-table');
+                if (!table) return;
+                
+                const allRows = Array.from(table.querySelectorAll('.ranking-row'));
+                const hiddenRows = allRows.slice(3);
+                
+                if (hiddenRows.length === 0) return;
+                
+                const isExpanded = localStorage.getItem('fyrk-expanded-' + categoryId) === 'true';
+                const button = section.querySelector('.expand-toggle[data-category="' + categoryId + '"]');
+                const expandText = button?.querySelector('.expand-text');
+                
+                if (isExpanded) {
+                    const rowsToShow = hiddenRows.slice(0, 10);
+                    rowsToShow.forEach(row => {
+                        row.classList.remove('collapsed');
+                        row.classList.add('expanded');
+                    });
+                    hiddenRows.slice(10).forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    if (button) {
+                        button.classList.add('expanded');
+                        if (expandText) expandText.textContent = 'Vis færre';
+                    }
+                } else {
+                    hiddenRows.forEach(row => {
+                        row.classList.add('collapsed');
+                        row.classList.remove('expanded');
+                    });
+                    if (expandText) {
+                        // Remove arrow from text since it's handled by CSS ::after
+                        expandText.textContent = 'Vis alle';
+                    }
+                }
+            });
+        }
         
-        <div class="categories">
-            
-    <div class="category">
-        <h2>Kjerne-LLM-er</h2>
-        <div class="rankings">
-            
-        <div class="rank-item">
-            <div class="medal gold">1</div>
-            <div class="rank-info">
-                <div class="rank-name">DeepSeek-v3.2</div>
-                <div class="rank-provider">DeepSeek</div>
-                <div class="rank-reason">Pushing the frontier of open large language models with multiple high-engagement posts and strong technical advancement</div>
-                <div class="tags"><span class="tag">open-source</span><span class="tag">frontier</span><span class="tag">math-reasoning</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal silver">2</div>
-            <div class="rank-info">
-                <div class="rank-name">Claude</div>
-                <div class="rank-provider">Anthropic</div>
-                <div class="rank-reason">Strong developer adoption with detailed documentation guidance and upcoming Claude 4.5 Opus generating significant interest</div>
-                <div class="tags"><span class="tag">developer-friendly</span><span class="tag">documentation</span><span class="tag">upcoming-release</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal bronze">3</div>
-            <div class="rank-info">
-                <div class="rank-name">Mistral 3</div>
-                <div class="rank-provider">Mistral AI</div>
-                <div class="rank-reason">New model family release showing continued innovation in the open-source competitive landscape</div>
-                <div class="tags"><span class="tag">open-source</span><span class="tag">model-family</span><span class="tag">competitive</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        </div>
-    </div>
-    <div class="category">
-        <h2>Kode-assistenter</h2>
-        <div class="rankings">
-            
-        <div class="rank-item">
-            <div class="medal gold">1</div>
-            <div class="rank-info">
-                <div class="rank-name">Gemini CLI</div>
-                <div class="rank-provider">Google</div>
-                <div class="rank-reason">Strong focus on agentic coding capabilities with practical tips and tricks for developers</div>
-                <div class="tags"><span class="tag">cli</span><span class="tag">agentic</span><span class="tag">developer-tools</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal silver">2</div>
-            <div class="rank-info">
-                <div class="rank-name">Codex</div>
-                <div class="rank-provider">OpenAI</div>
-                <div class="rank-reason">Demonstrated in complex project builds showing practical coding capabilities</div>
-                <div class="tags"><span class="tag">project-building</span><span class="tag">practical</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">3</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">3</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal bronze">3</div>
-            <div class="rank-info">
-                <div class="rank-name">LLM PCB Tool</div>
-                <div class="rank-provider">Community</div>
-                <div class="rank-reason">Specialized application showing LLMs expanding into hardware design verification</div>
-                <div class="tags"><span class="tag">hardware</span><span class="tag">specialized</span><span class="tag">pcb-design</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">2</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        </div>
-    </div>
-    <div class="category">
-        <h2>AI-agenter & automatisering</h2>
-        <div class="rankings">
-            
-        <div class="rank-item">
-            <div class="medal gold">1</div>
-            <div class="rank-info">
-                <div class="rank-name">Fara-7B</div>
-                <div class="rank-provider">Community</div>
-                <div class="rank-reason">Efficient agentic model specifically designed for computer use, showing practical agent capabilities</div>
-                <div class="tags"><span class="tag">computer-use</span><span class="tag">efficient</span><span class="tag">agentic</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal silver">2</div>
-            <div class="rank-info">
-                <div class="rank-name">Blockchain AI Agents</div>
-                <div class="rank-provider">Various</div>
-                <div class="rank-reason">Proven ROI with $4.6M in smart contract exploits found, demonstrating real-world value</div>
-                <div class="tags"><span class="tag">blockchain</span><span class="tag">security</span><span class="tag">proven-roi</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">3</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal bronze">3</div>
-            <div class="rank-info">
-                <div class="rank-name">Era Sandbox</div>
-                <div class="rank-provider">Community</div>
-                <div class="rank-reason">Open-source local sandbox providing safe environment for AI agent development and testing</div>
-                <div class="tags"><span class="tag">open-source</span><span class="tag">sandbox</span><span class="tag">local</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">2</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        </div>
-    </div>
-    <div class="category">
-        <h2>Bilde & video-generering</h2>
-        <div class="rankings">
-            
-        <div class="rank-item">
-            <div class="medal gold">1</div>
-            <div class="rank-info">
-                <div class="rank-name">Qwen3-VL</div>
-                <div class="rank-provider">Alibaba</div>
-                <div class="rank-reason">Breakthrough video analysis capability scanning two-hour videos with detailed comprehension</div>
-                <div class="tags"><span class="tag">video-analysis</span><span class="tag">long-context</span><span class="tag">multimodal</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal silver">2</div>
-            <div class="rank-info">
-                <div class="rank-name">Nano PDF</div>
-                <div class="rank-provider">Community</div>
-                <div class="rank-reason">Practical CLI tool combining Gemini's capabilities with PDF editing for document workflows</div>
-                <div class="tags"><span class="tag">cli</span><span class="tag">pdf-editing</span><span class="tag">practical</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">3</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        <div class="rank-item">
-            <div class="medal bronze">3</div>
-            <div class="rank-info">
-                <div class="rank-name">RAG Systems</div>
-                <div class="rank-provider">Various</div>
-                <div class="rank-reason">Growing interest in local RAG implementations for document processing and knowledge management</div>
-                <div class="tags"><span class="tag">local</span><span class="tag">document-processing</span><span class="tag">knowledge-management</span></div>
-            </div>
-            <div class="scores">
-                <div class="score">
-                    <span class="score-value">3</span>
-                    <span class="score-label">Buzz</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Sent.</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">5</span>
-                    <span class="score-label">Nytte</span>
-                </div>
-                <div class="score">
-                    <span class="score-value">4</span>
-                    <span class="score-label">Pris</span>
-                </div></div>
-        </div>
-        </div>
-    </div>
-        </div>
+        window.toggleExpand = toggleExpand;
         
-        
-    <div class="new-noteworthy">
-        <h2>Nytt & Spennende</h2>
-        <div class="new-items">
+        // Capabilities Matrix - Configuration
+        const CAPABILITIES_CONFIG = {
+            tools: ['Claude', 'GPT-4o', 'Gemini', 'Llama', 'DeepSeek', 'Grok'],
+            mobileDefaultTools: [0, 1, 2, 5],
+            providerNames: {
+                'Claude': 'Anthropic',
+                'GPT-4o': 'OpenAI',
+                'Gemini': 'Google',
+                'Llama': 'Meta',
+                'DeepSeek': 'DeepSeek',
+                'Grok': 'xAI'
+            },
+            scoreSymbols: {
+                'best': '⭐',
+                'yes': '✓',
+                'no': '✗'
+            },
+            scoreLabels: {
+                'best': '⭐ Best',
+                'yes': '✓ Yes',
+                'no': '✗ No'
+            },
+            categories: [
+                { type: 'header', key: 'cap-header-cognitive' },
+                { key: 'cap-koding', shortKey: 'cap-koding', scores: ['yes', 'yes', 'best', 'yes', 'yes', 'yes'] },
+                { key: 'cap-resonnering', shortKey: 'cap-resonnering', scores: ['yes', 'yes', 'best', 'yes', 'yes', 'yes'] },
+                { key: 'cap-norsk', shortKey: 'cap-norsk-short', scores: ['yes', 'yes', 'yes', 'best', 'yes', 'no'] },
+                { type: 'header', key: 'cap-header-visual' },
+                { key: 'cap-bildegenerering', shortKey: 'cap-bildegenerering-short', scores: ['no', 'no', 'yes', 'yes', 'best', 'no'] },
+                { key: 'cap-bildeanalyse', shortKey: 'cap-bildeanalyse', scores: ['no', 'no', 'no', 'no', 'no', 'no'] },
+                { type: 'header', key: 'cap-header-audio' },
+                { key: 'cap-stemme', shortKey: 'cap-stemme-short', scores: ['yes', 'yes', 'no', 'best', 'yes', 'no'] },
+                { type: 'header', key: 'cap-header-system' },
+                { key: 'cap-websok', shortKey: 'cap-websok', scores: ['yes', 'yes', 'yes', 'yes', 'yes', 'no'] },
+                { key: 'cap-dokument', shortKey: 'cap-dokument-short', scores: ['yes', 'yes', 'yes', 'yes', 'best', 'no'] },
+                { key: 'cap-api', shortKey: 'cap-api-short', scores: ['yes', 'yes', 'yes', 'yes', 'yes', 'yes'] },
+                { key: 'cap-computer-use', shortKey: 'cap-computer-use-short', scores: ['yes', 'yes', 'best', 'yes', 'no', 'no'] },
+                { type: 'header', key: 'cap-header-automation' },
+                { key: 'cap-agent-handlinger', shortKey: 'cap-agent-handlinger', scores: ['no', 'no', 'no', 'no', 'no', 'no'] },
+                { key: 'cap-multi-steg', shortKey: 'cap-multi-steg', scores: ['no', 'no', 'no', 'no', 'no', 'no'] },
+            ]
+        };
+
+        // Capabilities Utilities
+        const CapabilitiesUtils = {
+            getModelId: (toolName) => toolName.toLowerCase().replace(/\s+/g, ''),
             
-        <div class="new-item">
-            <div class="new-item-name">Anthropic + Bun Integration</div>
-            <div class="new-item-provider">Anthropic</div>
-            <div class="new-item-reason">Major acquisition generating significant buzz and potential platform implications</div>
-            <div class="tags" style="margin-top: 0.5rem;"><span class="tag">acquisition</span><span class="tag">platform</span><span class="tag">javascript</span></div>
-        </div>
-        <div class="new-item">
-            <div class="new-item-name">GitHits</div>
-            <div class="new-item-provider">Community</div>
-            <div class="new-item-reason">Code example engine specifically designed for AI agents and developers in private beta</div>
-            <div class="tags" style="margin-top: 0.5rem;"><span class="tag">beta</span><span class="tag">code-examples</span><span class="tag">developer-tools</span></div>
-        </div>
-        <div class="new-item">
-            <div class="new-item-name">Pre-ChatGPT Search Tool</div>
-            <div class="new-item-provider">Community</div>
-            <div class="new-item-reason">Novel approach to information authenticity by filtering out AI-generated content</div>
-            <div class="tags" style="margin-top: 0.5rem;"><span class="tag">search</span><span class="tag">authenticity</span><span class="tag">pre-ai-content</span></div>
-        </div>
-        </div>
-    </div>
+            getTranslation: (key) => {
+                return translations[currentLang] && translations[currentLang][key] || key;
+            },
+            
+            getCapabilityName: (category) => {
+                const nameKey = category.shortKey || category.key;
+                return CapabilitiesUtils.getTranslation(nameKey);
+            },
+            
+            createScoreCell: (score) => {
+                const cell = document.createElement('td');
+                const cellContent = document.createElement('div');
+                cellContent.className = `capability-cell capability-${score}`;
+                cellContent.textContent = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+                cell.appendChild(cellContent);
+                return cell;
+            },
+            
+            createCategoryHeader: (category) => {
+                const row = document.createElement('tr');
+                row.className = 'category-header';
+                const headerCell = document.createElement('td');
+                headerCell.setAttribute('data-i18n', category.key);
+                headerCell.setAttribute('colspan', CAPABILITIES_CONFIG.tools.length + 1);
+                headerCell.textContent = CapabilitiesUtils.getTranslation(category.key);
+                row.appendChild(headerCell);
+                return row;
+            },
+            
+            createCapabilityRow: (category) => {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                const nameKey = category.shortKey || category.key;
+                nameCell.setAttribute('data-i18n', nameKey);
+                nameCell.textContent = CapabilitiesUtils.getCapabilityName(category);
+                row.appendChild(nameCell);
+                
+                category.scores.forEach(score => {
+                    row.appendChild(CapabilitiesUtils.createScoreCell(score));
+                });
+                
+                return row;
+            }
+        };
+
+        // Capabilities Table Renderer
+        function renderCapabilitiesTable() {
+            const tbody = document.getElementById('capabilities-tbody');
+            const thead = document.querySelector('.capabilities-table thead tr');
+            if (!tbody || !thead) return;
+
+            tbody.innerHTML = '';
+
+            CAPABILITIES_CONFIG.categories.forEach(category => {
+                if (category.type === 'header') {
+                    tbody.appendChild(CapabilitiesUtils.createCategoryHeader(category));
+                } else {
+                    tbody.appendChild(CapabilitiesUtils.createCapabilityRow(category));
+                }
+            });
+        }
+
+        // Capabilities Mobile Renderer
+        const CapabilitiesMobile = {
+            getSelectedModel: () => {
+                const savedModel = localStorage.getItem('fyrk-selected-model');
+                const firstModelId = CapabilitiesUtils.getModelId(CAPABILITIES_CONFIG.tools[0]);
+                return savedModel || firstModelId;
+            },
+            
+            createTab: (tool, selectedModel) => {
+                const tab = document.createElement('button');
+                tab.className = 'model-tab';
+                tab.dataset.model = CapabilitiesUtils.getModelId(tool);
+                tab.textContent = tool;
+                if (tab.dataset.model === selectedModel) {
+                    tab.classList.add('active');
+                }
+                tab.addEventListener('click', () => switchModel(tab.dataset.model));
+                return tab;
+            },
+            
+            createCardHeader: (tool) => {
+                const header = document.createElement('div');
+                header.className = 'model-card-header';
+                
+                const name = document.createElement('span');
+                name.className = 'model-name';
+                name.textContent = tool;
+                
+                const provider = document.createElement('span');
+                provider.className = 'model-provider';
+                provider.textContent = CAPABILITIES_CONFIG.providerNames[tool] || tool;
+                
+                header.appendChild(name);
+                header.appendChild(provider);
+                return header;
+            },
+            
+            createCapabilityListItem: (category, toolIndex) => {
+                if (category.type === 'header') return null;
+                
+                const score = category.scores[toolIndex];
+                const listItem = document.createElement('li');
+                listItem.className = `cap-${score}`;
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = CapabilitiesUtils.getCapabilityName(category);
+                
+                const scoreSpan = document.createElement('span');
+                scoreSpan.textContent = CAPABILITIES_CONFIG.scoreLabels[score] || '';
+                
+                listItem.appendChild(nameSpan);
+                listItem.appendChild(scoreSpan);
+                return listItem;
+            },
+            
+            createCard: (tool, toolIndex, selectedModel) => {
+                const card = document.createElement('div');
+                card.className = 'model-card';
+                card.id = `card-${CapabilitiesUtils.getModelId(tool)}`;
+                if (card.id === `card-${selectedModel}`) {
+                    card.classList.add('active');
+                }
+                
+                card.appendChild(CapabilitiesMobile.createCardHeader(tool));
+                
+                const list = document.createElement('ul');
+                list.className = 'capability-list';
+                
+                CAPABILITIES_CONFIG.categories.forEach(category => {
+                    const listItem = CapabilitiesMobile.createCapabilityListItem(category, toolIndex);
+                    if (listItem) list.appendChild(listItem);
+                });
+                
+                card.appendChild(list);
+                return card;
+            },
+            
+            render: () => {
+                const tabsContainer = document.getElementById('model-tabs');
+                const cardsContainer = document.getElementById('model-cards');
+                if (!tabsContainer || !cardsContainer) return;
+
+                const selectedModel = CapabilitiesMobile.getSelectedModel();
+                
+                // Render tabs
+                tabsContainer.innerHTML = '';
+                CAPABILITIES_CONFIG.tools.forEach(tool => {
+                    tabsContainer.appendChild(CapabilitiesMobile.createTab(tool, selectedModel));
+                });
+
+                // Render cards
+                cardsContainer.innerHTML = '';
+                CAPABILITIES_CONFIG.tools.forEach((tool, toolIndex) => {
+                    cardsContainer.appendChild(CapabilitiesMobile.createCard(tool, toolIndex, selectedModel));
+                });
+            }
+        };
+
+        function renderCapabilitiesMobile() {
+            CapabilitiesMobile.render();
+        }
+
+        function switchModel(modelId) {
+            document.querySelectorAll('.model-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.model === modelId);
+            });
+
+            document.querySelectorAll('.model-card').forEach(card => {
+                card.classList.toggle('active', card.id === `card-${modelId}`);
+            });
+
+            localStorage.setItem('fyrk-selected-model', modelId);
+        }
+
+        window.switchModel = switchModel;
+
         
-        <footer>
-            <p>Generert 03. December 2025 kl. 06:34 • Data fra Hacker News</p>
-            <p class="meta">Analysert 40 posts med Claude</p>
-            <p style="margin-top: 1rem;">
-                <a href="https://github.com/DITT_BRUKERNAVN/ai-news-agent">GitHub</a> •
-                <a href="https://fyrk.no">FYRK</a>
-            </p>
-        </footer>
-    </div>
+        // Lab Banner Dismissal
+        function dismissLabBanner() {
+            const banner = document.getElementById('lab-banner');
+            if (banner) {
+                banner.classList.add('hidden');
+                localStorage.setItem('fyrk-lab-banner-dismissed', 'true');
+            }
+        }
+
+        function initializeLabBanner() {
+            const dismissed = localStorage.getItem('fyrk-lab-banner-dismissed') === 'true';
+            const banner = document.getElementById('lab-banner');
+            if (banner && dismissed) {
+                banner.classList.add('hidden');
+            }
+        }
+
+        window.dismissLabBanner = dismissLabBanner;
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCollapseState();
+            renderCapabilitiesTable();
+            renderCapabilitiesMobile();
+            initializeLabBanner();
+            
+            // Re-render on window resize to handle mobile/desktop switch
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    renderCapabilitiesTable();
+                    renderCapabilitiesMobile();
+                }, 150);
+            });
+        });
+    </script>
 </body>
 </html>

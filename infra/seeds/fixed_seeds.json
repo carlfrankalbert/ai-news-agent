@@ -1,0 +1,130 @@
+{
+  "period": "2025-12",
+  "generated_at": "2025-12-15T10:00:00Z",
+  "summary": "Dummy data for development environment",
+  "categories": [
+    {
+      "name": "Kjerne-LLM-er",
+      "slug": "core-llms",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Claude 3.5 Sonnet",
+          "provider": "Anthropic",
+          "short_reason": "Best overall reasoning and coding capabilities",
+          "scores": {
+            "buzz_momentum": 95,
+            "sentiment": 90,
+            "utility": 95,
+            "price_performance": 85
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 1
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "GPT-4 Turbo",
+          "provider": "OpenAI",
+          "short_reason": "Strong performance, wide adoption",
+          "scores": {
+            "buzz_momentum": 90,
+            "sentiment": 85,
+            "utility": 90,
+            "price_performance": 80
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Gemini Pro",
+          "provider": "Google",
+          "short_reason": "Excellent multimodal capabilities",
+          "scores": {
+            "buzz_momentum": 85,
+            "sentiment": 80,
+            "utility": 85,
+            "price_performance": 90
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 4,
+            "rank_change": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "Kodeassistenter",
+      "slug": "code-assistants",
+      "top3": [
+        {
+          "rank": 1,
+          "medal": "gold",
+          "name": "Cursor",
+          "provider": "Cursor",
+          "short_reason": "Best AI-powered IDE experience",
+          "scores": {
+            "buzz_momentum": 95,
+            "sentiment": 90,
+            "utility": 95,
+            "price_performance": 85
+          },
+          "trend": {
+            "status": "rising",
+            "previous_rank": 2,
+            "rank_change": 1
+          }
+        },
+        {
+          "rank": 2,
+          "medal": "silver",
+          "name": "GitHub Copilot",
+          "provider": "GitHub",
+          "short_reason": "Widely integrated, reliable",
+          "scores": {
+            "buzz_momentum": 90,
+            "sentiment": 85,
+            "utility": 90,
+            "price_performance": 80
+          },
+          "trend": {
+            "status": "stable",
+            "previous_rank": 2
+          }
+        },
+        {
+          "rank": 3,
+          "medal": "bronze",
+          "name": "Codeium",
+          "provider": "Codeium",
+          "short_reason": "Free alternative with good performance",
+          "scores": {
+            "buzz_momentum": 75,
+            "sentiment": 80,
+            "utility": 85,
+            "price_performance": 95
+          },
+          "trend": {
+            "status": "new"
+          }
+        }
+      ]
+    }
+  ],
+  "new_and_noteworthy": [
+    {
+      "name": "Llama 3.1",
+      "provider": "Meta",
+      "short_reason": "Open source model with impressive performance"
+    }
+  ]
+}
+
