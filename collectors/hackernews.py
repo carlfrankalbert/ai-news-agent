@@ -4,12 +4,12 @@ Hacker News data collector using Firebase API
 import httpx
 import asyncio
 from datetime import datetime, timedelta
-from typing import Optional, Dict, List
+from typing import Optional
 import json
 from config import HN_API_BASE, AI_KEYWORDS, MIN_HN_POINTS, LOOKBACK_DAYS
 
 
-async def fetch_story_ids(endpoint: str = "topstories", limit: int = 500) -> List[int]:
+async def fetch_story_ids(endpoint: str = "topstories", limit: int = 500) -> list[int]:
     """
     Hent story IDs fra HN Firebase API.
     
@@ -27,7 +27,7 @@ async def fetch_story_ids(endpoint: str = "topstories", limit: int = 500) -> Lis
         return ids[:limit] if ids else []
 
 
-async def fetch_story(story_id: int, client: httpx.AsyncClient) -> Optional[Dict]:
+async def fetch_story(story_id: int, client: httpx.AsyncClient) -> Optional[dict]:
     """Hent detaljer for én story."""
     try:
         response = await client.get(
@@ -41,7 +41,7 @@ async def fetch_story(story_id: int, client: httpx.AsyncClient) -> Optional[Dict
     return None
 
 
-async def collect_ai_mentions(days_back: int = LOOKBACK_DAYS, max_stories: int = 500) -> List[Dict]:
+async def collect_ai_mentions(days_back: int = LOOKBACK_DAYS, max_stories: int = 500) -> list[dict]:
     """
     Samle AI-relaterte posts fra Hacker News via Firebase API.
     
@@ -105,7 +105,7 @@ async def collect_ai_mentions(days_back: int = LOOKBACK_DAYS, max_stories: int =
     return ai_posts
 
 
-def normalize_post(raw: Dict) -> Dict:
+def normalize_post(raw: dict) -> dict:
     """
     Normaliser HN-post til vårt format.
     """
@@ -130,7 +130,7 @@ def normalize_post(raw: Dict) -> Dict:
     }
 
 
-def is_ai_relevant(story: Dict) -> bool:
+def is_ai_relevant(story: dict) -> bool:
     """
     Sjekk om en story er AI-relevant basert på keywords.
     """

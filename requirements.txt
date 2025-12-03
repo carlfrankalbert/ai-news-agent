@@ -6,9 +6,8 @@ httpx>=0.25.0
 # Anthropic SDK for Claude API
 anthropic>=0.39.0
 
-# Optional: for web scraping (Product Hunt, etc.)
-# beautifulsoup4>=4.12.0
-# lxml>=4.9.0
+# Environment variable management
+python-dotenv>=1.0.0
 
 # Optional: for scheduling (cloud deployment)
 # apscheduler>=3.10.0

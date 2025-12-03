@@ -1,67 +1,57 @@
 # Quick Start Guide
 
-## Første gang oppsett
+## 🚀 Deploy in 3 Steps
 
+### 1. Set Up Secrets
+
+**GitHub Secrets** (Repository → Settings → Secrets):
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `ANTHROPIC_API_KEY`
+- `SLACK_WEBHOOK_URL`
+- `SLACK_SIGNING_SECRET`
+
+**Cloudflare Worker Secrets**:
 ```bash
-# 1. Gå til prosjektmappen
-cd /Users/carl/Desktop/FYRK/ai-news-agent
-
-# 2. Opprett virtuelt miljø
-python3 -m venv venv
-
-# 3. Aktiver virtuelt miljø
-source venv/bin/activate
-
-# 4. Installer dependencies
-pip install -r requirements.txt
-
-# 5. Sett API-nøkkel (midlertidig for testing)
-export ANTHROPIC_API_KEY="sk-ant-din-nøkkel-her"
-
-# 6. Test at det fungerer
-python3 main.py --collect-only --days 7
+wrangler secret put SLACK_SIGNING_SECRET
+wrangler secret put GITHUB_TOKEN
+wrangler secret put GITHUB_REPO_OWNER
+wrangler secret put GITHUB_REPO_NAME
+wrangler secret put DOMAIN
 ```
 
-## Hver gang du åpner prosjektet
+### 2. Deploy Cloudflare Worker
 
 ```bash
-# 1. Gå til prosjektmappen
-cd /Users/carl/Desktop/FYRK/ai-news-agent
-
-# 2. Aktiver virtuelt miljø
-source venv/bin/activate
-
-# 3. Kjør agenten
-python3 main.py --collect-only --days 7
+cd infra/cloudflare
+wrangler deploy
 ```
 
-## Vanlige kommandoer
+### 3. Configure Slack
+
+1. Go to [Slack API](https://api.slack.com/apps)
+2. Create slash command `/deploy`
+3. Point to your Cloudflare Worker URL
+
+## ✅ Done!
+
+Now use `/deploy dev` or `/deploy prod` in Slack!
+
+## Alternative: Deploy via Makefile
 
 ```bash
-# Samle data fra alle kilder (uten analyse)
-python3 main.py --collect-only --days 7
-
-# Full pipeline (samle + analyser med Claude)
-python3 main.py --days 7
-
-# Analyser allerede innsamlet data
-python3 main.py --analyze-only
-
-# Test en spesifikk collector
-python3 -m collectors.reddit
-python3 -m collectors.hackernews
+make deploy-dev   # Development
+make deploy-prod  # Production
 ```
 
-## Feilsøking
+## Alternative: Deploy via GitHub Actions
 
-### "command not found: python"
-- Bruk `python3` i stedet for `python` på macOS
+1. Go to Actions tab
+2. Select workflow
+3. Click "Run workflow"
 
-### "ModuleNotFoundError"
-- Sjekk at du har aktivert virtuelt miljø: `source venv/bin/activate`
-- Installer dependencies: `pip install -r requirements.txt`
+---
 
-### "ANTHROPIC_API_KEY not found"
-- Sett miljøvariabel: `export ANTHROPIC_API_KEY="sk-ant-..."`
-- Eller legg den i `.env` fil (husk å legge til i .gitignore)
+For detailed setup, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
 

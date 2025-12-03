@@ -2,22 +2,16 @@ name: Daily AI News Scan
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # 06:00 UTC daglig (07:00 norsk vintertid)
-  workflow_dispatch:      # Manuell trigger fra GitHub UI
+    - cron: '0 6 * * *'  # Kjør 06:00 UTC daglig
+  workflow_dispatch:  # Manuell trigger
 
 jobs:
   scan:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write     # Trengs for å pushe commits
-    
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
@@ -25,18 +19,18 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       
-      - name: Run AI News Agent
+      - name: Run agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python main.py --days 7
       
-      - name: Generate HTML report
+      - name: Generate HTML
         run: python generate_html.py
       
-      - name: Commit and push results
+      - name: Commit results
         run: |
           git config user.name "AI News Bot"
-          git config user.email "bot@users.noreply.github.com"
-          git add output/ docs/
-          git diff --staged --quiet || git commit -m "🤖 Scan $(date +%Y-%m-%d)"
+          git config user.email "bot@example.com"
+          git add output/ docs/index.html
+          git commit -m "Daily scan $(date +%Y-%m-%d)" || exit 0
           git push

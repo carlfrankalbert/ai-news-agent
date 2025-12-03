@@ -6,25 +6,52 @@ __pycache__/
 .Python
 venv/
 env/
-.venv/
 ENV/
+.venv
 
-# Environment
+# Environment variables
 .env
 .env.local
-*.log
+
+# Output files
+output/*.json
+!output/.gitkeep
+!output/rankings_dummy.json
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Output - ignorer rådata, men beholde rankings
-output/raw_posts_*.json
-output/*.json
-!output/.gitkeep
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+/tmp/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json

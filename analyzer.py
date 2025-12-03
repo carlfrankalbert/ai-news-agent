@@ -8,12 +8,12 @@ from anthropic import Anthropic
 from config import CATEGORIES
 
 
-def create_analysis_prompt(posts, period: str) -> str:
+def create_analysis_prompt(posts: list[dict], period: str) -> str:
     """
     Lag prompt for Claude-analyse.
     """
     posts_summary = "\n".join([
-        f"- [{p['points']} pts, {p['num_comments']} comments] [{p.get('source', 'unknown')}] {p['title']}"
+        f"- [{p['points']} pts, {p['num_comments']} comments] {p['title']}"
         for p in posts[:200]  # Begrens for context window
     ])
     
@@ -22,17 +22,15 @@ def create_analysis_prompt(posts, period: str) -> str:
         for c in CATEGORIES
     ])
     
-    # Tell kilder
-    sources = {}
-    for p in posts:
-        source = p.get('source', 'unknown')
-        sources[source] = sources.get(source, 0) + 1
+    # Tell hvor mange fra hver kilde
+    hn_count = sum(1 for p in posts if p.get("source") == "hackernews")
+    github_count = sum(1 for p in posts if p.get("source") == "github")
     
-    sources_str = ", ".join([f"{k}: {v}" for k, v in sources.items()])
-    
-    return f"""Analyser disse postene om AI-verktøy fra ulike kilder (siste 90 dager) og lag en rangering.
+    return f"""Analyser disse AI-verktøy-mentions fra Hacker News diskusjoner og GitHub trending repositories fra de siste 90 dagene og lag en rangering.
 
-Kilder: {sources_str}
+Data collected from:
+- Hacker News: {hn_count} posts
+- GitHub Trending: {github_count} repositories
 
 ## Posts (sortert etter points):
 {posts_summary}
@@ -42,19 +40,21 @@ Kilder: {sources_str}
 
 ## Oppgave:
 1. Identifiser hvilke AI-verktøy/modeller som nevnes mest og har mest momentum
-2. For hver kategori, ranger topp 3 verktøy basert på:
+2. For hver kategori, ranger topp 10 verktøy basert på:
    - Hvor mye de diskuteres (buzz/momentum)
    - Generell sentiment (positivt/negativt)
    - Nytte for kunnskapsarbeidere
    - Pris/ytelse-forhold (hvis relevant)
+   
+   Rang 1-3 får medaljer (gold, silver, bronze), rang 4-10 får ingen medalje.
 
-3. Identifiser 2-3 "new & noteworthy" verktøy som er nye/spennende men ikke topp 3 ennå
+3. Identifiser 2-3 "new & noteworthy" verktøy som er nye/spennende men ikke topp 10 ennå
 
 ## Output JSON-format (følg eksakt):
 {{
   "period": "{period}",
   "generated_at": "{datetime.now().isoformat()}",
-  "data_source": "hackernews",
+  "data_source": "hackernews,github",
   "total_posts_analyzed": {len(posts)},
   "categories": [
     {{
@@ -77,7 +77,14 @@ Kilder: {sources_str}
           "evidence": ["Tittel på relevant HN-post 1", "Tittel 2"]
         }},
         {{ "rank": 2, "medal": "silver", ... }},
-        {{ "rank": 3, "medal": "bronze", ... }}
+        {{ "rank": 3, "medal": "bronze", ... }},
+        {{ "rank": 4, "medal": null, ... }},
+        {{ "rank": 5, "medal": null, ... }},
+        {{ "rank": 6, "medal": null, ... }},
+        {{ "rank": 7, "medal": null, ... }},
+        {{ "rank": 8, "medal": null, ... }},
+        {{ "rank": 9, "medal": null, ... }},
+        {{ "rank": 10, "medal": null, ... }}
       ]
     }}
   ],

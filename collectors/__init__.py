@@ -1,9 +1,4 @@
-from .hackernews import collect_ai_mentions as collect_from_hackernews
-from .reddit import collect_ai_mentions as collect_from_reddit
-from .producthunt import collect_ai_mentions as collect_from_producthunt
+from .hackernews import collect_ai_mentions
+from .github import collect_github_trending
 
-__all__ = [
-    "collect_from_hackernews",
-    "collect_from_reddit", 
-    "collect_from_producthunt",
-]
+__all__ = ["collect_ai_mentions", "collect_github_trending"]

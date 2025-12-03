@@ -84,11 +84,5 @@ CATEGORIES = [
 # Minimum score/points for å inkludere en HN-post
 MIN_HN_POINTS = 10
 
-# Minimum upvotes for Reddit
-MIN_REDDIT_UPVOTES = 10
-
-# Minimum upvotes for Product Hunt
-MIN_PH_UPVOTES = 10
-
 # Output-konfig
 OUTPUT_DIR = "output"
