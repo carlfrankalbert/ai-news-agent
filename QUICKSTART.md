@@ -1,57 +1,71 @@
 # Quick Start Guide
 
-## 🚀 Deploy in 3 Steps
+## 🚀 Lokal utvikling
 
-### 1. Set Up Secrets
-
-**GitHub Secrets** (Repository → Settings → Secrets):
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
-- `ANTHROPIC_API_KEY`
-- `SLACK_WEBHOOK_URL`
-- `SLACK_SIGNING_SECRET`
-
-**Cloudflare Worker Secrets**:
-```bash
-wrangler secret put SLACK_SIGNING_SECRET
-wrangler secret put GITHUB_TOKEN
-wrangler secret put GITHUB_REPO_OWNER
-wrangler secret put GITHUB_REPO_NAME
-wrangler secret put DOMAIN
-```
-
-### 2. Deploy Cloudflare Worker
+### 1. Installer dependencies
 
 ```bash
-cd infra/cloudflare
-wrangler deploy
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### 3. Configure Slack
-
-1. Go to [Slack API](https://api.slack.com/apps)
-2. Create slash command `/deploy`
-3. Point to your Cloudflare Worker URL
-
-## ✅ Done!
-
-Now use `/deploy dev` or `/deploy prod` in Slack!
-
-## Alternative: Deploy via Makefile
+### 2. Sett API-nøkkel
 
 ```bash
-make deploy-dev   # Development
-make deploy-prod  # Production
+export ANTHROPIC_API_KEY="sk-ant-..."
 ```
 
-## Alternative: Deploy via GitHub Actions
+### 3. Kjør
 
-1. Go to Actions tab
-2. Select workflow
-3. Click "Run workflow"
+```bash
+# Full pipeline (samler data + analyserer med Claude)
+python main.py
+
+# Bare samle data (gratis test)
+python main.py --collect-only
+
+# Generer HTML
+python generate_html.py
+
+# Test med dummy-data
+python generate_html.py --dummy
+```
+
+## 🧪 Test-scripts
+
+```bash
+./scripts/start_test_env.sh    # Sett opp test-miljø
+./scripts/test_quick.sh        # Samle data (ingen API)
+./scripts/test_full.sh         # Full test (bruker Claude)
+./scripts/test_ui.sh           # Test HTML med dummy-data
+./scripts/serve_local.sh       # Lokal webserver
+```
+
+## 🚢 Deployment
+
+### GitHub Secrets
+
+Legg til disse i GitHub repo → Settings → Secrets:
+- `ANTHROPIC_API_KEY` - Claude API-nøkkel
+- `CLOUDFLARE_API_TOKEN` - For Pages deployment (valgfritt)
+- `CLOUDFLARE_ACCOUNT_ID` - For Pages deployment (valgfritt)
+
+### Automatisk deployment
+
+GitHub Actions kjører daglig (`daily.yml`):
+1. Samler data
+2. Analyserer med Claude
+3. Genererer HTML
+4. Committer til repo
+5. Cloudflare Pages deployer automatisk fra `docs/`
+
+### Manuell deployment
+
+1. Gå til GitHub → Actions
+2. Velg "Daily AI News Scan"
+3. Klikk "Run workflow"
 
 ---
 
-For detailed setup, see [DEPLOYMENT.md](./DEPLOYMENT.md)
-
-
+Se [README.md](./README.md) for mer informasjon.

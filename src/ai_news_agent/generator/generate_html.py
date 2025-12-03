@@ -4,11 +4,12 @@ Generate HTML report from rankings JSON.
 Output goes to docs/ for GitHub Pages publishing.
 """
 import json
-import os
 from pathlib import Path
 from datetime import datetime
 
-OUTPUT_DIR = Path("output")
+from ..config import OUTPUT_DIR
+
+OUTPUT_DIR_PATH = Path(OUTPUT_DIR)
 DOCS_DIR = Path("docs")
 DATA_DIR = Path("data")
 
@@ -1476,7 +1477,6 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <img src="assets/fyrk-logo-primary-navy.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 </picture>
                 <div class="logo-mark" style="display: none;">F</div>
-                <span class="logo-text">FYRK</span>
             </a>
             <nav class="header-nav">
                 <div class="lang-switcher">
@@ -1872,7 +1872,7 @@ def main():
     use_dummy = "--dummy" in sys.argv
     
     if use_dummy:
-        dummy_file = OUTPUT_DIR / "rankings_dummy.json"
+        dummy_file = OUTPUT_DIR_PATH / "rankings_dummy.json"
         if not dummy_file.exists():
             print(f"❌ Dummy-fil ikke funnet: {dummy_file}")
             print("💡 Opprett output/rankings_dummy.json med test-data")
@@ -1881,7 +1881,7 @@ def main():
         print(f"🎨 Bruker dummy-data: {rankings_file}")
     else:
         # Finn nyeste rankings-fil
-        rankings_files = list(OUTPUT_DIR.glob("rankings_*.json"))
+        rankings_files = list(OUTPUT_DIR_PATH.glob("rankings_*.json"))
         # Ekskluder dummy-fil fra automatisk valg
         rankings_files = [f for f in rankings_files if "dummy" not in f.name]
         
@@ -1896,6 +1896,56 @@ def main():
     with open(rankings_file) as f:
         rankings = json.load(f)
     
+    # Håndter error case - prøv å ekstraktere data fra raw_response eller bruk forrige måned
+    if "error" in rankings and "raw_response" in rankings:
+        print("⚠️  Rankings har error, prøver å finne alternativ data...")
+        
+        # Først: prøv å bruke forrige måneds data hvis den finnes
+        try:
+            from datetime import datetime, timedelta
+            period = rankings.get("period", "")
+            if period:
+                year, month = map(int, period.split("-"))
+                prev_date = datetime(year, month, 1) - timedelta(days=1)
+                prev_period = prev_date.strftime("%Y-%m")
+                prev_file = OUTPUT_DIR_PATH / f"rankings_{prev_period}.json"
+                
+                if prev_file.exists():
+                    with open(prev_file) as f:
+                        prev_rankings = json.load(f)
+                    if "categories" in prev_rankings and not ("error" in prev_rankings):
+                        print(f"✅ Bruker forrige måneds data ({prev_period})")
+                        rankings = prev_rankings
+                        rankings["period"] = period  # Behold nåværende periode
+                    else:
+                        raise FileNotFoundError
+                else:
+                    raise FileNotFoundError
+        except:
+            # Fallback: prøv å ekstraktere fra raw_response
+            print("⚠️  Ingen forrige måneds data, prøver å ekstraktere fra raw_response...")
+            try:
+                import json as json_module
+                raw_response = rankings["raw_response"]
+                if isinstance(raw_response, str):
+                    # Fjern markdown code blocks
+                    if "```json" in raw_response:
+                        raw_response = raw_response.split("```json")[1].split("```")[0]
+                    elif "```" in raw_response:
+                        raw_response = raw_response.split("```")[1].split("```")[0]
+                    
+                    # Bruk dummy data som fallback
+                    dummy_file = OUTPUT_DIR_PATH / "rankings_dummy.json"
+                    if dummy_file.exists():
+                        with open(dummy_file) as f:
+                            rankings = json_module.load(f)
+                        print("✅ Bruker dummy-data som fallback")
+                    else:
+                        raise FileNotFoundError("No fallback data available")
+            except Exception as e:
+                print(f"❌ Kunne ikke ekstraktere data: {e}")
+                print("⚠️  HTML vil være tom - vennligst kjør pipeline på nytt")
+    
     html = generate_html(rankings)
     
     # Lagre til docs/ for GitHub Pages
@@ -1906,10 +1956,6 @@ def main():
         f.write(html)
     
     print(f"✅ HTML generert: {output_path}")
-    
-    # Kopier også til output/
-    with open(OUTPUT_DIR / "index.html", "w", encoding="utf-8") as f:
-        f.write(html)
 
 
 if __name__ == "__main__":

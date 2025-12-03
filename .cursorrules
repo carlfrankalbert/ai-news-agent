@@ -2,14 +2,14 @@
 
 ## Prosjektbeskrivelse
 
-Dette er en AI-agent som scanner Hacker News for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format. Agenten kjører automatisk daglig via GitHub Actions og publiserer resultater til GitHub Pages.
+En AI-agent som scanner Hacker News og GitHub for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format. Agenten kjører automatisk daglig via GitHub Actions og publiserer resultater til Cloudflare Pages.
 
 ## Arkitektur
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────┐
 │   main.py   │────▶│  collectors/ │────▶│  analyzer   │────▶│  output/ │
-│ (orkestrer) │     │ (HN API)     │     │  (Claude)   │     │  (JSON)  │
+│ (orkestrer) │     │ (HN/GitHub)  │     │  (Claude)   │     │  (JSON)  │
 └─────────────┘     └──────────────┘     └─────────────┘     └──────────┘
                                                                    │
                                                                    ▼
@@ -19,123 +19,89 @@ Dette er en AI-agent som scanner Hacker News for omtaler av AI-verktøy, analyse
                                                             └──────────┘
 ```
 
-## Filstruktur
+## Mappestruktur
 
-- `main.py` - Hovedscript som orkestrerer hele pipelinen (samle → analysere → lagre)
-- `config.py` - Konfigurasjon: søkeord, kategorier, API-URLer, konstanter
-- `analyzer.py` - Sender data til Claude API for analyse og rangering
-- `generate_html.py` - Konverterer rankings JSON til publiserbar HTML
-- `collectors/hackernews.py` - Henter AI-relaterte posts fra Hacker News Firebase API
-- `.github/workflows/daily.yml` - GitHub Actions workflow for daglig kjøring
-- `output/` - JSON-output fra agenten (rankings og rådata)
-- `docs/` - HTML-output for GitHub Pages
+```
+ai-news-agent/
+├── src/ai_news_agent/         # Hovedpakken (all Python-kode)
+│   ├── main.py                # Hovedlogikk og CLI
+│   ├── config.py              # Konfigurasjon (keywords, kategorier)
+│   ├── collectors/            # Datainnsamling
+│   │   ├── hackernews.py      # Hacker News Firebase API
+│   │   └── github.py          # GitHub trending repos
+│   ├── analyzer/              # Analyse
+│   │   ├── analyzer.py        # Claude-analyse og rangering
+│   │   └── trend_analyzer.py  # Sammenligning med forrige måned
+│   ├── generator/             # Output-generering
+│   │   └── generate_html.py   # HTML-generering
+│   └── utils/                 # Hjelpefunksjoner
+│       └── link_checker.py    # Validerer URLs
+│
+├── main.py                    # Entry point
+├── generate_html.py           # HTML generator entry point
+├── check_links.py             # Link checker entry point
+│
+├── docs/                      # Public website (Cloudflare Pages)
+│   ├── index.html             # Hovedside med rankings
+│   ├── faq.html               # FAQ
+│   └── assets/                # Logoer
+│
+├── output/                    # JSON-output
+│   ├── rankings_YYYY-MM.json  # Månedlige rankings
+│   └── raw_posts_YYYY-MM.json # Rådata
+│
+├── data/tool_links.json       # Verktøy-URLs
+├── scripts/                   # Shell-scripts for testing
+├── functions/healthcheck.js   # Cloudflare Pages health endpoint
+├── documentation/             # Design docs og guider
+│
+├── .github/workflows/
+│   ├── daily.yml              # Daglig kjøring
+│   └── check_links.yml        # Link validering
+│
+├── pyproject.toml
+├── requirements.txt
+├── README.md
+└── QUICKSTART.md
+```
 
 ## Teknisk stack
 
-- **Python 3.11+**
-- **httpx** - Async HTTP-klient for API-kall
-- **anthropic** - Offisiell Claude SDK
-- **GitHub Actions** - Scheduler og CI/CD
-- **GitHub Pages** - Hosting av HTML-output
+- **Python 3.11+** med httpx og anthropic SDK
+- **GitHub Actions** for daglig kjøring
+- **Cloudflare Pages** for hosting
 
 ## Dataflyt
 
-1. `collectors/hackernews.py` henter top/best/new stories fra HN Firebase API
-2. Filtrerer på AI-relevante keywords definert i `config.py`
-3. `analyzer.py` sender filtrerte posts til Claude med en strukturert prompt
-4. Claude returnerer rangert JSON med kategorier, scores og begrunnelser
-5. `generate_html.py` konverterer JSON til en styled HTML-side
-6. GitHub Actions committer og pusher output til repo
-7. GitHub Pages serverer `docs/index.html`
-
-## Nøkkelkonsepter
-
-### Keywords (config.py)
-Liste over søkeord som brukes til å identifisere AI-relaterte posts:
-- Modellnavn: gpt-4, claude, llama, mistral, gemini
-- Konsepter: llm, rag, fine-tuning, agentic
-- Verktøy: langchain, ollama, cursor, copilot
-
-### Kategorier (config.py)
-Forhåndsdefinerte kategorier for rangering:
-- core-llms: Hovedmodeller for chat og reasoning
-- code-assistants: Kodeverktøy
-- builder-platform: APIer og open source
-- image-video: Bildegenerering
-- audio-voice: Lyd og tale
-- agents-automation: AI-agenter
-
-### Output-format (rankings JSON)
-```json
-{
-  "period": "2025-11",
-  "categories": [
-    {
-      "name": "Kategori",
-      "slug": "kategori-slug",
-      "top3": [
-        {
-          "rank": 1,
-          "medal": "gold",
-          "name": "Verktøy",
-          "provider": "Leverandør",
-          "short_reason": "Begrunnelse",
-          "scores": { "buzz_momentum": 5, ... }
-        }
-      ]
-    }
-  ],
-  "new_and_noteworthy": [ ... ],
-  "summary": "Oppsummering av trender"
-}
-```
+1. `collectors/` henter data fra HN og GitHub
+2. Filtrerer på AI-keywords fra `config.py`
+3. `analyzer/` sender til Claude for analyse
+4. `trend_analyzer.py` sammenligner med forrige måned
+5. `generator/` lager HTML til `docs/`
+6. GitHub Actions committer, Cloudflare Pages deployer
 
 ## Vanlige oppgaver
 
-### Kjøre lokalt
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
-python main.py --days 7
-python generate_html.py
-```
+# Full pipeline
+python main.py
 
-### Bare samle data (uten analyse)
-```bash
+# Bare samle data (gratis)
 python main.py --collect-only
+
+# Generer HTML
+python generate_html.py
+
+# Test med dummy-data
+python generate_html.py --dummy
 ```
 
-### Bare analysere eksisterende data
-```bash
-python main.py --analyze-only
-```
+## Viktige filer
 
-### Legge til nye keywords
-Rediger `AI_KEYWORDS` listen i `config.py`
-
-### Legge til ny kategori
-Legg til i `CATEGORIES` listen i `config.py`
-
-### Endre HTML-design
-Rediger `HTML_TEMPLATE` og CSS i `generate_html.py`
-
-### Endre kjørefrekvens
-Rediger cron-uttrykket i `.github/workflows/daily.yml`
-
-## Miljøvariabler
-
-- `ANTHROPIC_API_KEY` - Påkrevd for Claude API (settes som GitHub secret)
-
-## Begrensninger
-
-- Hacker News API har ingen autentisering men rate limits
-- Firebase API returnerer kun aktive stories (ikke historisk søk)
-- Claude-analyse koster ~$0.01-0.05 per kjøring
-- GitHub Actions har 2000 minutter/måned på gratisplan
-
-## Utvidelsesmuligheter
-
-- Legge til Reddit-collector (r/MachineLearning, r/LocalLLaMA)
-- Legge til Product Hunt API
-- Historisk trending (sammenligne med forrige måned)
-- Slack/Discord-notifikasjoner
-- RSS-feed output
+| Fil | Formål |
+|-----|--------|
+| `src/ai_news_agent/config.py` | Keywords og kategorier |
+| `src/ai_news_agent/analyzer/analyzer.py` | Claude-prompt |
+| `src/ai_news_agent/generator/generate_html.py` | HTML-template |
+| `data/tool_links.json` | Verktøy-URLs |
+| `.github/workflows/daily.yml` | Automatisk kjøring |

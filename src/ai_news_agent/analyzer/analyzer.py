@@ -2,7 +2,6 @@
 AI Tool Analyzer - bruker Claude til å analysere og rangere AI-verktøy
 """
 import json
-import os
 from datetime import datetime
 from anthropic import Anthropic
 from ..config import CATEGORIES
@@ -113,7 +112,7 @@ def analyze_with_claude(posts: list[dict], period: str) -> dict:
     
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=4096,
+        max_tokens=8192,  # Increased to prevent truncation
         messages=[
             {"role": "user", "content": prompt}
         ]
@@ -133,7 +132,37 @@ def analyze_with_claude(posts: list[dict], period: str) -> dict:
         return rankings
     
     except json.JSONDecodeError as e:
-        print(f"Feil ved parsing av JSON: {e}")
+        print(f"⚠️  Feil ved parsing av JSON: {e}")
+        print(f"Prøver å ekstraktere gyldig JSON fra respons...")
+        
+        # Prøv å finne og parse den siste komplette JSON-strukturen
+        try:
+            # Finn siste komplette objekt/array
+            brace_count = 0
+            bracket_count = 0
+            last_valid_pos = -1
+            
+            for i, char in enumerate(response_text):
+                if char == '{':
+                    brace_count += 1
+                elif char == '}':
+                    brace_count -= 1
+                    if brace_count == 0 and bracket_count == 0:
+                        last_valid_pos = i + 1
+                elif char == '[':
+                    bracket_count += 1
+                elif char == ']':
+                    bracket_count -= 1
+            
+            if last_valid_pos > 0:
+                partial_json = response_text[:last_valid_pos]
+                rankings = json.loads(partial_json)
+                print(f"✅ Ekstraherte gyldig JSON fra respons (truncated)")
+                return rankings
+        except:
+            pass
+        
+        print(f"❌ Kunne ikke ekstraktere gyldig JSON")
         print(f"Raw response:\n{response_text[:500]}...")
         return {"error": str(e), "raw_response": response_text}
 

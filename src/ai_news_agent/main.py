@@ -12,10 +12,6 @@ Bruk:
 """
 import argparse
 import asyncio
-import json
-import os
-from datetime import datetime
-from pathlib import Path
 
 # Load environment variables from .env file
 try:
@@ -24,12 +20,13 @@ try:
 except ImportError:
     # python-dotenv not installed, skip (will use system env vars)
     pass
-from typing import Optional, List, Dict
+
+from typing import List, Dict
 
 from .collectors.hackernews import collect_ai_mentions
 from .collectors.github import collect_github_trending
 from .analyzer import analyze_with_claude, validate_rankings, add_trends_to_rankings
-from .config import OUTPUT_DIR, LOOKBACK_DAYS
+from .config import LOOKBACK_DAYS
 from .utils import get_period_string, save_output, load_cached_posts
 
 
@@ -134,13 +131,12 @@ async def main():
     args = parser.parse_args()
     
     period = get_period_string()
-    load_cached = load_cached_posts
     print(f"🚀 AI News Agent - Periode: {period}")
     print(f"   Lookback: {args.days} dager")
     
     # Steg 1: Samle data
     if args.analyze_only:
-        posts = load_cached(period)
+        posts = load_cached_posts(period)
         if not posts:
             print("❌ Ingen cached data funnet. Kjør uten --analyze-only først.")
             return
@@ -149,7 +145,7 @@ async def main():
         posts = await run_collection(days=args.days)
         
         # Cache rådata
-        raw_file = save_output(posts, f"raw_posts_{period}.json", OUTPUT_DIR)
+        raw_file = save_output(posts, f"raw_posts_{period}.json")
         print(f"💾 Rådata lagret: {raw_file}")
         
         if args.collect_only:
@@ -169,7 +165,7 @@ async def main():
         print("ℹ️  Ingen forrige måneds data funnet (første kjøring?)")
     
     # Steg 3: Lagre output
-    output_file = save_output(rankings, f"rankings_{period}.json", OUTPUT_DIR)
+    output_file = save_output(rankings, f"rankings_{period}.json")
     print(f"💾 Rankings lagret: {output_file}")
     
     # Steg 4: Print oppsummering
