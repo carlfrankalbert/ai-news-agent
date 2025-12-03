@@ -102,6 +102,15 @@
             white-space: nowrap;
         }
 
+        .header-period {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-top: 2px;
+            text-transform: lowercase;
+        }
+
         .header-right {
             display: flex;
             align-items: center;
@@ -1619,7 +1628,6 @@
             <div class="header-left">
                 <a href="#" class="logo" onclick="scrollToTop(); return false;">
                     <picture class="logo-picture">
-                        <source srcset="assets/fyrk-logo-secondary-cyan.svg" media="(prefers-color-scheme: dark)">
                         <img src="assets/fyrk-logo-primary-navy.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" onload="this.parentElement.parentElement.querySelector('.logo-text').style.display='none';">
                     </picture>
                     <div class="logo-mark" style="display: none;">F</div>
@@ -1628,6 +1636,7 @@
             </div>
             <div class="header-center">
                 <span class="header-product-name" data-i18n="product-name">AI Score</span>
+                <span class="header-period" data-i18n="period">desember 2025</span>
             </div>
             <div class="header-right">
                 <div class="lang-switcher">
@@ -1652,14 +1661,14 @@
             <div class="lab-banner" id="lab-banner">
                 <span class="lab-badge" data-i18n="lab-badge">🧪 FYRK Lab</span>
                 <span class="lab-text"><span data-i18n="lab-text">Et eksperiment – ikke en benchmark.</span> <a href="#om" data-i18n="les-mer">Les mer</a></span>
-                <button class="lab-dismiss" aria-label="Lukk" onclick="dismissLabBanner()">×</button>
+                <button class="lab-dismiss" aria-label="Lukk" data-i18n-attr="aria-label" data-i18n-attr-key="close" onclick="dismissLabBanner()">×</button>
             </div>
 
             <!-- Scores Tab Content -->
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
                 <!-- Highlights Bar - Single compact line -->
             <section class="highlights-bar">
-                <span><strong data-i18n="new-this-month">Ny:</strong> <span class="highlight-item">Gemini 2.0 Flash<span class="new-badge">Ny</span></span>, <span class="highlight-item">DeepSeek-R1<span class="new-badge">Ny</span></span>, <span class="highlight-item">Aider<span class="new-badge">Ny</span></span>, <span class="highlight-item">Transformers<span class="new-badge">Ny</span></span></span>
+                <span><strong data-i18n="new-this-month">Ny:</strong> <span class="highlight-item">Gemini 2.0 Flash<span class="new-badge" data-i18n="new-badge">Ny</span></span>, <span class="highlight-item">DeepSeek-R1<span class="new-badge" data-i18n="new-badge">Ny</span></span>, <span class="highlight-item">Aider<span class="new-badge" data-i18n="new-badge">Ny</span></span>, <span class="highlight-item">Transformers<span class="new-badge" data-i18n="new-badge">Ny</span></span></span>
                 <span class="separator">|</span>
                 <span><strong data-i18n="biggest-changes">Movers:</strong> <span class="highlight-item">Tabnine<span class="trend-down"> ↓</span></span>, <span class="highlight-item">Grok-2<span class="trend-down"> ↓</span></span>, <span class="highlight-item">CodeWhisperer<span class="trend-down"> ↓</span></span></span>
             </section>
@@ -1671,7 +1680,7 @@
                     <button class="filter-pill active" data-category="all" data-i18n="filter-all">Alle</button>
                     <button class="filter-pill" data-category="core-llm" data-i18n="cat-core-llm">Kjerne-LLM-er</button>
                     <button class="filter-pill" data-category="code-assistants" data-i18n="cat-code">Kodeassistenter</button>
-                    <button class="filter-pill" data-category="builder-platform">Builder & API</button>
+                    <button class="filter-pill" data-category="builder-platform" data-i18n="cat-builder-platform">Builder & API</button>
                     <button class="filter-pill" data-category="image-video" data-i18n="cat-image">Bilde & Video</button>
                     <button class="filter-pill" data-category="audio-voice" data-i18n="cat-audio">Lyd & Stemme</button>
                     <button class="filter-pill" data-category="agents" data-i18n="cat-agents">Agenter</button>
@@ -1688,12 +1697,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -1737,7 +1746,7 @@
                         <div class="rank-badge rank-default">4</div>
                         <div class="item-info">
                             <span class="item-name">Llama 3.3 70B</span>
-                            <span class="item-provider"><img src="https://www.meta.com/favicon.ico" alt="Meta" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ai.meta.com" target="_blank" rel="noopener noreferrer" class="provider-link">Meta</a></span></span>
+                            <span class="item-provider"><img src="https://ai.meta.com/favicon.ico" alt="Meta" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ai.meta.com" target="_blank" rel="noopener noreferrer" class="provider-link">Meta</a></span></span>
                         </div>
                         <span class="score-cell score-high">80</span>
                         <span class="score-cell score-high">100</span>
@@ -1819,7 +1828,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-toggle" data-category="core-llm" onclick="toggleExpand('core-llm')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -1833,12 +1842,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -1964,7 +1973,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-button" data-category="code-assistants" onclick="toggleExpand('code-assistants')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -1978,12 +1987,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -2109,7 +2118,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-button" data-category="builder-platform" onclick="toggleExpand('builder-platform')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -2123,12 +2132,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -2254,7 +2263,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-button" data-category="image-video" onclick="toggleExpand('image-video')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -2268,12 +2277,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -2399,7 +2408,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-button" data-category="audio-voice" onclick="toggleExpand('audio-voice')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -2413,12 +2422,12 @@
                 <div class="rankings-table">
                     <div class="rankings-header">
                         <span>#</span>
-                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
-                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
-                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
-                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
-                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
-                        <span>Trend</span>
+                        <span data-sort="name"><span data-i18n="table-name">Navn</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz"><span data-i18n="table-buzz">Buzz</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment"><span data-i18n="table-sentiment">Sentiment</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility"><span data-i18n="table-utility">Nytte</span> <span class="sort-icon">↕</span></span>
+                        <span data-sort="price"><span data-i18n="table-price">Pris</span> <span class="sort-icon">↕</span></span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 
@@ -2544,7 +2553,7 @@
                     </div>
                     <div class="expand-section">
                         <button class="expand-button" data-category="agents" onclick="toggleExpand('agents')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>
                 </div>
@@ -2676,6 +2685,7 @@
                 'tools': 'verktøy',
                 'platforms': 'plattformer',
                 'product-name': 'AI Score',
+                'period': 'desember 2025',
                 'tab-scores': 'Scores',
                 'tab-capabilities': 'Kapabiliteter',
                 'lab-badge': '🧪 FYRK Lab',
@@ -2717,6 +2727,17 @@
                 'cap-multi-steg': 'Multi-steg workflows',
                 'show-all-models': 'Vis alle modeller',
                 'show-fewer-models': 'Vis færre modeller',
+                'show-all': 'Vis alle',
+                'show-fewer': 'Vis færre',
+                'table-name': 'Navn',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Nytte',
+                'table-price': 'Pris',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
+                'new-badge': 'Ny',
+                'close': 'Lukk',
                 'cap-norsk-short': 'Norsk',
                 'cap-bildegenerering-short': 'Bilde Gen',
                 'cap-stemme-short': 'Stemme',
@@ -2752,6 +2773,7 @@
                 'tools': 'verktyg',
                 'platforms': 'plattformar',
                 'product-name': 'AI Score',
+                'period': 'december 2025',
                 'tab-scores': 'Scores',
                 'tab-capabilities': 'Kapabiliteter',
                 'lab-badge': '🧪 FYRK Lab',
@@ -2793,6 +2815,17 @@
                 'cap-multi-steg': 'Multi-steg arbetsflöden',
                 'show-all-models': 'Visa alla modeller',
                 'show-fewer-models': 'Visa färre modeller',
+                'show-all': 'Visa alla',
+                'show-fewer': 'Visa färre',
+                'table-name': 'Namn',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Nytta',
+                'table-price': 'Pris',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
+                'new-badge': 'Ny',
+                'close': 'Stäng',
                 'cap-norsk-short': 'Norska',
                 'cap-bildegenerering-short': 'Bild Gen',
                 'cap-stemme-short': 'Röst',
@@ -2828,6 +2861,7 @@
                 'tools': 'tools',
                 'platforms': 'platforms',
                 'product-name': 'AI Score',
+                'period': 'December 2025',
                 'tab-scores': 'Scores',
                 'tab-capabilities': 'Capabilities',
                 'lab-badge': '🧪 FYRK Lab',
@@ -2869,6 +2903,17 @@
                 'cap-multi-steg': 'Multi-step Workflows',
                 'show-all-models': 'Show all models',
                 'show-fewer-models': 'Show fewer models',
+                'show-all': 'Show all',
+                'show-fewer': 'Show fewer',
+                'table-name': 'Name',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Utility',
+                'table-price': 'Price',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
+                'new-badge': 'New',
+                'close': 'Close',
                 'cap-norsk-short': 'Norwegian',
                 'cap-bildegenerering-short': 'Image Gen',
                 'cap-stemme-short': 'Voice',
@@ -2899,6 +2944,27 @@
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) {
                     el.textContent = translations[lang][key];
+                }
+            });
+            
+            // Translate expand buttons based on their expanded state
+            document.querySelectorAll('.expand-toggle, .expand-button').forEach(button => {
+                const expandText = button.querySelector('.expand-text');
+                if (expandText) {
+                    const isExpanded = button.classList.contains('expanded');
+                    const key = isExpanded ? 'show-fewer' : 'show-all';
+                    if (translations[lang] && translations[lang][key]) {
+                        expandText.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Translate attributes (e.g., aria-label)
+            document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+                const attr = el.dataset.i18nAttr || 'aria-label';
+                const key = el.dataset.i18nAttrKey;
+                if (key && translations[lang] && translations[lang][key]) {
+                    el.setAttribute(attr, translations[lang][key]);
                 }
             });
             
@@ -3098,8 +3164,14 @@
                     });
                     button.classList.remove('expanded');
                     if (expandText) {
-                        // Remove arrow from text since it's handled by CSS ::after
-                        expandText.textContent = 'Vis alle';
+                        // Use translation - button is now collapsed, so show "show-all"
+                        const key = 'show-all';
+                        const lang = localStorage.getItem('fyrk-lang') || 'no';
+                        if (translations[lang] && translations[lang][key]) {
+                            expandText.textContent = translations[lang][key];
+                        } else {
+                            expandText.textContent = 'Vis alle';
+                        }
                     }
                     localStorage.setItem('fyrk-expanded-' + categoryId, 'false');
                 } else {
@@ -3116,8 +3188,14 @@
                     });
                     button.classList.add('expanded');
                     if (expandText) {
-                        // Remove arrow from text since it's handled by CSS ::after
-                        expandText.textContent = 'Vis færre';
+                        // Use translation - button is now expanded, so show "show-fewer"
+                        const key = 'show-fewer';
+                        const lang = localStorage.getItem('fyrk-lang') || 'no';
+                        if (translations[lang] && translations[lang][key]) {
+                            expandText.textContent = translations[lang][key];
+                        } else {
+                            expandText.textContent = 'Vis færre';
+                        }
                     }
                     localStorage.setItem('fyrk-expanded-' + categoryId, 'true');
                 }
@@ -3141,7 +3219,10 @@
                 if (hiddenRows.length === 0) return;
                 
                 const isExpanded = localStorage.getItem('fyrk-expanded-' + categoryId) === 'true';
-                const button = section.querySelector('.expand-toggle[data-category="' + categoryId + '"]');
+                let button = section.querySelector('.expand-toggle[data-category="' + categoryId + '"]');
+                if (!button) {
+                    button = section.querySelector('.expand-button[data-category="' + categoryId + '"]');
+                }
                 const expandText = button?.querySelector('.expand-text');
                 
                 if (isExpanded) {
@@ -3156,16 +3237,32 @@
                     });
                     if (button) {
                         button.classList.add('expanded');
-                        if (expandText) expandText.textContent = 'Vis færre';
+                        if (expandText) {
+                            const key = 'show-fewer';
+                            const lang = localStorage.getItem('fyrk-lang') || 'no';
+                            if (translations[lang] && translations[lang][key]) {
+                                expandText.textContent = translations[lang][key];
+                            } else {
+                                expandText.textContent = 'Vis færre';
+                            }
+                        }
                     }
                 } else {
                     hiddenRows.forEach(row => {
                         row.classList.add('collapsed');
                         row.classList.remove('expanded');
                     });
+                    if (button) {
+                        button.classList.remove('expanded');
+                    }
                     if (expandText) {
-                        // Remove arrow from text since it's handled by CSS ::after
-                        expandText.textContent = 'Vis alle';
+                        const key = 'show-all';
+                        const lang = localStorage.getItem('fyrk-lang') || 'no';
+                        if (translations[lang] && translations[lang][key]) {
+                            expandText.textContent = translations[lang][key];
+                        } else {
+                            expandText.textContent = 'Vis alle';
+                        }
                     }
                 }
             });
