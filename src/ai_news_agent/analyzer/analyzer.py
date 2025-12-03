@@ -2,7 +2,6 @@
 AI Tool Analyzer - bruker Claude til å analysere og rangere AI-verktøy
 """
 import json
-import os
 from datetime import datetime
 from anthropic import Anthropic
 from ..config import CATEGORIES

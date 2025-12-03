@@ -4,11 +4,12 @@ Generate HTML report from rankings JSON.
 Output goes to docs/ for GitHub Pages publishing.
 """
 import json
-import os
 from pathlib import Path
 from datetime import datetime
 
-OUTPUT_DIR = Path("output")
+from ..config import OUTPUT_DIR
+
+OUTPUT_DIR_PATH = Path(OUTPUT_DIR)
 DOCS_DIR = Path("docs")
 DATA_DIR = Path("data")
 
@@ -1872,7 +1873,7 @@ def main():
     use_dummy = "--dummy" in sys.argv
     
     if use_dummy:
-        dummy_file = OUTPUT_DIR / "rankings_dummy.json"
+        dummy_file = OUTPUT_DIR_PATH / "rankings_dummy.json"
         if not dummy_file.exists():
             print(f"❌ Dummy-fil ikke funnet: {dummy_file}")
             print("💡 Opprett output/rankings_dummy.json med test-data")
@@ -1881,7 +1882,7 @@ def main():
         print(f"🎨 Bruker dummy-data: {rankings_file}")
     else:
         # Finn nyeste rankings-fil
-        rankings_files = list(OUTPUT_DIR.glob("rankings_*.json"))
+        rankings_files = list(OUTPUT_DIR_PATH.glob("rankings_*.json"))
         # Ekskluder dummy-fil fra automatisk valg
         rankings_files = [f for f in rankings_files if "dummy" not in f.name]
         
@@ -1906,10 +1907,6 @@ def main():
         f.write(html)
     
     print(f"✅ HTML generert: {output_path}")
-    
-    # Kopier også til output/
-    with open(OUTPUT_DIR / "index.html", "w", encoding="utf-8") as f:
-        f.write(html)
 
 
 if __name__ == "__main__":

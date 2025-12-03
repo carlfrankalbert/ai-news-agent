@@ -9,21 +9,11 @@ import json
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Tuple
-import sys
 
-# Import PROVIDER_INFO from generator module
-# Since check_links.py adds src/ to path, we can import directly
-try:
-    from ai_news_agent.generator.generate_html import PROVIDER_INFO
-except ImportError:
-    # Fallback: add src to path if not already there
-    src_path = Path(__file__).parent.parent.parent.parent / "src"
-    if src_path.exists():
-        sys.path.insert(0, str(src_path.parent))
-    from ai_news_agent.generator.generate_html import PROVIDER_INFO
+from ..config import OUTPUT_DIR
+from ..generator.generate_html import PROVIDER_INFO
 
-OUTPUT_DIR = Path("output")
-REPORT_FILE = OUTPUT_DIR / "link_check_report.json"
+REPORT_FILE = Path(OUTPUT_DIR) / "link_check_report.json"
 
 # Timeout for HTTP requests (seconds)
 REQUEST_TIMEOUT = 10.0
@@ -185,7 +175,8 @@ def print_report(report: Dict):
 
 def save_report(report: Dict):
     """Save report to JSON file."""
-    OUTPUT_DIR.mkdir(exist_ok=True)
+    output_path = Path(OUTPUT_DIR)
+    output_path.mkdir(exist_ok=True)
     
     with open(REPORT_FILE, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
