@@ -1477,7 +1477,6 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <img src="assets/fyrk-logo-primary-navy.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 </picture>
                 <div class="logo-mark" style="display: none;">F</div>
-                <span class="logo-text">FYRK</span>
             </a>
             <nav class="header-nav">
                 <div class="lang-switcher">
