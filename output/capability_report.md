@@ -50,21 +50,18 @@
 - General web search results
 - GitHub DeepSeek-V3 repository
 - Various AI news sources and documentation
-- Wikipedia AI model pages - No Llama 4 information
+- Wikipedia AI model pages
 - ai.google.dev
-- ai.meta.com - No Llama 4 announcements found
+- ai.meta.com
 - anthropic.com
 - artificialanalysis.ai
-- artificialanalysis.ai - No Llama 4 listings
 - artificialanalysis.ai benchmarks
 - blog.google.com
 - blog.openai.com
 - deepmind.google
 - livebench.ai
-- livebench.ai - No Llama 4 benchmarks
 - livebench.ai evaluations
 - lmarena.ai
-- lmarena.ai - No Llama 4 entries
 - lmarena.ai leaderboards
 - openai.com
 - various tech news sources

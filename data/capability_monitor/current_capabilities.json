@@ -36,6 +36,14 @@
         "Tool use": "✔︎"
       }
     },
+    "key_features": [
+      "200K token context window",
+      "Computer use capability (beta)",
+      "Advanced reasoning and coding",
+      "Image analysis and understanding",
+      "Tool use and function calling",
+      "PDF and document processing"
+    ],
     "sources": [
       "anthropic.com",
       "Claude 3.5 model documentation",
@@ -128,9 +136,11 @@
       "blog.google.com",
       "ai.google.dev",
       "deepmind.google",
-      "Various AI news sources and documentation"
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "wikipedia.org"
     ],
-    "last_updated": "2024-12-19",
+    "last_updated": "2025-01-11",
     "note": "Gemini 2.5 Pro and Gemini 3 Pro do not exist as of December 2024. Gemini 2.0 Flash is the latest multimodal model from Google."
   },
   "Grok 3/4": {
@@ -176,7 +186,7 @@
       "wikipedia AI model pages",
       "various tech news sources"
     ],
-    "last_updated": "2024-12-28"
+    "last_updated": "2024-12-30"
   },
   "Llama 4": {
     "model": "Llama 4",
@@ -214,12 +224,11 @@
       }
     },
     "sources": [
-      "ai.meta.com - No Llama 4 announcements found",
-      "artificialanalysis.ai - No Llama 4 listings",
-      "lmarena.ai - No Llama 4 entries",
-      "livebench.ai - No Llama 4 benchmarks",
-      "Wikipedia AI model pages - No Llama 4 information",
-      "General web search results"
+      "ai.meta.com",
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "livebench.ai",
+      "wikipedia.org"
     ],
     "last_updated": "2025-01-11",
     "note": "Llama 4 has not been officially announced or released by Meta as of January 2025. The latest released model in the Llama series is Llama 3.3 (December 2024). All capabilities marked as not supported (✗) because the model does not exist yet. Meta's current flagship models are Llama 3.1 and Llama 3.3 series."
