@@ -20,7 +20,7 @@ After this one-time setup, the dev branch will exist in your repository and you 
 The project uses a simple two-branch strategy:
 
 - **`main`** - Production branch
-  - Auto-deploys to https://ai-radar.fyrk.no
+  - Auto-deploys to https://fyrk.eu (also accessible via www.fyrk.eu)
   - Scheduled workflows run daily/monthly
   - Only stable, tested code
 
@@ -95,7 +95,7 @@ git merge dev
 git push origin main
 
 # 7. Verify production deployment
-# Check https://ai-radar.fyrk.no
+# Check https://fyrk.eu
 ```
 
 ### Option B: Direct Dev Branch (Simpler)
@@ -174,7 +174,7 @@ You can manually trigger workflows from GitHub Actions tab:
 
 ### Automatic Deployment
 
-- **Main branch** → Production (ai-radar.fyrk.no)
+- **Main branch** → Production (fyrk.eu)
 - **Dev branch** → Preview URL (automatically generated)
 
 ### Finding Preview URL

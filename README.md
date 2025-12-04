@@ -2,7 +2,7 @@
 
 En AI-agent som scanner Hacker News, GitHub, Reddit og X/Twitter for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format.
 
-**Live**: [FYRK AI Radar](https://ai-radar.fyrk.no)
+**Live**: [FYRK AI Radar](https://fyrk.eu)
 
 [![Daily AI News Scan](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/daily.yml/badge.svg)](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/daily.yml)
 [![Monthly AI Capability Update](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/monthly-capability-update.yml/badge.svg)](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/monthly-capability-update.yml)
@@ -131,7 +131,7 @@ GitHub Actions kjører automatisk daglig (`daily.yml`):
 ## 🔧 Development Workflow
 
 Prosjektet bruker en to-grens strategi:
-- **`main`** - Produksjon (ai-radar.fyrk.no)
+- **`main`** - Produksjon (fyrk.eu)
 - **`dev`** - Testing/staging (preview deployment)
 
 Se [DEVELOPMENT.md](DEVELOPMENT.md) for detaljert utviklings-workflow, testing og deployment-strategi.
