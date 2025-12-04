@@ -1645,12 +1645,23 @@ DESIGN_HTML = """<!DOCTYPE html>
             font-size: 16px;
         }}
 
-        .capability-best {{
-            display: inline-block;
+        .capability-category-header {{
+            background: var(--bg-muted);
+        }}
+
+        .capability-category-header td {{
+            padding: 12px 16px;
             font-size: 12px;
             font-weight: 600;
-            color: #71717a;
-            text-align: center;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }}
+
+        .capability-category-header:first-child td {{
+            border-top: none;
         }}
 
         .capabilities-mobile {{
@@ -1778,6 +1789,20 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <div class="capabilities-header">
                         <div class="capabilities-title-group">
                             <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
+                        </div>
+                        <div class="capabilities-legend">
+                            <span class="legend-item">
+                                <span>⭐</span>
+                                <span data-i18n="legend-best">Best</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✓</span>
+                                <span data-i18n="legend-yes">Ja</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✗</span>
+                                <span data-i18n="legend-no">Nei</span>
+                            </span>
                         </div>
                     </div>
                     <div class="capabilities-content">
@@ -2181,17 +2206,9 @@ DESIGN_HTML = """<!DOCTYPE html>
                 const cellContent = document.createElement('div');
                 cellContent.className = `capability-cell capability-${{score}}`;
 
-                // Use different symbols based on score type
-                if (score === 'best') {{
-                    // Best uses text "Best" instead of star
-                    const bestText = document.createElement('span');
-                    bestText.className = 'capability-best';
-                    bestText.textContent = 'Best';
-                    cellContent.appendChild(bestText);
-                }} else {{
-                    const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
-                    cellContent.textContent = symbol;
-                }}
+                // Use symbols from config
+                const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+                cellContent.textContent = symbol;
 
                 cell.appendChild(cellContent);
                 return cell;
@@ -2199,12 +2216,11 @@ DESIGN_HTML = """<!DOCTYPE html>
             
             createCategoryHeader: (category) => {{
                 const row = document.createElement('tr');
-                row.className = 'category-header-spacer';
+                row.className = 'capability-category-header';
                 const headerCell = document.createElement('td');
                 headerCell.setAttribute('colspan', CAPABILITIES_CONFIG.tools.length + 1);
-                headerCell.style.height = '24px';
-                headerCell.style.padding = '0';
-                headerCell.style.border = 'none';
+                headerCell.setAttribute('data-i18n', category.key);
+                headerCell.textContent = CapabilitiesUtils.getTranslation(category.key);
                 row.appendChild(headerCell);
                 return row;
             }},
