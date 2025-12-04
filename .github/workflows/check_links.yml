@@ -25,9 +25,27 @@ jobs:
           # httpx is already in requirements.txt
       
       - name: Run link checker
-        run: python check_links.py
+        id: check_links
+        run: |
+          python check_links.py
+          # Check if report contains broken links
+          if [ -f output/link_check_report.json ]; then
+            if grep -q '"invalid_links"' output/link_check_report.json; then
+              # Check if array is not empty
+              invalid_count=$(grep -o '"invalid_links":' output/link_check_report.json | wc -l)
+              if [ "$invalid_count" -gt 0 ]; then
+                echo "has_broken_links=true" >> $GITHUB_OUTPUT
+              else
+                echo "has_broken_links=false" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "has_broken_links=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "has_broken_links=false" >> $GITHUB_OUTPUT
+          fi
         continue-on-error: true  # Don't fail workflow, just report
-      
+
       - name: Upload link check report
         uses: actions/upload-artifact@v4
         if: always()
@@ -35,9 +53,9 @@ jobs:
           name: link-check-report
           path: output/link_check_report.json
           retention-days: 30
-      
+
       - name: Create issue for broken links
-        if: failure()
+        if: steps.check_links.outputs.has_broken_links == 'true'
         uses: actions/github-script@v7
         with:
           script: |
