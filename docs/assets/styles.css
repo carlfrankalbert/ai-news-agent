@@ -1009,16 +1009,13 @@ body {
     margin-right: 4px;
 }
 
-.hidden-row {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.15s ease, max-height 0.15s ease;
+/* Expandable rows */
+.ranking-row.hidden-row {
+    display: none;
 }
 
-.hidden-row.show {
-    opacity: 1;
-    max-height: 1000px;
+.ranking-row.hidden-row.expanded {
+    display: grid;
 }
 
 /* Tab Navigation */
@@ -1261,4 +1258,3 @@ body {
     font-style: italic;
     color: var(--text-secondary);
 }
-    </style>
