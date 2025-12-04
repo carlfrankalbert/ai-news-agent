@@ -424,7 +424,85 @@ function renderCapabilitiesTable() {
 }
 
 function renderCapabilitiesMobile() {
-    // Mobile view can be implemented later if needed
+    const modelTabsContainer = document.getElementById('model-tabs');
+    const modelCardsContainer = document.getElementById('model-cards');
+
+    if (!modelTabsContainer || !modelCardsContainer) return;
+
+    // Clear existing content
+    modelTabsContainer.innerHTML = '';
+    modelCardsContainer.innerHTML = '';
+
+    // Create tabs and cards for each model
+    CAPABILITIES_CONFIG.tools.forEach((tool, index) => {
+        // Create tab
+        const tab = document.createElement('button');
+        tab.className = `model-tab${index === 0 ? ' active' : ''}`;
+        tab.dataset.modelIndex = index;
+        tab.textContent = tool.split(' ')[0]; // Short name
+        tab.addEventListener('click', () => switchModelTab(index));
+        modelTabsContainer.appendChild(tab);
+
+        // Create card
+        const card = document.createElement('div');
+        card.className = `model-card${index === 0 ? ' active' : ''}`;
+        card.dataset.modelIndex = index;
+
+        // Card header
+        const header = document.createElement('div');
+        header.className = 'model-card-header';
+        header.innerHTML = `
+            <div class="model-card-title">${tool}</div>
+            <div class="model-card-provider">${CAPABILITIES_CONFIG.providerNames[tool] || ''}</div>
+        `;
+        card.appendChild(header);
+
+        // Card body with capabilities
+        const body = document.createElement('div');
+        body.className = 'model-card-body';
+
+        CAPABILITIES_CONFIG.categories.forEach(category => {
+            if (category.type === 'header') {
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'category-header-mobile';
+                headerDiv.textContent = CapabilitiesUtils.getTranslation(category.key);
+                body.appendChild(headerDiv);
+            } else {
+                const row = document.createElement('div');
+                row.className = 'capability-row-mobile';
+
+                const score = category.scores[index];
+                const scoreClass = `capability-${score}`;
+                let scoreDisplay = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+
+                // For 'best', use a special indicator
+                if (score === 'best') {
+                    scoreDisplay = '●';
+                }
+
+                row.innerHTML = `
+                    <span class="capability-name-mobile">${CapabilitiesUtils.getCapabilityName(category)}</span>
+                    <span class="capability-value-mobile ${scoreClass}">${scoreDisplay}</span>
+                `;
+                body.appendChild(row);
+            }
+        });
+
+        card.appendChild(body);
+        modelCardsContainer.appendChild(card);
+    });
+}
+
+function switchModelTab(index) {
+    // Update tabs
+    document.querySelectorAll('.model-tab').forEach(tab => {
+        tab.classList.toggle('active', parseInt(tab.dataset.modelIndex) === index);
+    });
+
+    // Update cards
+    document.querySelectorAll('.model-card').forEach(card => {
+        card.classList.toggle('active', parseInt(card.dataset.modelIndex) === index);
+    });
 }
 
 // Expand/collapse functionality - defined globally
