@@ -202,11 +202,11 @@ def is_ai_relevant(repo: dict) -> bool:
     name = (repo.get("name") or "").lower()
     description = (repo.get("description") or "").lower()
     language = (repo.get("language") or "").lower()
-    topics = [t.lower() for t in repo.get("topics", [])]
-    
+    topics = [t.lower() for t in (repo.get("topics") or [])]
+
     # Kombiner all tekst for søk
     text_to_check = f"{name} {description} {language} {' '.join(topics)}"
-    
+
     # Sjekk mot AI keywords
     return any(kw.lower() in text_to_check for kw in AI_KEYWORDS)
 

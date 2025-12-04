@@ -18,3 +18,10 @@ nltk>=3.8.0
 # Optional: for web interface
 # fastapi>=0.109.0
 # uvicorn>=0.27.0
+
+# Testing dependencies
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+pytest-cov>=4.1.0
+respx>=0.20.0
