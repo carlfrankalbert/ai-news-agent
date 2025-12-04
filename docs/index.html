@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FYRK AI Radar – </title>
+    <title>FYRK AI Radar – desember 2025</title>
     <meta name="description" content="En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -196,51 +196,47 @@
             z-index: 1;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            background: var(--accent-primary-light);
-            color: var(--accent-primary);
-            padding: 6px 12px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: var(--space-lg);
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
         .hero h1 {
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: 48px;
             font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1.1;
-            margin-bottom: var(--space-md);
+            margin: 0 0 var(--space-md) 0;
+            letter-spacing: -0.02em;
             color: var(--text-primary);
         }
 
-        .hero-subtitle {
-            font-size: 17px;
+        .version-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            font-size: 14px;
             color: var(--text-secondary);
-            max-width: 560px;
+        }
+
+        .version-badge {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--bg-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .version-separator {
+            color: var(--text-muted);
+        }
+
+        .update-date {
+            color: var(--text-secondary);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
-            letter-spacing: 0.01em;
         }
 
         /* Highlights Row - Compact inline style */
@@ -473,13 +469,45 @@
         /* Category Sections */
         .category-section {
             margin-bottom: var(--space-2xl);
+            background: var(--bg-card);
+            border: 2px solid;
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Category border colors */
+        .category-section[data-category="core-llm"] {
+            border-color: #10b981; /* Green */
+        }
+
+        .category-section[data-category="code-assistants"] {
+            border-color: #10b981; /* Green */
+        }
+
+        .category-section[data-category="builder-platform"] {
+            border-color: #8b5cf6; /* Purple */
+        }
+
+        .category-section[data-category="image-video"] {
+            border-color: #f59e0b; /* Orange */
+        }
+
+        .category-section[data-category="audio-voice"] {
+            border-color: #ec4899; /* Pink */
+        }
+
+        .category-section[data-category="agents"] {
+            border-color: #06b6d4; /* Teal */
         }
 
         .category-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-md);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
         }
 
         .category-title {
@@ -487,6 +515,15 @@
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.3px;
+            margin-bottom: var(--space-xs);
+        }
+
+        .category-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: var(--space-xs);
+            width: 100%;
         }
 
         .category-count {
@@ -498,11 +535,10 @@
         .rankings-table {
             background: var(--bg-card);
             border: 0.5px solid var(--border);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: var(--shadow-sm);
             position: relative;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0.5px 0 rgba(255,255,255,0.8);
         }
 
         .rankings-table::before {
@@ -986,12 +1022,13 @@
             display: flex;
             align-items: center;
             gap: var(--space-md);
-            background: var(--bg-muted);
+            background: #dcfce7; /* Green background */
+            border: 1px solid #86efac;
             padding: 8px 16px;
             border-radius: var(--radius-md);
             margin-bottom: var(--space-lg);
             font-size: 13px;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
 
         .lab-banner.hidden {
@@ -1183,8 +1220,8 @@
         <div class="container">
             <!-- Tab Navigation -->
             <nav class="tab-bar" role="tablist">
-                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Scores</button>
-                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Kapabiliteter</button>
+                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Rankings</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Model Abilities</button>
             </nav>
 
             <!-- Lab Banner -->
@@ -1198,12 +1235,27 @@
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
             <!-- Hero Section -->
             <section class="hero">
-                <span class="hero-badge" data-i18n="hero-badge">Oppdatert </span>
-                <h1>FYRK AI Radar</h1>
-                <p class="hero-subtitle" data-i18n="hero-subtitle">En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.</p>
+                <h1>FYRK AI Score</h1>
+                <div class="version-info">
+                    <span class="version-badge">v2.1.0</span>
+                    <span class="version-separator">•</span>
+                    <span class="update-date" data-i18n="hero-badge">Oppdatert desember 2025</span>
+                </div>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi</p>
             </section>
 
 
+            <!-- Highlights - Compact inline -->
+            <section class="highlights">
+                <div class="highlight-card">
+                    <h3><span class="icon">✦</span> <span data-i18n="new-this-month">Nytt</span></h3>
+                    <ul class="highlight-list"><li><span class="highlight-name">Ollama</span><span class="new-badge">Ny</span></li><li><span class="highlight-name">DeepSeek</span><span class="new-badge">Ny</span></li><li><span class="highlight-name">OpenAI ChatGPT</span><span class="new-badge">Ny</span></li><li><span class="highlight-name">Mistral</span><span class="new-badge">Ny</span></li></ul>
+                </div>
+                <div class="highlight-card">
+                    <h3><span class="icon">📈</span> <span data-i18n="biggest-changes">Trending</span></h3>
+                    <ul class="highlight-list"><li><span class="highlight-name">Gemini</span><span class="highlight-meta trend-down">↓</span></li><li><span class="highlight-name">Claude</span><span class="highlight-meta trend-down">↓</span></li></ul>
+                </div>
+            </section>
 
             <!-- Metrics Explanation -->
             <section class="metrics-info">
@@ -1243,6 +1295,558 @@
             </section>
 
 
+            <!-- Kjerne-LLM-er Category -->
+            <section class="category-section" data-category="core-llm">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-core-llms">Kjerne-LLM-er</h2>
+                        <p class="category-description">Store språkmodeller for generell bruk. Godt egnet for resonnering, tekstgenerering og komplekse oppgaver.</p>
+                    </div>
+                    <span class="category-count">10 <span data-i18n="modeller">modeller</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="100">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <a href="https://ollama.ai" target="_blank" rel="noopener noreferrer" class="item-name">Ollama</a>
+                            <span class="item-provider"><img src="https://ollama.com/favicon.ico" alt="Ollama" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ollama.ai" target="_blank" rel="noopener noreferrer" class="item-provider">Ollama</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="item-name">Claude</a>
+                            <span class="item-provider"><img src="https://www.anthropic.com/favicon.ico" alt="Anthropic" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://anthropic.com" target="_blank" rel="noopener noreferrer" class="item-provider">Anthropic</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer" class="item-name">DeepSeek</a>
+                            <span class="item-provider"><img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.deepseek.com" target="_blank" rel="noopener noreferrer" class="item-provider">DeepSeek</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="80" data-sentiment="60" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">OpenAI ChatGPT</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="item-provider">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">Mistral</span>
+                            <span class="item-provider"><img src="https://mistral.ai/favicon.ico" alt="Mistral AI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://mistral.ai" target="_blank" rel="noopener noreferrer" class="item-provider">Mistral AI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">Qwen</span>
+                            <span class="item-provider"><img src="https://www.alibaba.com/favicon.ico" alt="Alibaba" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.alibaba.com" target="_blank" rel="noopener noreferrer" class="item-provider">Alibaba</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <a href="https://llama.meta.com" target="_blank" rel="noopener noreferrer" class="item-name">Llama</a>
+                            <span class="item-provider"><img src="https://www.meta.com/favicon.ico" alt="Meta" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://ai.meta.com" target="_blank" rel="noopener noreferrer" class="item-provider">Meta</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="60" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="item-name">Gemini</a>
+                            <span class="item-provider"><img src="https://www.google.com/favicon.ico" alt="Google" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://google.com" target="_blank" rel="noopener noreferrer" class="item-provider">Google</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell down">↓</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <a href="https://github.com/vllm-project/vllm" target="_blank" rel="noopener noreferrer" class="item-name">vLLM</a>
+                            <span class="item-provider"><img src="https://vllm.readthedocs.io/favicon.ico" alt="vLLM Team" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://github.com/vllm-project" target="_blank" rel="noopener noreferrer" class="item-provider">vLLM Team</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">LocalAI</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">LocalAI</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="core-llm" onclick="toggleExpand('core-llm')">
+                            <span class="expand-text">Vis flere (7 flere)</span>
+                            <span class="expand-icon">↓</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Kodeassistenter Category -->
+            <section class="category-section" data-category="code-assistants">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-code-assistants">Kodeassistenter</h2>
+                        <p class="category-description">Verktøy som hjelper utviklere med kodegenerering, debugging og refaktorering. Integrert i IDEer og editorer.</p>
+                    </div>
+                    <span class="category-count">3 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="80" data-utility="100" data-price="60">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" class="item-name">Cursor</a>
+                            <span class="item-provider"><span class="provider-text"><a href="https://anysphere.inc" target="_blank" rel="noopener noreferrer" class="item-provider">Cursor</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">→</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="60" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <a href="https://continue.dev" target="_blank" rel="noopener noreferrer" class="item-name">Continue</a>
+                            <span class="item-provider"><img src="https://continue.dev/favicon.ico" alt="Continue" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://continue.dev" target="_blank" rel="noopener noreferrer" class="item-provider">Continue</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="40" data-sentiment="80" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">JetBrains AI</span>
+                            <span class="item-provider"><img src="https://www.jetbrains.com/favicon.ico" alt="JetBrains" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.jetbrains.com" target="_blank" rel="noopener noreferrer" class="item-provider">JetBrains</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Builder & API Category -->
+            <section class="category-section" data-category="builder-platform">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-builder-platform">Builder & API</h2>
+                        <p class="category-description">Plattformer og APIer for å bygge AI-applikasjoner. Inkluderer open source-verktøy og kommersielle APIer.</p>
+                    </div>
+                    <span class="category-count">10 <span data-i18n="plattformer">plattformer</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="100" data-utility="100" data-price="100">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <a href="https://huggingface.co/docs/transformers" target="_blank" rel="noopener noreferrer" class="item-name">Transformers</a>
+                            <span class="item-provider"><img src="https://huggingface.co/favicon.ico" alt="Hugging Face" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="item-provider">Hugging Face</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <a href="https://langchain.com" target="_blank" rel="noopener noreferrer" class="item-name">LangChain</a>
+                            <span class="item-provider"><img src="https://www.langchain.com/favicon.ico" alt="LangChain" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://langchain.com" target="_blank" rel="noopener noreferrer" class="item-provider">LangChain</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">LangFlow</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">LangFlow</span></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <a href="https://www.llamaindex.ai" target="_blank" rel="noopener noreferrer" class="item-name">LlamaIndex</a>
+                            <span class="item-provider"><img src="https://www.llamaindex.ai/favicon.ico" alt="LlamaIndex" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.llamaindex.ai" target="_blank" rel="noopener noreferrer" class="item-provider">LlamaIndex</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <a href="https://huggingface.co/docs/diffusers" target="_blank" rel="noopener noreferrer" class="item-name">Diffusers</a>
+                            <span class="item-provider"><img src="https://huggingface.co/favicon.ico" alt="Hugging Face" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" class="item-provider">Hugging Face</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">LiteLLM</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">BerriAI</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">7</div>
+                        <div class="item-info">
+                            <span class="item-name">Unsloth</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Unsloth</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="80" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">8</div>
+                        <div class="item-info">
+                            <span class="item-name">Ray</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Anyscale</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="60" data-utility="60" data-price="60">
+                        <div class="rank-badge rank-default">9</div>
+                        <div class="item-info">
+                            <span class="item-name">Semantic Kernel</span>
+                            <span class="item-provider"><img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://www.microsoft.com" target="_blank" rel="noopener noreferrer" class="item-provider">Microsoft</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="60" data-utility="80" data-price="60">
+                        <div class="rank-badge rank-default">10</div>
+                        <div class="item-info">
+                            <span class="item-name">OpenAI Python</span>
+                            <span class="item-provider"><img src="https://openai.com/favicon.ico" alt="OpenAI" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="item-provider">OpenAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="builder-platform" onclick="toggleExpand('builder-platform')">
+                            <span class="expand-text">Vis flere (7 flere)</span>
+                            <span class="expand-icon">↓</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <!-- Bilde & Video Category -->
+            <section class="category-section" data-category="image-video">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-image-video">Bilde & Video</h2>
+                        <p class="category-description">Verktøy for generering og analyse av bilder og video. Inkluderer tekst-til-bilde, bilde-til-bilde og videogenerering.</p>
+                    </div>
+                    <span class="category-count">3 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="100" data-price="100">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <span class="item-name">PaddleOCR</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Baidu</span></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">MinerU</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">MinerU</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="40" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <span class="item-name">HunyuanOCR</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Tencent</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Lyd & Stemme Category -->
+            <section class="category-section" data-category="audio-voice">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-audio-voice">Lyd & Stemme</h2>
+                        <p class="category-description">Verktøy for tekst-til-tale, tale-til-tekst og lydgenerering. Inkluderer stemmekloning og lydsyntese.</p>
+                    </div>
+                    <span class="category-count">1 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="80" data-sentiment="80" data-utility="60" data-price="100">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <a href="https://github.com/2noise/ChatTTS" target="_blank" rel="noopener noreferrer" class="item-name">ChatTTS</a>
+                            <span class="item-provider"><span class="provider-text"><a href="https://github.com/2noise" target="_blank" rel="noopener noreferrer" class="item-provider">ChatTTS</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                </div>
+            </section>
+            <!-- Agenter & Automatisering Category -->
+            <section class="category-section" data-category="agents">
+                <div class="category-header">
+                    <div>
+                        <h2 class="category-title" data-i18n="cat-agents-automation">Agenter & Automatisering</h2>
+                        <p class="category-description">AI-agenter som kan utføre komplekse oppgaver gjennom multi-steg resonnering og handling. Inkluderer automatisering og agent-plattformer.</p>
+                    </div>
+                    <span class="category-count">6 <span data-i18n="verktøy">verktøy</span></span>
+                </div>
+                <div class="rankings-table">
+                    <div class="rankings-header">
+                        <span>#</span>
+                        <span data-sort="name">Navn <span class="sort-icon">↕</span></span>
+                        <span data-sort="buzz">Buzz <span class="sort-icon">↕</span></span>
+                        <span data-sort="sentiment">Sentiment <span class="sort-icon">↕</span></span>
+                        <span data-sort="utility">Nytte <span class="sort-icon">↕</span></span>
+                        <span data-sort="price">Pris <span class="sort-icon">↕</span></span>
+                        <span>Trend</span>
+                        <span></span>
+                    </div>
+
+                    <div class="ranking-row " data-buzz="100" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-1">1</div>
+                        <div class="item-info">
+                            <a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" rel="noopener noreferrer" class="item-name">AutoGPT</a>
+                            <span class="item-provider"><span class="provider-text"><a href="https://github.com/Significant-Gravitas" target="_blank" rel="noopener noreferrer" class="item-provider">AutoGPT</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="100" data-sentiment="80" data-utility="100" data-price="80">
+                        <div class="rank-badge rank-2">2</div>
+                        <div class="item-info">
+                            <span class="item-name">n8n</span>
+                            <span class="item-provider"><img src="https://n8n.io/favicon.ico" alt="n8n" class="provider-logo" onerror="this.style.display='none'"><span class="provider-text"><a href="https://n8n.io" target="_blank" rel="noopener noreferrer" class="item-provider">n8n</a></span></span>
+                        </div>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row " data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-3">3</div>
+                        <div class="item-info">
+                            <a href="https://github.com/joaomdmoura/crewAI" target="_blank" rel="noopener noreferrer" class="item-name">CrewAI</a>
+                            <span class="item-provider"><span class="provider-text"><a href="https://github.com/joaomdmoura" target="_blank" rel="noopener noreferrer" class="item-provider">CrewAI</a></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="80">
+                        <div class="rank-badge rank-default">4</div>
+                        <div class="item-info">
+                            <span class="item-name">Browser Use</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Browser Use</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="60" data-sentiment="80" data-utility="80" data-price="100">
+                        <div class="rank-badge rank-default">5</div>
+                        <div class="item-info">
+                            <span class="item-name">OpenHands</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">OpenHands</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-high">100</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="ranking-row hidden-row" data-buzz="40" data-sentiment="80" data-utility="60" data-price="80">
+                        <div class="rank-badge rank-default">6</div>
+                        <div class="item-info">
+                            <span class="item-name">Flowise</span>
+                            <span class="item-provider"><span class="provider-text"><span class="item-provider">Flowise</span></span></span>
+                        </div>
+                        <span class="score-cell score-mid">40</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="score-cell score-mid">60</span>
+                        <span class="score-cell score-high">80</span>
+                        <span class="trend-cell ">—</span>
+                    </div>
+                    <div class="expand-section">
+                        <button class="expand-button" data-category="agents" onclick="toggleExpand('agents')">
+                            <span class="expand-text">Vis flere (3 flere)</span>
+                            <span class="expand-icon">↓</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
 
             <!-- CTA Section -->
             <section class="cta-section">
@@ -1340,7 +1944,7 @@
                     <a href="mailto:hei@fyrk.no?subject=FYRK%20AI%20Radar" data-i18n="contact">Kontakt</a>
                 </div>
                 <div class="footer-meta" data-i18n="last-updated">
-                    Sist oppdatert: 
+                    Sist oppdatert: 4. des 2025
                 </div>
             </div>
         </div>
@@ -1351,8 +1955,9 @@
         // Translations
         const translations = {
             no: {
-                'hero-badge': 'Oppdatert ',
-                'hero-subtitle': 'En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.',
+                'hero-badge': 'Oppdatert desember 2025',
+                'version-badge': 'v2.1.0',
+                'hero-subtitle': 'Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi',
                 'new-this-month': 'Ny denne måneden',
                 'biggest-changes': 'Største endringer',
                 'metrics-title': 'Slik leser du dataene',
@@ -1376,11 +1981,11 @@
                 'cta-text': 'FYRK hjelper bedrifter å velge riktige verktøy og bygge AI-drevne arbeidsflyter.',
                 'cta-button': 'Kontakt oss',
                 'contact': 'Kontakt',
-                'last-updated': 'Sist oppdatert: ',
+                'last-updated': 'Sist oppdatert: 4. des 2025',
                 'show-all': 'Vis alle',
                 'show-fewer': 'Vis færre',
-                'tab-scores': 'Scores',
-                'tab-capabilities': 'Kapabiliteter',
+                'tab-scores': 'Rankings',
+                'tab-capabilities': 'Model Abilities',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Et eksperiment – ikke en benchmark.',
                 'les-mer': 'Les mer',
@@ -1413,8 +2018,8 @@
                 'disclaimer': 'Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.'
             },
             sv: {
-                'hero-badge': 'Uppdaterad ',
-                'hero-subtitle': 'En månadsvis översikt över vad som faktiskt händer inom AI. Baserat på signaler från Hacker News, Github, X och sentimentanalys.',
+                'hero-badge': 'Uppdaterad desember 2025',
+                'hero-subtitle': 'Månadsvis rangering av AI-verktyg baserat på buzz, sentiment och nytta',
                 'new-this-month': 'Nytt denna månad',
                 'biggest-changes': 'Största förändringarna',
                 'metrics-title': 'Så här läser du datan',
@@ -1438,11 +2043,11 @@
                 'cta-text': 'FYRK hjälper företag att välja rätt verktyg och bygga AI-drivna arbetsflöden.',
                 'cta-button': 'Kontakta oss',
                 'contact': 'Kontakt',
-                'last-updated': 'Senast uppdaterad: ',
+                'last-updated': 'Senast uppdaterad: 4. des 2025',
                 'show-all': 'Visa alla',
                 'show-fewer': 'Visa färre',
-                'tab-scores': 'Scores',
-                'tab-capabilities': 'Kapabiliteter',
+                'tab-scores': 'Rankings',
+                'tab-capabilities': 'Model Abilities',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Ett experiment – inte en benchmark.',
                 'les-mer': 'Läs mer',
@@ -1475,8 +2080,8 @@
                 'disclaimer': 'Inte vetenskapligt – använd som inspiration, inte facit.'
             },
             en: {
-                'hero-badge': 'Updated ',
-                'hero-subtitle': 'A monthly overview of what\'s actually happening in AI. Based on signals from Hacker News, Github, X, and sentiment analysis.',
+                'hero-badge': 'Updated desember 2025',
+                'hero-subtitle': 'Monthly ranking of AI tools based on buzz, sentiment, and utility',
                 'new-this-month': 'New This Month',
                 'biggest-changes': 'Biggest Movers',
                 'metrics-title': 'How to Read the Data',
@@ -1500,7 +2105,7 @@
                 'cta-text': 'FYRK helps companies choose the right tools and build AI-powered workflows.',
                 'cta-button': 'Contact Us',
                 'contact': 'Contact',
-                'last-updated': 'Last updated: ',
+                'last-updated': 'Last updated: 4. des 2025',
                 'show-all': 'Show all',
                 'show-fewer': 'Show fewer',
                 'tab-scores': 'Scores',
