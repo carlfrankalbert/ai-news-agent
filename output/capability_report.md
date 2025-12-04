@@ -10,7 +10,7 @@
 | Memory (context) | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | Multilingual / Norwegian | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | **Visual abilities** |  |  |  |  |  |  |
-| Image generation | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
+| Image generation | ✗ | ✗ | ✗ | ✔︎ | ✗ | ✗ |
 | Image understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Video generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | Video understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
@@ -23,12 +23,12 @@
 | Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | File handling | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
-| API calling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| API calling | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | Computer use | ✔︎ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **Automation** |  |  |  |  |  |  |
 | Agents / autonomous actions | ~ | ✗ | ~ | ~ | ✗ | ~ |
-| Multi-step workflows | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| Scheduling | ✗ | ✗ | ~ | ✗ | ✗ | ✗ |
 | Tool use | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 
 ### Legend
@@ -40,34 +40,29 @@
 
 ### Sources
 
-- AI community discussions and reviews
-- Anthropic's official announcements
-- ArXiv paper: DeepSeek-V3 Technical Report
-- Benchmark leaderboards (Chatbot Arena, LiveBench)
-- Claude 3.5 model documentation
+- AI benchmark leaderboards
+- AI model benchmarks and comparisons
+- Claude model comparison pages
+- Community discussions and implementations
 - DeepSeek official documentation
-- DeepSeek-R1 reasoning model announcements
-- General web search results
-- GitHub DeepSeek-V3 repository
-- Various AI news sources and documentation
-- Wikipedia AI model pages
-- ai.google.dev
+- GitHub DeepSeek repositories
+- Grok 3 technical documentation
+- Industry reports on Grok capabilities
+- Technical papers and blog posts
 - ai.meta.com
-- anthropic.com
+- anthropic.com official documentation
 - artificialanalysis.ai
-- artificialanalysis.ai benchmarks
 - blog.google.com
 - blog.openai.com
 - deepmind.google
+- developers.google.com
 - livebench.ai
-- livebench.ai evaluations
 - lmarena.ai
-- lmarena.ai leaderboards
 - openai.com
-- various tech news sources
-- wikipedia AI model pages
+- wikipedia
 - wikipedia.org
-- x.ai official blog
+- x.ai official announcements
+- xAI blog posts
 
 ### Changes from Previous Update
 

@@ -6,7 +6,7 @@
 | Memory (context) | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | Multilingual / Norwegian | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | **Visual abilities** |  |  |  |  |  |  |
-| Image generation | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
+| Image generation | ✗ | ✗ | ✗ | ✔︎ | ✗ | ✗ |
 | Image understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Video generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | Video understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
@@ -19,10 +19,10 @@
 | Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | File handling | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
-| API calling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| API calling | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | Computer use | ✔︎ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **Automation** |  |  |  |  |  |  |
 | Agents / autonomous actions | ~ | ✗ | ~ | ~ | ✗ | ~ |
-| Multi-step workflows | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| Scheduling | ✗ | ✗ | ~ | ✗ | ✗ | ✗ |
 | Tool use | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |

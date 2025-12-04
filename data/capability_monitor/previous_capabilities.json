@@ -1,7 +1,7 @@
 {
   "Claude Opus 4.5": {
     "model": "Claude Opus 4.5 (Does not exist)",
-    "note": "Claude Opus 4.5 does not exist. The latest Claude models as of early 2025 are from the Claude 3.5 series (Claude 3.5 Sonnet and Claude 3.5 Haiku). Below are the capabilities of the most advanced current Claude model - Claude 3.5 Sonnet:",
+    "note": "No Claude Opus 4.5 model exists. Latest Claude models as of early 2025 are Claude 3.5 Sonnet and Claude 3.5 Haiku.",
     "actual_latest_model": "Claude 3.5 Sonnet",
     "capabilities": {
       "Cognitive abilities": {
@@ -31,18 +31,25 @@
       },
       "Automation": {
         "Agents / autonomous actions": "~",
-        "Multi-step workflows": "~",
+        "Multi-step workflows": "✔︎",
         "Scheduling": "✗",
         "Tool use": "✔︎"
       }
     },
-    "sources": [
-      "anthropic.com official documentation",
-      "Claude model comparison pages",
-      "AI model benchmarks and comparisons"
+    "key_features": [
+      "200K token context window",
+      "Computer use capability (beta)",
+      "Advanced reasoning and coding",
+      "Image analysis and understanding",
+      "Tool use and function calling",
+      "PDF and document processing"
     ],
-    "last_updated": "2025-01-03",
-    "clarification": "Anthropic's model naming follows the pattern Claude 3.x (Haiku/Sonnet/Opus). There is no Claude 4 or Claude Opus 4.5 released as of January 2025. The most capable current model is Claude 3.5 Sonnet, with Claude 3 Opus being the previous flagship model."
+    "sources": [
+      "anthropic.com",
+      "Claude 3.5 model documentation",
+      "Anthropic's official announcements"
+    ],
+    "last_updated": "2025-01-27"
   },
   "ChatGPT (GPT-5)": {
     "model": "ChatGPT (GPT-5)",
@@ -87,11 +94,11 @@
       "livebench.ai",
       "wikipedia.org"
     ],
-    "last_updated": "2025-01-03",
-    "note": "GPT-5 has not been officially released by OpenAI as of January 2025. All current ChatGPT capabilities are based on GPT-4 variants (GPT-4o, GPT-4 Turbo). OpenAI has not provided official release date or capability details for GPT-5. Any reported GPT-5 information found online appears to be speculation or unofficial rumors."
+    "last_updated": "2024-12-28",
+    "note": "GPT-5 has not been officially released by OpenAI as of December 2024. All capabilities marked as not supported because the model does not exist yet. Current latest model is GPT-4 Turbo/GPT-4o. OpenAI has not announced specific GPT-5 features or release timeline."
   },
   "Gemini (2.5/3 Pro)": {
-    "model": "Gemini 2.5 Pro",
+    "model": "Gemini 2.0 Flash (Latest Available - No 2.5/3 Pro Found)",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -100,7 +107,7 @@
         "Multilingual / Norwegian": "✔︎"
       },
       "Visual abilities": {
-        "Image generation": "✗",
+        "Image generation": "✔︎",
         "Image understanding": "✔︎",
         "Video generation": "✗",
         "Video understanding": "✔︎"
@@ -121,22 +128,23 @@
       "Automation": {
         "Agents / autonomous actions": "~",
         "Multi-step workflows": "✔︎",
-        "Scheduling": "~",
+        "Scheduling": "✗",
         "Tool use": "✔︎"
       }
     },
     "sources": [
       "blog.google.com",
+      "ai.google.dev",
+      "deepmind.google",
       "artificialanalysis.ai",
       "lmarena.ai",
-      "wikipedia.org",
-      "deepmind.google",
-      "developers.google.com"
+      "wikipedia.org"
     ],
-    "last_updated": "2025-01-27"
+    "last_updated": "2025-01-11",
+    "note": "Gemini 2.5 Pro and Gemini 3 Pro do not exist as of December 2024. Gemini 2.0 Flash is the latest multimodal model from Google."
   },
   "Grok 3/4": {
-    "model": "Grok 3 (Grok 4 not yet released)",
+    "model": "Grok 3",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -160,7 +168,7 @@
         "Web search / browsing": "✔︎",
         "Document & PDF understanding": "✔︎",
         "File handling": "✔︎",
-        "API calling": "✔︎",
+        "API calling": "~",
         "Computer use": "✗"
       },
       "Automation": {
@@ -171,14 +179,14 @@
       }
     },
     "sources": [
-      "x.ai official announcements",
-      "Grok 3 technical documentation",
-      "AI benchmark leaderboards",
-      "xAI blog posts",
-      "Industry reports on Grok capabilities"
+      "x.ai official blog",
+      "artificialanalysis.ai benchmarks",
+      "lmarena.ai leaderboards",
+      "livebench.ai evaluations",
+      "wikipedia AI model pages",
+      "various tech news sources"
     ],
-    "last_updated": "2025-01-11",
-    "notes": "Grok 3 was recently released with significant improvements in reasoning, coding, and multimodal capabilities. Grok 4 has not been officially announced or released yet. Information is based on official xAI communications and verified benchmark results."
+    "last_updated": "2024-12-30"
   },
   "Llama 4": {
     "model": "Llama 4",
@@ -220,10 +228,10 @@
       "artificialanalysis.ai",
       "lmarena.ai",
       "livebench.ai",
-      "wikipedia"
+      "wikipedia.org"
     ],
-    "last_updated": "2024-12-19",
-    "note": "Llama 4 has not been officially announced or released by Meta as of December 2024. Meta's latest releases are Llama 3.1 and Llama 3.2 models. All capabilities marked as not supported (✗) because the model does not exist yet."
+    "last_updated": "2025-01-11",
+    "note": "Llama 4 has not been officially announced or released by Meta as of January 2025. The latest released model in the Llama series is Llama 3.3 (December 2024). All capabilities marked as not supported (✗) because the model does not exist yet. Meta's current flagship models are Llama 3.1 and Llama 3.3 series."
   },
   "DeepSeek (V3/R1)": {
     "model": "DeepSeek (V3/R1)",
@@ -255,18 +263,19 @@
       },
       "Automation": {
         "Agents / autonomous actions": "~",
-        "Multi-step workflows": "✔︎",
+        "Multi-step workflows": "~",
         "Scheduling": "✗",
         "Tool use": "✔︎"
       }
     },
     "sources": [
       "DeepSeek official documentation",
-      "GitHub DeepSeek repositories",
-      "AI benchmark leaderboards",
-      "Technical papers and blog posts",
-      "Community discussions and implementations"
+      "GitHub DeepSeek-V3 repository",
+      "ArXiv paper: DeepSeek-V3 Technical Report",
+      "DeepSeek-R1 reasoning model announcements",
+      "Benchmark leaderboards (Chatbot Arena, LiveBench)",
+      "AI community discussions and reviews"
     ],
-    "last_updated": "2025-01-01"
+    "last_updated": "2025-01-27"
   }
 }
