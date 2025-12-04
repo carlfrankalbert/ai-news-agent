@@ -1308,60 +1308,36 @@ body {
 .capabilities-legend {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    font-size: 12px;
-    background: var(--bg-card);
-    padding: 8px 16px;
-    border-radius: 100px;
-    border: 1px solid #E5E7EB;
-    box-shadow: var(--shadow-sm);
+    gap: var(--space-md);
+    font-size: 13px;
 }
 
 .legend-item {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-weight: 500;
     color: var(--text-secondary);
-    transition: all var(--transition-fast);
-}
-
-.legend-item:hover {
-    background: var(--bg-muted);
 }
 
 .legend-item span:first-child {
     font-size: 14px;
-    line-height: 1;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
 }
 
-/* Legend icon backgrounds */
+/* Legend icon colors */
 .legend-item:nth-child(1) span:first-child {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    color: #f59e0b;
+    color: #eab308;
 }
 
 .legend-item:nth-child(2) span:first-child {
-    background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
     color: #22c55e;
 }
 
 .legend-item:nth-child(3) span:first-child {
-    background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
     color: #f97316;
 }
 
 .legend-item:nth-child(4) span:first-child {
-    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-    color: #94a3b8;
+    color: #d1d5db;
 }
 
 .capabilities-content {
@@ -1417,20 +1393,21 @@ body {
 }
 
 .capabilities-table td {
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    line-height: 1.5;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f1f5f9;
+    line-height: 1.4;
     vertical-align: middle;
     text-align: center;
-    transition: background-color var(--transition-fast);
+    font-size: 15px;
 }
 
 .capabilities-table td:first-child {
     text-align: left;
     padding-left: var(--space-lg);
+    padding-right: var(--space-md);
     font-size: 14px;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 400;
     position: sticky;
     left: 0;
     background: inherit;
@@ -1439,87 +1416,58 @@ body {
 
 .capabilities-table tbody tr {
     background: #ffffff;
-    transition: background-color var(--transition-fast);
 }
 
 .capabilities-table tbody tr:nth-child(even):not(.category-header) {
-    background: #fafbfc;
+    background: #fafafa;
 }
 
 .capabilities-table tbody tr:hover:not(.category-header) {
-    background: rgba(37, 99, 235, 0.04) !important;
+    background: #f8fafc;
 }
 
 .capabilities-table tbody tr:hover:not(.category-header) td:first-child {
-    background: rgba(37, 99, 235, 0.04);
+    background: #f8fafc;
 }
 
-/* Category header rows - clean, modern styling */
+/* Category header rows - subtle section dividers */
 .capabilities-table tr.category-header td {
-    padding: 22px var(--space-lg) 10px;
-    font-weight: 700;
+    padding: 18px var(--space-lg) 8px;
+    font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--accent-primary);
-    background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%) !important;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    background: #f8fafc !important;
     border-bottom: 1px solid #e2e8f0;
     border-top: 1px solid #e2e8f0;
-    position: relative;
 }
 
 .capabilities-table tr.category-header:first-child td {
     border-top: none;
 }
 
-.capabilities-table tr.category-header td::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3px;
-    height: 50%;
-    background: var(--accent-primary);
-    border-radius: 0 2px 2px 0;
-}
-
+/* Simple inline indicators - no box styling */
 .capability-cell {
-    text-align: center;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    min-height: 28px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-/* Best indicator - golden star with glow */
 .capability-cell.capability-best {
-    color: #f59e0b;
-    font-size: 18px;
-    text-shadow: 0 1px 3px rgba(245, 158, 11, 0.3);
+    color: #eab308;
 }
 
-/* Yes indicator - checkmark */
 .capability-cell.capability-yes {
     color: #22c55e;
-    font-weight: 700;
-    font-size: 16px;
 }
 
-/* Partial indicator - styled tilde */
 .capability-cell.capability-partial {
     color: #f97316;
-    font-weight: 700;
-    font-size: 18px;
 }
 
-/* No indicator - subtle gray */
 .capability-cell.capability-no {
-    color: #cbd5e1;
+    color: #d1d5db;
     font-weight: 400;
-    font-size: 14px;
 }
 
 /* Mobile capabilities view */
