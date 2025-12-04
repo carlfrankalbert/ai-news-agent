@@ -2,12 +2,18 @@ name: Daily AI News Scan
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Kjør 06:00 UTC daglig
+    - cron: '0 6 * * *'  # Kjør 06:00 UTC daglig (only on main)
   workflow_dispatch:  # Manuell trigger
+  push:
+    branches:
+      - main
+      - dev
 
 jobs:
   scan:
     runs-on: ubuntu-latest
+    # Only run scheduled jobs on main branch
+    if: github.event_name != 'schedule' || github.ref == 'refs/heads/main'
     permissions:
       contents: write  # Required to push commits
     steps:
@@ -50,5 +56,14 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git add output/ docs/index.html
-          git commit -m "Daily scan $(date +%Y-%m-%d)" || exit 0
-          git push origin HEAD:main
+
+          # Add branch indicator to commit message
+          BRANCH_NAME="${GITHUB_REF##*/}"
+          if [ "$BRANCH_NAME" = "dev" ]; then
+            git commit -m "[DEV] Daily scan $(date +%Y-%m-%d)" || exit 0
+          else
+            git commit -m "Daily scan $(date +%Y-%m-%d)" || exit 0
+          fi
+
+          # Push to current branch
+          git push origin HEAD:${GITHUB_REF##*/}
