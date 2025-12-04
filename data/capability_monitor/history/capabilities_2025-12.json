@@ -1,0 +1,272 @@
+{
+  "Claude Opus 4.5": {
+    "model": "Claude Opus 4.5 (Does not exist)",
+    "note": "No Claude Opus 4.5 model exists. Latest Claude models as of early 2025 are Claude 3.5 Sonnet and Claude 3.5 Haiku.",
+    "actual_latest_model": "Claude 3.5 Sonnet",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "✔︎",
+        "Computer use": "✔︎"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "✔︎",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "anthropic.com",
+      "Claude 3.5 model documentation",
+      "Anthropic's official announcements"
+    ],
+    "last_updated": "2025-01-27"
+  },
+  "ChatGPT (GPT-5)": {
+    "model": "ChatGPT (GPT-5)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✗",
+        "Coding": "✗",
+        "Memory (context)": "✗",
+        "Multilingual / Norwegian": "✗"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✗",
+        "File handling": "✗",
+        "API calling": "✗",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "✗",
+        "Multi-step workflows": "✗",
+        "Scheduling": "✗",
+        "Tool use": "✗"
+      }
+    },
+    "sources": [
+      "openai.com",
+      "blog.openai.com",
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "livebench.ai",
+      "wikipedia.org"
+    ],
+    "last_updated": "2024-12-28",
+    "note": "GPT-5 has not been officially released by OpenAI as of December 2024. All capabilities marked as not supported because the model does not exist yet. Current latest model is GPT-4 Turbo/GPT-4o. OpenAI has not announced specific GPT-5 features or release timeline."
+  },
+  "Gemini (2.5/3 Pro)": {
+    "model": "Gemini 2.0 Flash (Latest Available - No 2.5/3 Pro Found)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✔︎",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✔︎"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✔︎",
+        "Text-to-speech": "✔︎",
+        "Audio understanding": "✔︎",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✔︎",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "✔︎",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "✔︎",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "blog.google.com",
+      "ai.google.dev",
+      "deepmind.google",
+      "Various AI news sources and documentation"
+    ],
+    "last_updated": "2024-12-19",
+    "note": "Gemini 2.5 Pro and Gemini 3 Pro do not exist as of December 2024. Gemini 2.0 Flash is the latest multimodal model from Google."
+  },
+  "Grok 3/4": {
+    "model": "Grok 3",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✔︎",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✔︎",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "~",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "x.ai official blog",
+      "artificialanalysis.ai benchmarks",
+      "lmarena.ai leaderboards",
+      "livebench.ai evaluations",
+      "wikipedia AI model pages",
+      "various tech news sources"
+    ],
+    "last_updated": "2024-12-28"
+  },
+  "Llama 4": {
+    "model": "Llama 4",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✗",
+        "Coding": "✗",
+        "Memory (context)": "✗",
+        "Multilingual / Norwegian": "✗"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✗",
+        "File handling": "✗",
+        "API calling": "✗",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "✗",
+        "Multi-step workflows": "✗",
+        "Scheduling": "✗",
+        "Tool use": "✗"
+      }
+    },
+    "sources": [
+      "ai.meta.com - No Llama 4 announcements found",
+      "artificialanalysis.ai - No Llama 4 listings",
+      "lmarena.ai - No Llama 4 entries",
+      "livebench.ai - No Llama 4 benchmarks",
+      "Wikipedia AI model pages - No Llama 4 information",
+      "General web search results"
+    ],
+    "last_updated": "2025-01-11",
+    "note": "Llama 4 has not been officially announced or released by Meta as of January 2025. The latest released model in the Llama series is Llama 3.3 (December 2024). All capabilities marked as not supported (✗) because the model does not exist yet. Meta's current flagship models are Llama 3.1 and Llama 3.3 series."
+  },
+  "DeepSeek (V3/R1)": {
+    "model": "DeepSeek (V3/R1)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "~",
+        "Document & PDF understanding": "~",
+        "File handling": "~",
+        "API calling": "✔︎",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "DeepSeek official documentation",
+      "GitHub DeepSeek-V3 repository",
+      "ArXiv paper: DeepSeek-V3 Technical Report",
+      "DeepSeek-R1 reasoning model announcements",
+      "Benchmark leaderboards (Chatbot Arena, LiveBench)",
+      "AI community discussions and reviews"
+    ],
+    "last_updated": "2025-01-27"
+  }
+}
