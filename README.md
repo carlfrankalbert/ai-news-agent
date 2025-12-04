@@ -128,6 +128,14 @@ GitHub Actions kjører automatisk daglig (`daily.yml`):
 
 **Manuell kjøring**: Trigger `Daily AI News Scan` workflow i GitHub Actions.
 
+## 🔧 Development Workflow
+
+Prosjektet bruker en to-grens strategi:
+- **`main`** - Produksjon (ai-radar.fyrk.no)
+- **`dev`** - Testing/staging (preview deployment)
+
+Se [DEVELOPMENT.md](DEVELOPMENT.md) for detaljert utviklings-workflow, testing og deployment-strategi.
+
 ## 📚 Dokumentasjon
 
 Intern dokumentasjon ligger i `documentation/`:
