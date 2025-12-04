@@ -932,6 +932,230 @@
         .expand-text {
             margin-right: 4px;
         }
+
+        /* Tab Navigation */
+        .tab-bar {
+            display: flex;
+            gap: var(--space-xl);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--space-lg);
+            padding: 0 var(--space-lg);
+        }
+
+        .tab {
+            padding: var(--space-md) 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            font-family: inherit;
+            transition: color var(--transition-base);
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            color: var(--text-primary);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--text-primary);
+        }
+
+        .tab-content {
+            display: block;
+        }
+
+        .tab-content.hidden {
+            display: none;
+        }
+
+        /* Lab Banner */
+        .lab-banner {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            background: var(--bg-muted);
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .lab-banner.hidden {
+            display: none;
+        }
+
+        .lab-badge {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 8px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .lab-text {
+            flex: 1;
+        }
+
+        .lab-text a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .lab-dismiss {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Capabilities Section */
+        .capabilities-section {
+            margin-bottom: var(--space-lg);
+            background: var(--bg-card);
+            border: 0.5px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .capabilities-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 0.5px solid var(--border);
+        }
+
+        .capabilities-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .capabilities-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .capabilities-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .capabilities-legend {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .capabilities-content {
+            overflow-x: auto;
+        }
+
+        .capabilities-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .capabilities-table th {
+            padding: var(--space-md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .capabilities-table td {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .capability-cell {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .capabilities-mobile {
+            display: none;
+        }
+
+        /* About Section */
+        .about-section {
+            margin-top: var(--space-2xl);
+            padding: var(--space-xl);
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+        }
+
+        .about-section h2 {
+            font-size: 24px;
+            margin-bottom: var(--space-md);
+        }
+
+        .about-section h3 {
+            font-size: 18px;
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-sm);
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .about-section ul li {
+            padding-left: var(--space-lg);
+            position: relative;
+        }
+
+        .about-section ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--text-secondary);
+        }
+
+        .disclaimer {
+            margin-top: var(--space-lg);
+            padding: var(--space-md);
+            background: var(--bg-muted);
+            border-radius: var(--radius-md);
+            font-style: italic;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
@@ -957,6 +1181,21 @@
         
     <main>
         <div class="container">
+            <!-- Tab Navigation -->
+            <nav class="tab-bar" role="tablist">
+                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Scores</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Kapabiliteter</button>
+            </nav>
+
+            <!-- Lab Banner -->
+            <div class="lab-banner" id="lab-banner">
+                <span class="lab-badge" data-i18n="lab-badge">🧪 FYRK Lab</span>
+                <span class="lab-text"><span data-i18n="lab-text">Et eksperiment – ikke en benchmark.</span> <a href="#om" data-i18n="les-mer">Les mer</a></span>
+                <button class="lab-dismiss" aria-label="Lukk" data-i18n-attr="aria-label" data-i18n-attr-key="close" onclick="dismissLabBanner()">×</button>
+            </div>
+
+            <!-- Scores Tab Content -->
+            <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
             <!-- Hero Section -->
             <section class="hero">
                 <span class="hero-badge" data-i18n="hero-badge">Oppdatert </span>
@@ -1014,6 +1253,77 @@
                     <span>→</span>
                 </a>
             </section>
+            </div>
+
+            <!-- Kapabiliteter Tab Content -->
+            <div class="tab-content hidden" id="tab-kapabiliteter" role="tabpanel" aria-labelledby="tab-btn-kapabiliteter">
+                <!-- Capabilities Matrix -->
+                <section class="capabilities-section" id="capabilities-section">
+                    <div class="capabilities-header">
+                        <div class="capabilities-title-group">
+                            <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
+                            <p class="capabilities-subtitle" data-i18n="capabilities-subtitle">Hva kan hver modell?</p>
+                        </div>
+                        <div class="capabilities-legend">
+                            <span class="legend-item">
+                                <span>⭐</span>
+                                <span data-i18n="legend-best">Best</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✓</span>
+                                <span data-i18n="legend-yes">Ja</span>
+                            </span>
+                            <span class="legend-item">
+                                <span>✗</span>
+                                <span data-i18n="legend-no">Nei</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="capabilities-content">
+                        <table class="capabilities-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th data-tool-index="0">Claude</th>
+                                    <th data-tool-index="1">GPT-4o</th>
+                                    <th data-tool-index="2">Gemini</th>
+                                    <th data-tool-index="3">Llama</th>
+                                    <th data-tool-index="4">DeepSeek</th>
+                                    <th data-tool-index="5">Grok</th>
+                                </tr>
+                            </thead>
+                            <tbody id="capabilities-tbody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Mobile card view -->
+                    <div class="capabilities-mobile" id="capabilities-mobile">
+                        <div class="model-tabs" id="model-tabs">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                        <div id="model-cards">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section id="om" class="about-section">
+                    <h2 data-i18n="about-title">Om AI Score</h2>
+                    <p data-i18n="about-intro">Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.</p>
+                    
+                    <h3 data-i18n="about-sources-title">Datakilder</h3>
+                    <ul>
+                        <li data-i18n="source-1">Offentlig tilgjengelig informasjon</li>
+                        <li data-i18n="source-2">Egne praktiske tester</li>
+                        <li data-i18n="source-3">Inntrykk fra utviklere og AI-miljøer</li>
+                        <li data-i18n="source-4">Vurderinger generert og validert med AI</li>
+                    </ul>
+                    
+                    <p class="disclaimer" data-i18n="disclaimer">Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.</p>
+                </section>
+            </div>
     </div>
     </main>
 
@@ -1068,7 +1378,39 @@
                 'contact': 'Kontakt',
                 'last-updated': 'Sist oppdatert: ',
                 'show-all': 'Vis alle',
-                'show-fewer': 'Vis færre'
+                'show-fewer': 'Vis færre',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Kapabiliteter',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'Et eksperiment – ikke en benchmark.',
+                'les-mer': 'Les mer',
+                'close': 'Lukk',
+                'capabilities-title': 'Kapabiliteter',
+                'capabilities-subtitle': 'Hva kan hver modell?',
+                'legend-best': 'Best',
+                'legend-yes': 'Ja',
+                'legend-no': 'Nei',
+                'cap-header-cognitive': 'Kognitiv',
+                'cap-koding': 'Koding',
+                'cap-resonnering': 'Resonnering',
+                'cap-norsk-short': 'Norsk',
+                'cap-header-visual': 'Visuell',
+                'cap-bildegenerering-short': 'Bildegenerering',
+                'cap-header-audio': 'Audio',
+                'cap-stemme-short': 'Stemme',
+                'cap-header-system': 'System',
+                'cap-websok': 'Websøk',
+                'cap-dokument-short': 'Dokument',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'about-title': 'Om AI Score',
+                'about-intro': 'Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.',
+                'about-sources-title': 'Datakilder',
+                'source-1': 'Offentlig tilgjengelig informasjon',
+                'source-2': 'Egne praktiske tester',
+                'source-3': 'Inntrykk fra utviklere og AI-miljøer',
+                'source-4': 'Vurderinger generert og validert med AI',
+                'disclaimer': 'Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.'
             },
             sv: {
                 'hero-badge': 'Uppdaterad ',
@@ -1098,7 +1440,39 @@
                 'contact': 'Kontakt',
                 'last-updated': 'Senast uppdaterad: ',
                 'show-all': 'Visa alla',
-                'show-fewer': 'Visa färre'
+                'show-fewer': 'Visa färre',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Kapabiliteter',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'Ett experiment – inte en benchmark.',
+                'les-mer': 'Läs mer',
+                'close': 'Stäng',
+                'capabilities-title': 'Kapabiliteter',
+                'capabilities-subtitle': 'Vad kan varje modell?',
+                'legend-best': 'Bäst',
+                'legend-yes': 'Ja',
+                'legend-no': 'Nej',
+                'cap-header-cognitive': 'Kognitiv',
+                'cap-koding': 'Kodning',
+                'cap-resonnering': 'Resonemang',
+                'cap-norsk-short': 'Norska',
+                'cap-header-visual': 'Visuell',
+                'cap-bildegenerering-short': 'Bildgenerering',
+                'cap-header-audio': 'Audio',
+                'cap-stemme-short': 'Röst',
+                'cap-header-system': 'System',
+                'cap-websok': 'Webbsök',
+                'cap-dokument-short': 'Dokument',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'about-title': 'Om AI Score',
+                'about-intro': 'Ett experiment från FYRK Lab där vi utforskar hur man kan jämföra AI-modeller på ett enkelt sätt.',
+                'about-sources-title': 'Datakällor',
+                'source-1': 'Offentligt tillgänglig information',
+                'source-2': 'Egna praktiska tester',
+                'source-3': 'Intryck från utvecklare och AI-miljöer',
+                'source-4': 'Bedömningar genererade och validerade med AI',
+                'disclaimer': 'Inte vetenskapligt – använd som inspiration, inte facit.'
             },
             en: {
                 'hero-badge': 'Updated ',
@@ -1128,7 +1502,39 @@
                 'contact': 'Contact',
                 'last-updated': 'Last updated: ',
                 'show-all': 'Show all',
-                'show-fewer': 'Show fewer'
+                'show-fewer': 'Show fewer',
+                'tab-scores': 'Scores',
+                'tab-capabilities': 'Capabilities',
+                'lab-badge': '🧪 FYRK Lab',
+                'lab-text': 'An experiment – not a benchmark.',
+                'les-mer': 'Read more',
+                'close': 'Close',
+                'capabilities-title': 'Capabilities',
+                'capabilities-subtitle': 'What can each model do?',
+                'legend-best': 'Best',
+                'legend-yes': 'Yes',
+                'legend-no': 'No',
+                'cap-header-cognitive': 'Cognitive',
+                'cap-koding': 'Coding',
+                'cap-resonnering': 'Reasoning',
+                'cap-norsk-short': 'Norwegian',
+                'cap-header-visual': 'Visual',
+                'cap-bildegenerering-short': 'Image Generation',
+                'cap-header-audio': 'Audio',
+                'cap-stemme-short': 'Voice',
+                'cap-header-system': 'System',
+                'cap-websok': 'Web Search',
+                'cap-dokument-short': 'Documents',
+                'cap-api-short': 'API',
+                'cap-computer-use-short': 'Computer Use',
+                'about-title': 'About AI Score',
+                'about-intro': 'An experiment from FYRK Lab exploring how to compare AI models in a simple way.',
+                'about-sources-title': 'Data Sources',
+                'source-1': 'Publicly available information',
+                'source-2': 'Own practical tests',
+                'source-3': 'Impressions from developers and AI communities',
+                'source-4': 'Assessments generated and validated with AI',
+                'disclaimer': 'Not scientific – use as inspiration, not fact.'
             }
         };
 
@@ -1163,8 +1569,144 @@
                 }
             });
             
+            // Re-render capabilities to update translations
+            renderCapabilitiesTable();
+            renderCapabilitiesMobile();
+            
             // Update html lang attribute
             document.documentElement.lang = lang === 'no' ? 'no' : lang === 'sv' ? 'sv' : 'en';
+        }
+
+        // Lab Banner Dismissal
+        function dismissLabBanner() {
+            const banner = document.getElementById('lab-banner');
+            if (banner) {
+                banner.classList.add('hidden');
+                localStorage.setItem('fyrk-lab-banner-dismissed', 'true');
+            }
+        }
+
+        // Tab Navigation
+        function switchTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                const isActive = tab.dataset.tab === tabName;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', isActive);
+            });
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                const isActive = content.id === 'tab-' + tabName;
+                content.classList.toggle('hidden', !isActive);
+                content.setAttribute('aria-hidden', !isActive);
+            });
+
+            // Update URL hash
+            window.location.hash = tabName;
+
+            // Store in localStorage
+            localStorage.setItem('fyrk-active-tab', tabName);
+        }
+
+        // Capabilities Configuration
+        const CAPABILITIES_CONFIG = {
+            tools: ['Claude', 'GPT-4o', 'Gemini', 'Llama', 'DeepSeek', 'Grok'],
+            providerNames: {
+                'Claude': 'Anthropic',
+                'GPT-4o': 'OpenAI',
+                'Gemini': 'Google',
+                'Llama': 'Meta',
+                'DeepSeek': 'DeepSeek',
+                'Grok': 'xAI'
+            },
+            scoreSymbols: {
+                'best': '⭐',
+                'yes': '✓',
+                'no': '✗'
+            },
+            categories: [
+                { type: 'header', key: 'cap-header-cognitive' },
+                { key: 'cap-koding', shortKey: 'cap-koding', scores: ['yes', 'yes', 'best', 'yes', 'yes', 'yes'] },
+                { key: 'cap-resonnering', shortKey: 'cap-resonnering', scores: ['yes', 'yes', 'best', 'yes', 'yes', 'yes'] },
+                { key: 'cap-norsk', shortKey: 'cap-norsk-short', scores: ['yes', 'yes', 'yes', 'best', 'yes', 'no'] },
+                { type: 'header', key: 'cap-header-visual' },
+                { key: 'cap-bildegenerering', shortKey: 'cap-bildegenerering-short', scores: ['no', 'no', 'yes', 'yes', 'best', 'no'] },
+                { type: 'header', key: 'cap-header-audio' },
+                { key: 'cap-stemme', shortKey: 'cap-stemme-short', scores: ['yes', 'yes', 'no', 'best', 'yes', 'no'] },
+                { type: 'header', key: 'cap-header-system' },
+                { key: 'cap-websok', shortKey: 'cap-websok', scores: ['yes', 'yes', 'yes', 'yes', 'yes', 'no'] },
+                { key: 'cap-dokument', shortKey: 'cap-dokument-short', scores: ['yes', 'yes', 'yes', 'yes', 'best', 'no'] },
+                { key: 'cap-api', shortKey: 'cap-api-short', scores: ['yes', 'yes', 'yes', 'yes', 'yes', 'yes'] },
+                { key: 'cap-computer-use', shortKey: 'cap-computer-use-short', scores: ['yes', 'yes', 'best', 'yes', 'no', 'no'] },
+            ]
+        };
+
+        // Capabilities Utilities
+        const CapabilitiesUtils = {
+            getTranslation: (key) => {
+                return translations[currentLang] && translations[currentLang][key] || key;
+            },
+            
+            getCapabilityName: (category) => {
+                const nameKey = category.shortKey || category.key;
+                return CapabilitiesUtils.getTranslation(nameKey);
+            },
+            
+            createScoreCell: (score) => {
+                const cell = document.createElement('td');
+                const cellContent = document.createElement('div');
+                cellContent.className = `capability-cell capability-${score}`;
+                cellContent.textContent = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+                cell.appendChild(cellContent);
+                return cell;
+            },
+            
+            createCategoryHeader: (category) => {
+                const row = document.createElement('tr');
+                row.className = 'category-header';
+                const headerCell = document.createElement('td');
+                headerCell.setAttribute('data-i18n', category.key);
+                headerCell.setAttribute('colspan', CAPABILITIES_CONFIG.tools.length + 1);
+                headerCell.textContent = CapabilitiesUtils.getTranslation(category.key);
+                row.appendChild(headerCell);
+                return row;
+            },
+            
+            createCapabilityRow: (category) => {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                const nameKey = category.shortKey || category.key;
+                nameCell.setAttribute('data-i18n', nameKey);
+                nameCell.textContent = CapabilitiesUtils.getCapabilityName(category);
+                row.appendChild(nameCell);
+                
+                category.scores.forEach(score => {
+                    row.appendChild(CapabilitiesUtils.createScoreCell(score));
+                });
+                
+                return row;
+            }
+        };
+
+        // Render Capabilities Table
+        function renderCapabilitiesTable() {
+            const tbody = document.getElementById('capabilities-tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+
+            CAPABILITIES_CONFIG.categories.forEach(category => {
+                if (category.type === 'header') {
+                    tbody.appendChild(CapabilitiesUtils.createCategoryHeader(category));
+                } else {
+                    tbody.appendChild(CapabilitiesUtils.createCapabilityRow(category));
+                }
+            });
+        }
+
+        function renderCapabilitiesMobile() {
+            // Mobile view can be implemented later if needed
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -1175,6 +1717,37 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
             });
+
+            // Initialize tabs
+            const hash = window.location.hash.slice(1);
+            const savedTab = localStorage.getItem('fyrk-active-tab');
+            const defaultTab = hash || savedTab || 'scores';
+            switchTab(defaultTab);
+
+            // Tab click handlers
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    switchTab(this.dataset.tab);
+                });
+            });
+
+            // Handle browser back/forward
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.slice(1);
+                if (hash === 'scores' || hash === 'kapabiliteter') {
+                    switchTab(hash);
+                }
+            });
+
+            // Check if lab banner was dismissed
+            if (localStorage.getItem('fyrk-lab-banner-dismissed') === 'true') {
+                const banner = document.getElementById('lab-banner');
+                if (banner) banner.classList.add('hidden');
+            }
+
+            // Render capabilities
+            renderCapabilitiesTable();
+            renderCapabilitiesMobile();
 
             // Category filtering
             const filterPills = document.querySelectorAll('.filter-pill');
