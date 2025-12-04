@@ -1651,17 +1651,29 @@ DESIGN_HTML = """<!DOCTYPE html>
 
         .capability-category-header td {{
             padding: 12px 16px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: #52525b;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }}
 
         .capability-category-header:first-child td {{
             border-top: none;
+        }}
+
+        .capabilities-table tbody tr:not(.capability-category-header):nth-child(even) {{
+            background: rgba(0, 0, 0, 0.015);
+        }}
+
+        .capabilities-table tbody tr:not(.capability-category-header):hover {{
+            background: rgba(0, 0, 0, 0.03);
+        }}
+
+        .capabilities-table tbody tr td {{
+            vertical-align: middle;
         }}
 
         .capabilities-mobile {{
@@ -1712,8 +1724,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             background: var(--bg-muted);
             border-radius: var(--radius-md);
             font-style: normal;
-            color: var(--text-secondary);
-            opacity: 0.6;
+            color: #71717a;
         }}
     </style>
 </head>
