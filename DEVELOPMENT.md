@@ -2,6 +2,19 @@
 
 This document describes the development workflow for the AI News Agent project.
 
+## Initial Setup
+
+If you're setting this up for the first time, you need to create the `dev` branch:
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b dev
+git push -u origin dev
+```
+
+After this one-time setup, the dev branch will exist in your repository and you can follow the workflow below.
+
 ## Branch Strategy
 
 The project uses a simple two-branch strategy:
