@@ -1,0 +1,47 @@
+name: Monthly AI Capability Update
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'  # Run at 09:00 UTC on the 1st of each month
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  update-capabilities:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push commits
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run capability monitor
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python -m src.ai_news_agent.capability_monitor.main \
+            --data-dir data/capability_monitor \
+            --output-dir output
+      
+      - name: Commit results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "AI Capability Bot"
+          git config user.email "bot@example.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git add data/capability_monitor/ output/capability_report.md
+          git commit -m "Monthly capability update $(date +%Y-%m)" || exit 0
+          git push origin HEAD:main
+
