@@ -729,51 +729,47 @@ DESIGN_HTML = """<!DOCTYPE html>
             z-index: 1;
         }}
 
-        .hero-badge {{
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-xs);
-            background: var(--accent-primary-light);
-            color: var(--accent-primary);
-            padding: 6px 12px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: var(--space-lg);
-        }}
-
-        .hero-badge::before {{
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }}
-
-        @keyframes pulse {{
-            0%, 100% {{ opacity: 1; }}
-            50% {{ opacity: 0.4; }}
-        }}
-
         .hero h1 {{
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: 48px;
             font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1.1;
-            margin-bottom: var(--space-md);
+            margin: 0 0 var(--space-md) 0;
+            letter-spacing: -0.02em;
             color: var(--text-primary);
         }}
 
-        .hero-subtitle {{
-            font-size: 17px;
+        .version-info {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-lg);
+            font-size: 14px;
             color: var(--text-secondary);
-            max-width: 560px;
+        }}
+
+        .version-badge {{
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--bg-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }}
+
+        .version-separator {{
+            color: var(--text-muted);
+        }}
+
+        .update-date {{
+            color: var(--text-secondary);
+        }}
+
+        .hero-subtitle {{
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.6;
-            letter-spacing: 0.01em;
         }}
 
         /* Highlights Row - Compact inline style */
@@ -1716,8 +1712,8 @@ DESIGN_HTML = """<!DOCTYPE html>
         <div class="container">
             <!-- Tab Navigation -->
             <nav class="tab-bar" role="tablist">
-                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Scores</button>
-                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Kapabiliteter</button>
+                <button class="tab active" role="tab" aria-selected="true" data-tab="scores" id="tab-btn-scores" data-i18n="tab-scores">Rankings</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Model Abilities</button>
             </nav>
 
             <!-- Lab Banner -->
@@ -1731,9 +1727,13 @@ DESIGN_HTML = """<!DOCTYPE html>
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
             <!-- Hero Section -->
             <section class="hero">
-                <span class="hero-badge" data-i18n="hero-badge">Oppdatert {period_display}</span>
-                <h1>FYRK AI Radar</h1>
-                <p class="hero-subtitle" data-i18n="hero-subtitle">En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.</p>
+                <h1>FYRK AI Score</h1>
+                <div class="version-info">
+                    <span class="version-badge">v2.1.0</span>
+                    <span class="version-separator">•</span>
+                    <span class="update-date" data-i18n="hero-badge">Oppdatert {period_display}</span>
+                </div>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi</p>
             </section>
 
 {highlights_html}
@@ -1885,7 +1885,8 @@ DESIGN_HTML = """<!DOCTYPE html>
         const translations = {{
             no: {{
                 'hero-badge': 'Oppdatert {period_display}',
-                'hero-subtitle': 'En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.',
+                'version-badge': 'v2.1.0',
+                'hero-subtitle': 'Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi',
                 'new-this-month': 'Ny denne måneden',
                 'biggest-changes': 'Største endringer',
                 'metrics-title': 'Slik leser du dataene',
@@ -1912,8 +1913,8 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'last-updated': 'Sist oppdatert: {last_updated}',
                 'show-all': 'Vis alle',
                 'show-fewer': 'Vis færre',
-                'tab-scores': 'Scores',
-                'tab-capabilities': 'Kapabiliteter',
+                'tab-scores': 'Rankings',
+                'tab-capabilities': 'Model Abilities',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Et eksperiment – ikke en benchmark.',
                 'les-mer': 'Les mer',
@@ -1947,7 +1948,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             }},
             sv: {{
                 'hero-badge': 'Uppdaterad {period_display}',
-                'hero-subtitle': 'En månadsvis översikt över vad som faktiskt händer inom AI. Baserat på signaler från Hacker News, Github, X och sentimentanalys.',
+                'hero-subtitle': 'Månadsvis rangering av AI-verktyg baserat på buzz, sentiment och nytta',
                 'new-this-month': 'Nytt denna månad',
                 'biggest-changes': 'Största förändringarna',
                 'metrics-title': 'Så här läser du datan',
@@ -1974,8 +1975,8 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'last-updated': 'Senast uppdaterad: {last_updated}',
                 'show-all': 'Visa alla',
                 'show-fewer': 'Visa färre',
-                'tab-scores': 'Scores',
-                'tab-capabilities': 'Kapabiliteter',
+                'tab-scores': 'Rankings',
+                'tab-capabilities': 'Model Abilities',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Ett experiment – inte en benchmark.',
                 'les-mer': 'Läs mer',
@@ -2009,7 +2010,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             }},
             en: {{
                 'hero-badge': 'Updated {period_display}',
-                'hero-subtitle': 'A monthly overview of what\\'s actually happening in AI. Based on signals from Hacker News, Github, X, and sentiment analysis.',
+                'hero-subtitle': 'Monthly ranking of AI tools based on buzz, sentiment, and utility',
                 'new-this-month': 'New This Month',
                 'biggest-changes': 'Biggest Movers',
                 'metrics-title': 'How to Read the Data',

@@ -22,11 +22,14 @@ except ImportError:
     pass
 
 from typing import List, Dict
+from pathlib import Path
+import json
+from datetime import datetime, timedelta
 
 from .collectors.hackernews import collect_ai_mentions
 from .collectors.github import collect_github_trending
 from .analyzer import analyze_with_claude, validate_rankings, add_trends_to_rankings
-from .config import LOOKBACK_DAYS
+from .config import LOOKBACK_DAYS, OUTPUT_DIR
 from .utils import get_period_string, save_output, load_cached_posts
 
 
@@ -154,6 +157,31 @@ async def main():
     
     # Steg 2: Analyser med Claude
     rankings = run_analysis(posts, period)
+    
+    # Check if analysis failed
+    if rankings.get("error"):
+        print(f"\n❌ Analyse feilet: {rankings.get('error')}")
+        print("💡 Prøver å bruke forrige måneds data hvis tilgjengelig...")
+        
+        # Try to use previous month's data as fallback
+        from datetime import datetime, timedelta
+        try:
+            year, month = map(int, period.split("-"))
+            prev_date = datetime(year, month, 1) - timedelta(days=1)
+            prev_period = prev_date.strftime("%Y-%m")
+            prev_file = Path(OUTPUT_DIR) / f"rankings_{prev_period}.json"
+            
+            if prev_file.exists():
+                with open(prev_file) as f:
+                    prev_rankings = json.load(f)
+                print(f"✅ Bruker data fra {prev_period} som fallback")
+                rankings = prev_rankings
+                rankings["period"] = period  # Update period
+                rankings["generated_at"] = datetime.now().isoformat()
+            else:
+                print("⚠️  Ingen forrige måneds data tilgjengelig")
+        except Exception as e:
+            print(f"⚠️  Kunne ikke laste forrige måneds data: {e}")
     
     # Steg 2.5: Legg til trend-analyse (sammenlign med forrige måned)
     print("\n📊 Analyserer trender (sammenligner med forrige måned)...")

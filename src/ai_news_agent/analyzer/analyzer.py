@@ -2,6 +2,7 @@
 AI Tool Analyzer - bruker Claude til å analysere og rangere AI-verktøy
 """
 import json
+import re
 from datetime import datetime
 from anthropic import Anthropic
 from ..config import CATEGORIES
@@ -112,13 +113,17 @@ def analyze_with_claude(posts: list[dict], period: str) -> dict:
     
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=8192,  # Increased to prevent truncation
+        max_tokens=16384,  # Increased to prevent truncation of large JSON responses
         messages=[
             {"role": "user", "content": prompt}
         ]
     )
     
     response_text = message.content[0].text
+    
+    # Check if response was truncated
+    if message.stop_reason == "max_tokens":
+        print("⚠️  Claude response ble trunkert (nådde max_tokens). Prøver å parse uansett...")
     
     # Parse JSON fra response
     try:
@@ -135,36 +140,87 @@ def analyze_with_claude(posts: list[dict], period: str) -> dict:
         print(f"⚠️  Feil ved parsing av JSON: {e}")
         print(f"Prøver å ekstraktere gyldig JSON fra respons...")
         
-        # Prøv å finne og parse den siste komplette JSON-strukturen
+        # Strategy 1: Extract from markdown code blocks more carefully
+        import re
+        json_patterns = [
+            r'```json\s*(\{.*?\})\s*```',  # JSON in ```json blocks
+            r'```\s*(\{.*?\})\s*```',      # JSON in ``` blocks
+            r'(\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\})',  # Any complete JSON object
+        ]
+        
+        for pattern in json_patterns:
+            matches = re.findall(pattern, response_text, re.DOTALL)
+            if matches:
+                # Try the longest match (most complete)
+                for match in sorted(matches, key=len, reverse=True):
+                    try:
+                        rankings = json.loads(match.strip())
+                        print(f"✅ Ekstraherte gyldig JSON fra markdown block")
+                        return rankings
+                    except:
+                        continue
+        
+        # Strategy 2: Find the first complete JSON object by counting braces
         try:
-            # Finn siste komplette objekt/array
-            brace_count = 0
-            bracket_count = 0
-            last_valid_pos = -1
-            
-            for i, char in enumerate(response_text):
-                if char == '{':
-                    brace_count += 1
-                elif char == '}':
-                    brace_count -= 1
-                    if brace_count == 0 and bracket_count == 0:
-                        last_valid_pos = i + 1
-                elif char == '[':
-                    bracket_count += 1
-                elif char == ']':
-                    bracket_count -= 1
-            
-            if last_valid_pos > 0:
-                partial_json = response_text[:last_valid_pos]
-                rankings = json.loads(partial_json)
-                print(f"✅ Ekstraherte gyldig JSON fra respons (truncated)")
-                return rankings
+            start_idx = response_text.find('{')
+            if start_idx >= 0:
+                brace_count = 0
+                in_string = False
+                escape_next = False
+                
+                for i in range(start_idx, len(response_text)):
+                    char = response_text[i]
+                    
+                    if escape_next:
+                        escape_next = False
+                        continue
+                    
+                    if char == '\\':
+                        escape_next = True
+                        continue
+                    
+                    if char == '"' and not escape_next:
+                        in_string = not in_string
+                        continue
+                    
+                    if not in_string:
+                        if char == '{':
+                            brace_count += 1
+                        elif char == '}':
+                            brace_count -= 1
+                            if brace_count == 0:
+                                # Found complete object
+                                json_str = response_text[start_idx:i+1]
+                                rankings = json.loads(json_str)
+                                print(f"✅ Ekstraherte gyldig JSON ved å telle braces")
+                                return rankings
+        except Exception as extract_error:
+            print(f"   Strategy 2 feilet: {extract_error}")
+        
+        # Strategy 3: Try to fix common JSON issues
+        try:
+            # Remove trailing commas before } or ]
+            fixed_json = re.sub(r',(\s*[}\]])', r'\1', response_text)
+            # Try parsing again
+            rankings = json.loads(fixed_json.strip())
+            print(f"✅ Ekstraherte gyldig JSON etter å ha fikset komma-feil")
+            return rankings
         except:
             pass
         
         print(f"❌ Kunne ikke ekstraktere gyldig JSON")
-        print(f"Raw response:\n{response_text[:500]}...")
-        return {"error": str(e), "raw_response": response_text}
+        print(f"Raw response (første 1000 tegn):\n{response_text[:1000]}...")
+        
+        # Return error structure that can be handled downstream
+        return {
+            "error": str(e),
+            "raw_response": response_text,
+            "period": period,
+            "generated_at": datetime.now().isoformat(),
+            "data_source": "hackernews,github",
+            "total_posts_analyzed": len(posts),
+            "categories": []  # Empty categories so validation doesn't fail completely
+        }
 
 
 def validate_rankings(rankings: dict) -> tuple[bool, list[str]]:

@@ -238,3 +238,4 @@ def calculate_final_score(
     
     return min(100, max(0, final_score))
 
+
