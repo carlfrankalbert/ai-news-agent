@@ -1600,7 +1600,9 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cta-text': 'FYRK hjelper bedrifter å velge riktige verktøy og bygge AI-drevne arbeidsflyter.',
                 'cta-button': 'Kontakt oss',
                 'contact': 'Kontakt',
-                'last-updated': 'Sist oppdatert: {last_updated}'
+                'last-updated': 'Sist oppdatert: {last_updated}',
+                'show-all': 'Vis alle',
+                'show-fewer': 'Vis færre'
             }},
             sv: {{
                 'hero-badge': 'Uppdaterad {period_display}',
@@ -1628,7 +1630,9 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cta-text': 'FYRK hjälper företag att välja rätt verktyg och bygga AI-drivna arbetsflöden.',
                 'cta-button': 'Kontakta oss',
                 'contact': 'Kontakt',
-                'last-updated': 'Senast uppdaterad: {last_updated}'
+                'last-updated': 'Senast uppdaterad: {last_updated}',
+                'show-all': 'Visa alla',
+                'show-fewer': 'Visa färre'
             }},
             en: {{
                 'hero-badge': 'Updated {period_display}',
@@ -1656,7 +1660,9 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cta-text': 'FYRK helps companies choose the right tools and build AI-powered workflows.',
                 'cta-button': 'Contact Us',
                 'contact': 'Contact',
-                'last-updated': 'Last updated: {last_updated}'
+                'last-updated': 'Last updated: {last_updated}',
+                'show-all': 'Show all',
+                'show-fewer': 'Show fewer'
             }}
         }};
 
@@ -1676,6 +1682,18 @@ DESIGN_HTML = """<!DOCTYPE html>
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) {{
                     el.textContent = translations[lang][key];
+                }}
+            }});
+            
+            // Translate expand buttons based on their expanded state
+            document.querySelectorAll('.expand-toggle, .expand-button').forEach(button => {{
+                const expandText = button.querySelector('.expand-text');
+                if (expandText) {{
+                    const isExpanded = button.classList.contains('expanded');
+                    const key = isExpanded ? 'show-fewer' : 'show-all';
+                    if (translations[lang] && translations[lang][key]) {{
+                        expandText.textContent = translations[lang][key];
+                    }}
                 }}
             }});
             
@@ -1800,9 +1818,15 @@ DESIGN_HTML = """<!DOCTYPE html>
                         row.classList.remove('expanded');
                     }});
                     button.classList.remove('expanded');
-                    const totalHidden = hiddenRows.length;
                     if (expandText) {{
-                        expandText.textContent = 'Vis flere (' + totalHidden + ' flere)';
+                        // Use translation - button is now collapsed, so show "show-all"
+                        const key = 'show-all';
+                        const lang = localStorage.getItem('fyrk-lang') || 'no';
+                        if (translations[lang] && translations[lang][key]) {{
+                            expandText.textContent = translations[lang][key];
+                        }} else {{
+                            expandText.textContent = 'Vis alle';
+                        }}
                     }}
                 }} else {{
                     // Expand
@@ -1811,7 +1835,14 @@ DESIGN_HTML = """<!DOCTYPE html>
                     }});
                     button.classList.add('expanded');
                     if (expandText) {{
-                        expandText.textContent = 'Vis færre';
+                        // Use translation - button is now expanded, so show "show-fewer"
+                        const key = 'show-fewer';
+                        const lang = localStorage.getItem('fyrk-lang') || 'no';
+                        if (translations[lang] && translations[lang][key]) {{
+                            expandText.textContent = translations[lang][key];
+                        }} else {{
+                            expandText.textContent = 'Vis færre';
+                        }}
                     }}
                 }}
             }} catch (error) {{
