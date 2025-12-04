@@ -4,6 +4,10 @@ En AI-agent som scanner Hacker News, GitHub, Reddit og X/Twitter for omtaler av 
 
 **Live**: [FYRK AI Radar](https://ai-radar.fyrk.no)
 
+[![Daily AI News Scan](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/daily.yml/badge.svg)](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/daily.yml)
+[![Monthly AI Capability Update](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/monthly-capability-update.yml/badge.svg)](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/monthly-capability-update.yml)
+[![Check Provider Links](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/check_links.yml/badge.svg)](https://github.com/carlfrankalbert/ai-news-agent/actions/workflows/check_links.yml)
+
 ## 🚀 Rask start
 
 ```bash
