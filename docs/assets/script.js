@@ -15,6 +15,7 @@ const translations = {
         'label-price': 'Pris',
         'filter-label': 'Filtrer etter kategori:',
         'filter-all': 'Alle',
+        'filter-clear': 'Tøm filter',
         'cat-core-llm': 'Kjerne-LLM-er',
         'cat-code': 'Kodeassistenter',
         'cat-image': 'Bilde & Video',
@@ -91,6 +92,7 @@ const translations = {
         'label-price': 'Pris',
         'filter-label': 'Filtrera efter kategori:',
         'filter-all': 'Alla',
+        'filter-clear': 'Rensa filter',
         'cat-core-llm': 'Kärn-LLM:er',
         'cat-code': 'Kodassistenter',
         'cat-image': 'Bild & Video',
@@ -167,6 +169,7 @@ const translations = {
         'label-price': 'Price',
         'filter-label': 'Filter by category:',
         'filter-all': 'All',
+        'filter-clear': 'Clear filter',
         'cat-core-llm': 'Core LLMs',
         'cat-code': 'Code Assistants',
         'cat-image': 'Image & Video',
@@ -363,8 +366,16 @@ const CapabilitiesUtils = {
         const cell = document.createElement('td');
         const cellContent = document.createElement('div');
         cellContent.className = `capability-cell capability-${score}`;
-        const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
-        cellContent.textContent = symbol;
+        
+        // Use different symbols based on score type
+        if (score === 'best') {
+            // Best uses a filled circle (handled by CSS)
+            cellContent.textContent = '';
+        } else {
+            const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+            cellContent.textContent = symbol;
+        }
+        
         cell.appendChild(cellContent);
         return cell;
     },
@@ -524,8 +535,18 @@ document.addEventListener('DOMContentLoaded', function() {
     renderCapabilitiesMobile();
 
     // Category filtering
-    const filterPills = document.querySelectorAll('.filter-pill');
+    const filterPills = document.querySelectorAll('.filter-pill:not(.filter-clear)');
+    const clearFilterBtn = document.querySelector('.filter-clear');
     const categorySections = document.querySelectorAll('.category-section');
+
+    function updateFilterDisplay() {
+        const activePill = document.querySelector('.filter-pill.active:not(.filter-clear)');
+        const isFiltered = activePill && activePill.dataset.category !== 'all';
+        
+        if (clearFilterBtn) {
+            clearFilterBtn.style.display = isFiltered ? 'inline-flex' : 'none';
+        }
+    }
 
     filterPills.forEach(pill => {
         pill.addEventListener('click', function() {
@@ -543,8 +564,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     section.classList.add('hidden');
                 }
             });
+            
+            updateFilterDisplay();
         });
     });
+
+    // Clear filter button
+    if (clearFilterBtn) {
+        clearFilterBtn.addEventListener('click', function() {
+            const allPill = document.querySelector('.filter-pill[data-category="all"]:not(.filter-clear)');
+            if (allPill) {
+                allPill.click();
+            }
+        });
+    }
 
     // Column sorting
     document.querySelectorAll('.rankings-header span[data-sort]').forEach(header => {

@@ -28,6 +28,8 @@ from datetime import datetime, timedelta
 
 from .collectors.hackernews import collect_ai_mentions
 from .collectors.github import collect_github_trending
+from .collectors.reddit import collect_reddit_posts
+from .collectors.twitter import collect_twitter_posts
 from .analyzer import analyze_with_claude, validate_rankings, add_trends_to_rankings
 from .config import LOOKBACK_DAYS, OUTPUT_DIR
 from .utils import get_period_string, save_output, load_cached_posts
@@ -37,21 +39,60 @@ from .utils import get_period_string, save_output, load_cached_posts
 
 async def run_collection(days: int = LOOKBACK_DAYS) -> List[Dict]:
     """Kjør datainnsamling fra alle kilder."""
-    print(f"📡 Samler data fra Hacker News (siste {days} dager)...")
-    hn_posts = await collect_ai_mentions(days_back=days)
-    print(f"✅ Fant {len(hn_posts)} AI-relaterte HN posts")
+    all_posts = []
     
+    # Hacker News
+    print(f"📡 Samler data fra Hacker News (siste {days} dager)...")
+    try:
+        hn_posts = await collect_ai_mentions(days_back=days)
+        print(f"✅ Fant {len(hn_posts)} AI-relaterte HN posts")
+        all_posts.extend(hn_posts)
+    except Exception as e:
+        print(f"⚠️  Feil ved Hacker News innsamling: {e}")
+    
+    # GitHub
     print(f"📡 Samler data fra GitHub Trending (siste {days} dager)...")
-    github_repos = await collect_github_trending(days_back=days, max_results=100)
-    print(f"✅ Fant {len(github_repos)} AI-relaterte GitHub repos")
+    try:
+        github_repos = await collect_github_trending(days_back=days, max_results=100)
+        print(f"✅ Fant {len(github_repos)} AI-relaterte GitHub repos")
+        all_posts.extend(github_repos)
+    except Exception as e:
+        print(f"⚠️  Feil ved GitHub innsamling: {e}")
+    
+    # Reddit
+    print(f"📡 Samler data fra Reddit (siste {days} dager)...")
+    try:
+        reddit_posts = await collect_reddit_posts(days_back=days, max_posts_per_subreddit=50)
+        print(f"✅ Fant {len(reddit_posts)} AI-relaterte Reddit posts")
+        all_posts.extend(reddit_posts)
+    except Exception as e:
+        print(f"⚠️  Feil ved Reddit innsamling: {e}")
+    
+    # Twitter/X
+    print(f"📡 Samler data fra X/Twitter (siste {days} dager)...")
+    try:
+        twitter_posts = await collect_twitter_posts(days_back=days, max_results=200)
+        print(f"✅ Fant {len(twitter_posts)} AI-relaterte tweets")
+        all_posts.extend(twitter_posts)
+    except Exception as e:
+        print(f"⚠️  Feil ved Twitter innsamling: {e}")
     
     # Kombiner og sorter
-    all_posts = hn_posts + github_repos
     all_posts.sort(key=lambda x: x["points"], reverse=True)
     
-    print(f"📊 Totalt {len(all_posts)} AI-relaterte items fra alle kilder")
+    print(f"\n📊 Totalt {len(all_posts)} AI-relaterte items fra alle kilder")
     if all_posts:
         print(f"   Topp item: [{all_posts[0]['points']} pts] {all_posts[0]['title'][:50]}...")
+    
+    # Print breakdown by source
+    source_counts = {}
+    for post in all_posts:
+        source = post.get("source", "unknown")
+        source_counts[source] = source_counts.get(source, 0) + 1
+    
+    print(f"\n📈 Fordeling per kilde:")
+    for source, count in sorted(source_counts.items(), key=lambda x: x[1], reverse=True):
+        print(f"   {source}: {count} items")
     
     return all_posts
 
