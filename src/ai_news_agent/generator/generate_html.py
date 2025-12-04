@@ -482,14 +482,11 @@ def generate_category_table_html(category: dict) -> str:
                         </button>
                     </div>"""
     
-    count_label = "modeller" if "llm" in slug.lower() else "verktøy" if "code" in slug.lower() or "image" in slug.lower() or "audio" in slug.lower() or "agents" in slug.lower() else "plattformer"
-    
     return f"""
             <!-- {display_name} Category -->
             <section class="category-section" data-category="{category_data_attr}">
                 <div class="category-header">
                     <h2 class="category-title" data-i18n="cat-{slug}">{display_name}</h2>
-                    <span class="category-count">{len(all_items)} <span data-i18n="{count_label}">{count_label}</span></span>
                 </div>
                 <div class="rankings-table">
                     <div class="rankings-header">
@@ -577,7 +574,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
             background: linear-gradient(180deg, #fafafa 0%, #f8f8f8 100%);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.5;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
@@ -965,20 +962,23 @@ DESIGN_HTML = """<!DOCTYPE html>
         .filter-pills {{
             display: flex;
             flex-wrap: wrap;
-            gap: var(--space-sm);
+            gap: 8px;
         }}
 
         .filter-pill {{
             background: var(--bg-muted);
             border: 0.5px solid transparent;
             border-radius: 100px;
-            padding: 6px 14px;
+            padding: 12px 24px;
             font-size: 13px;
             font-weight: 500;
             color: var(--text-secondary);
             cursor: pointer;
             transition: all var(--transition-base);
             font-family: inherit;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }}
 
         .filter-pill:hover {{
@@ -1089,12 +1089,13 @@ DESIGN_HTML = """<!DOCTYPE html>
             display: grid;
             grid-template-columns: 1fr 80px 80px 80px 80px 60px 30px;
             gap: var(--space-md);
-            padding: var(--space-md) var(--space-lg);
+            padding: 20px var(--space-lg);
             border-bottom: 0.5px solid var(--border-subtle);
             align-items: center;
             transition: all var(--transition-base);
             position: relative;
             cursor: pointer;
+            min-height: 60px;
         }}
 
         .ranking-row:last-child {{
@@ -1208,9 +1209,9 @@ DESIGN_HTML = """<!DOCTYPE html>
             text-align: right;
         }}
 
-        .score-high {{ color: var(--accent-success); }}
-        .score-mid {{ color: var(--text-secondary); }}
-        .score-low {{ color: var(--accent-danger); }}
+        .score-high {{ color: #3f3f46; }}
+        .score-mid {{ color: #71717a; }}
+        .score-low {{ color: #71717a; }}
 
         .trend-cell {{
             display: flex;
@@ -1229,7 +1230,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             border-radius: var(--radius-lg);
             padding: var(--space-xl);
             text-align: center;
-            margin: var(--space-3xl) 0;
+            margin: 48px 0;
             box-shadow: var(--shadow-sm);
             position: relative;
             box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0.5px 0 rgba(255,255,255,0.8);
@@ -1429,20 +1430,21 @@ DESIGN_HTML = """<!DOCTYPE html>
             padding: 0;
             font-size: 14px;
             font-weight: 400;
-            color: var(--text-secondary);
+            color: #71717a;
             cursor: pointer;
             transition: all var(--transition-base);
             font-family: inherit;
             display: inline-flex;
             align-items: center;
             gap: var(--space-xs);
-            text-decoration: underline;
+            text-decoration: none;
         }}
-        
+
         .expand-button:hover {{
             background: transparent;
             border: none;
             color: var(--text-primary);
+            text-decoration: underline;
         }}
         
         .expand-icon {{
@@ -1461,14 +1463,14 @@ DESIGN_HTML = """<!DOCTYPE html>
         /* Tab Navigation */
         .tab-bar {{
             display: flex;
-            gap: var(--space-xl);
+            gap: 16px;
             border-bottom: 1px solid var(--border);
             margin-bottom: var(--space-lg);
             padding: 0 var(--space-lg);
         }}
 
         .tab {{
-            padding: var(--space-md) 0;
+            padding: 12px 24px;
             font-size: 14px;
             font-weight: 500;
             color: var(--text-secondary);
@@ -1478,6 +1480,9 @@ DESIGN_HTML = """<!DOCTYPE html>
             position: relative;
             font-family: inherit;
             transition: color var(--transition-base);
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }}
 
         .tab:hover {{
@@ -1615,7 +1620,7 @@ DESIGN_HTML = """<!DOCTYPE html>
         }}
 
         .capabilities-table th {{
-            padding: var(--space-md);
+            padding: 16px;
             text-align: left;
             font-weight: 600;
             font-size: 13px;
@@ -1624,8 +1629,9 @@ DESIGN_HTML = """<!DOCTYPE html>
         }}
 
         .capabilities-table td {{
-            padding: var(--space-md);
+            padding: 20px 16px;
             border-bottom: 1px solid var(--border-subtle);
+            min-height: 60px;
         }}
 
         .capabilities-table .category-header-spacer td {{
@@ -1637,6 +1643,14 @@ DESIGN_HTML = """<!DOCTYPE html>
         .capability-cell {{
             text-align: center;
             font-size: 16px;
+        }}
+
+        .capability-best {{
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #71717a;
+            text-align: center;
         }}
 
         .capabilities-mobile {{
@@ -1653,11 +1667,13 @@ DESIGN_HTML = """<!DOCTYPE html>
 
         .about-section h2 {{
             font-size: 20px;
+            font-weight: 600;
             margin-bottom: var(--space-md);
         }}
 
         .about-section h3 {{
             font-size: 16px;
+            font-weight: 600;
             margin-top: var(--space-lg);
             margin-bottom: var(--space-sm);
         }}
@@ -1680,12 +1696,13 @@ DESIGN_HTML = """<!DOCTYPE html>
         }}
 
         .disclaimer {{
-            margin-top: var(--space-lg);
+            margin-top: 24px;
             padding: var(--space-md);
             background: var(--bg-muted);
             border-radius: var(--radius-md);
-            font-style: italic;
+            font-style: normal;
             color: var(--text-secondary);
+            opacity: 0.6;
         }}
     </style>
 </head>
@@ -1718,19 +1735,12 @@ DESIGN_HTML = """<!DOCTYPE html>
                 <button type="button" class="tab" role="tab" aria-selected="false" data-tab="kapabiliteter" id="tab-btn-kapabiliteter" data-i18n="tab-capabilities">Model Abilities</button>
             </nav>
 
-            <!-- Lab Banner -->
-            <div class="lab-banner" id="lab-banner">
-                <span class="lab-badge" data-i18n="lab-badge">🧪 FYRK Lab</span>
-                <span class="lab-text"><span data-i18n="lab-text">Et eksperiment – ikke en benchmark.</span> <a href="#om" data-i18n="les-mer">Les mer</a></span>
-                <button class="lab-dismiss" aria-label="Lukk" data-i18n-attr="aria-label" data-i18n-attr-key="close" onclick="dismissLabBanner()">×</button>
-            </div>
-
             <!-- Scores Tab Content -->
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
             <!-- Hero Section -->
             <section class="hero">
                 <h1 data-i18n="hero-title">FYRK AI Score</h1>
-                <p class="hero-subtitle" data-i18n="hero-subtitle">Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi</p>
+                <p class="hero-subtitle" data-i18n="hero-subtitle">Rangert etter buzz, sentiment og nytteverdi</p>
             </section>
 
 {highlights_html}
@@ -1768,21 +1778,6 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <div class="capabilities-header">
                         <div class="capabilities-title-group">
                             <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
-                            <p class="capabilities-subtitle" data-i18n="capabilities-subtitle">Hva kan hver modell?</p>
-                        </div>
-                        <div class="capabilities-legend">
-                            <span class="legend-item">
-                                <span>⭐</span>
-                                <span data-i18n="legend-best">Best</span>
-                            </span>
-                            <span class="legend-item">
-                                <span>✓</span>
-                                <span data-i18n="legend-yes">Ja</span>
-                            </span>
-                            <span class="legend-item">
-                                <span>✗</span>
-                                <span data-i18n="legend-no">Nei</span>
-                            </span>
                         </div>
                     </div>
                     <div class="capabilities-content">
@@ -1854,7 +1849,7 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Oppdatert {period_display}',
                 'version-badge': 'v2.1.0',
-                'hero-subtitle': 'Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi',
+                'hero-subtitle': 'Rangert etter buzz, sentiment og nytteverdi',
                 'table-name': 'Navn',
                 'table-buzz': 'Buzz',
                 'table-sentiment': 'Sentiment',
@@ -1925,7 +1920,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             sv: {{
                 'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Uppdaterad {period_display}',
-                'hero-subtitle': 'Månadsvis rangering av AI-verktyg baserat på buzz, sentiment och nytta',
+                'hero-subtitle': 'Rankad efter buzz, sentiment och nytta',
                 'table-name': 'Namn',
                 'table-buzz': 'Buzz',
                 'table-sentiment': 'Sentiment',
@@ -1996,7 +1991,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             en: {{
                 'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Updated {period_display}',
-                'hero-subtitle': 'Monthly ranking of AI tools based on buzz, sentiment, and utility',
+                'hero-subtitle': 'Ranked by buzz, sentiment, and utility',
                 'table-name': 'Name',
                 'table-buzz': 'Buzz',
                 'table-sentiment': 'Sentiment',
@@ -2114,15 +2109,6 @@ DESIGN_HTML = """<!DOCTYPE html>
             document.documentElement.lang = lang === 'no' ? 'no' : lang === 'sv' ? 'sv' : 'en';
         }}
 
-        // Lab Banner Dismissal
-        function dismissLabBanner() {{
-            const banner = document.getElementById('lab-banner');
-            if (banner) {{
-                banner.classList.add('hidden');
-                localStorage.setItem('fyrk-lab-banner-dismissed', 'true');
-            }}
-        }}
-
         // Tab Navigation
         function switchTab(tabName) {{
             // Update tabs
@@ -2194,17 +2180,19 @@ DESIGN_HTML = """<!DOCTYPE html>
                 const cell = document.createElement('td');
                 const cellContent = document.createElement('div');
                 cellContent.className = `capability-cell capability-${{score}}`;
-                
+
                 // Use different symbols based on score type
                 if (score === 'best') {{
-                    // Best uses a star with reduced saturation (25-30% reduction)
-                    cellContent.textContent = '⭐';
-                    cellContent.style.filter = 'saturate(0.5)';
+                    // Best uses text "Best" instead of star
+                    const bestText = document.createElement('span');
+                    bestText.className = 'capability-best';
+                    bestText.textContent = 'Best';
+                    cellContent.appendChild(bestText);
                 }} else {{
                     const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
                     cellContent.textContent = symbol;
                 }}
-                
+
                 cell.appendChild(cellContent);
                 return cell;
             }},
@@ -2286,12 +2274,6 @@ DESIGN_HTML = """<!DOCTYPE html>
                     switchTab(hash);
                 }}
             }});
-
-            // Check if lab banner was dismissed
-            if (localStorage.getItem('fyrk-lab-banner-dismissed') === 'true') {{
-                const banner = document.getElementById('lab-banner');
-                if (banner) banner.classList.add('hidden');
-            }}
 
             // Render capabilities
             renderCapabilitiesTable();
