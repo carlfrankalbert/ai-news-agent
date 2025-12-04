@@ -1392,7 +1392,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             }}
             
             .highlight-card {{
-                width: 100%%;
+                width: 100%;
                 flex-wrap: wrap;
             }}
 
@@ -1473,7 +1473,6 @@ DESIGN_HTML = """<!DOCTYPE html>
     <div class="container">
             <a href="https://fyrk.no" class="logo">
                 <picture class="logo-picture">
-                    <source srcset="assets/fyrk-logo-secondary-cyan.svg" media="(prefers-color-scheme: dark)">
                     <img src="assets/fyrk-logo-primary-navy.svg" alt="FYRK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 </picture>
                 <div class="logo-mark" style="display: none;">F</div>

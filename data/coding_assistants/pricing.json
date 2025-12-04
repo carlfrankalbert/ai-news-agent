@@ -1,0 +1,39 @@
+{
+  "Cursor": {
+    "tier": "freemium",
+    "free_tier": true,
+    "price_monthly": 20,
+    "score": 70
+  },
+  "GitHub Copilot": {
+    "tier": "paid",
+    "free_tier": false,
+    "price_monthly": 10,
+    "score": 50
+  },
+  "Continue": {
+    "tier": "free",
+    "free_tier": true,
+    "price_monthly": 0,
+    "score": 100
+  },
+  "Cody": {
+    "tier": "freemium",
+    "free_tier": true,
+    "price_monthly": 9,
+    "score": 70
+  },
+  "Aider": {
+    "tier": "paid",
+    "free_tier": false,
+    "price_monthly": 20,
+    "score": 40
+  },
+  "Supermaven": {
+    "tier": "paid",
+    "free_tier": false,
+    "price_monthly": 20,
+    "score": 40
+  }
+}
+

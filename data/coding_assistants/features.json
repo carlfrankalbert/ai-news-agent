@@ -1,0 +1,51 @@
+{
+  "Cursor": {
+    "multi_language": 10,
+    "ide_integration": 10,
+    "context_awareness": 9,
+    "code_completion": 9,
+    "chat_interface": 10,
+    "total": 96
+  },
+  "GitHub Copilot": {
+    "multi_language": 10,
+    "ide_integration": 10,
+    "context_awareness": 8,
+    "code_completion": 10,
+    "chat_interface": 7,
+    "total": 90
+  },
+  "Continue": {
+    "multi_language": 9,
+    "ide_integration": 8,
+    "context_awareness": 8,
+    "code_completion": 8,
+    "chat_interface": 9,
+    "total": 84
+  },
+  "Cody": {
+    "multi_language": 9,
+    "ide_integration": 8,
+    "context_awareness": 9,
+    "code_completion": 8,
+    "chat_interface": 9,
+    "total": 86
+  },
+  "Aider": {
+    "multi_language": 8,
+    "ide_integration": 7,
+    "context_awareness": 7,
+    "code_completion": 7,
+    "chat_interface": 8,
+    "total": 74
+  },
+  "Supermaven": {
+    "multi_language": 9,
+    "ide_integration": 8,
+    "context_awareness": 7,
+    "code_completion": 9,
+    "chat_interface": 6,
+    "total": 78
+  }
+}
+
