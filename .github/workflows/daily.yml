@@ -22,7 +22,7 @@ jobs:
       - name: Run agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python main.py --days 7
+        run: python main.py --days 30
       
       - name: Generate HTML
         run: python generate_html.py
