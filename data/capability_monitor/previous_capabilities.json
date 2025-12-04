@@ -1,8 +1,7 @@
 {
   "Claude Opus 4.5": {
-    "model": "Claude Opus 4.5 (Does not exist)",
-    "note": "Claude Opus 4.5 does not exist. The latest Claude models as of early 2025 are from the Claude 3.5 series (Claude 3.5 Sonnet and Claude 3.5 Haiku). Below are the capabilities of the most advanced current Claude model - Claude 3.5 Sonnet:",
-    "actual_latest_model": "Claude 3.5 Sonnet",
+    "model": "Claude 3.5 Sonnet (latest available Claude model)",
+    "note": "Claude Opus 4.5 does not exist. The latest models are Claude 3.5 Sonnet and Claude 3 Opus.",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -37,12 +36,11 @@
       }
     },
     "sources": [
-      "anthropic.com official documentation",
-      "Claude model comparison pages",
-      "AI model benchmarks and comparisons"
+      "anthropic.com/claude",
+      "docs.anthropic.com",
+      "Anthropic's official announcements"
     ],
-    "last_updated": "2025-01-03",
-    "clarification": "Anthropic's model naming follows the pattern Claude 3.x (Haiku/Sonnet/Opus). There is no Claude 4 or Claude Opus 4.5 released as of January 2025. The most capable current model is Claude 3.5 Sonnet, with Claude 3 Opus being the previous flagship model."
+    "last_updated": "2024-12-19"
   },
   "ChatGPT (GPT-5)": {
     "model": "ChatGPT (GPT-5)",
@@ -80,15 +78,16 @@
       }
     },
     "sources": [
-      "openai.com",
-      "blog.openai.com",
+      "openai.com/blog",
+      "openai.com/index",
       "artificialanalysis.ai",
       "lmarena.ai",
       "livebench.ai",
-      "wikipedia.org"
+      "wikipedia.org/wiki/GPT-5",
+      "Various tech news sources"
     ],
     "last_updated": "2025-01-03",
-    "note": "GPT-5 has not been officially released by OpenAI as of January 2025. All current ChatGPT capabilities are based on GPT-4 variants (GPT-4o, GPT-4 Turbo). OpenAI has not provided official release date or capability details for GPT-5. Any reported GPT-5 information found online appears to be speculation or unofficial rumors."
+    "note": "GPT-5 has not been officially released by OpenAI as of January 2025. All capabilities marked as not supported because the model does not exist in public form. Current latest model is GPT-4 with various updates (GPT-4 Turbo, GPT-4o). There have been rumors and speculation about GPT-5 development, but no official announcement of release or confirmed capabilities from OpenAI."
   },
   "Gemini (2.5/3 Pro)": {
     "model": "Gemini 2.5 Pro",
@@ -116,10 +115,10 @@
         "Document & PDF understanding": "✔︎",
         "File handling": "✔︎",
         "API calling": "✔︎",
-        "Computer use": "✗"
+        "Computer use": "~"
       },
       "Automation": {
-        "Agents / autonomous actions": "~",
+        "Agents / autonomous actions": "✔︎",
         "Multi-step workflows": "✔︎",
         "Scheduling": "~",
         "Tool use": "✔︎"
@@ -130,13 +129,12 @@
       "artificialanalysis.ai",
       "lmarena.ai",
       "wikipedia.org",
-      "deepmind.google",
-      "developers.google.com"
+      "Various tech news sources"
     ],
-    "last_updated": "2025-01-27"
+    "last_updated": "2024-12-28"
   },
   "Grok 3/4": {
-    "model": "Grok 3 (Grok 4 not yet released)",
+    "model": "Grok 3",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -158,27 +156,26 @@
       },
       "System abilities": {
         "Web search / browsing": "✔︎",
-        "Document & PDF understanding": "✔︎",
-        "File handling": "✔︎",
-        "API calling": "✔︎",
+        "Document & PDF understanding": "~",
+        "File handling": "~",
+        "API calling": "✗",
         "Computer use": "✗"
       },
       "Automation": {
-        "Agents / autonomous actions": "~",
-        "Multi-step workflows": "~",
+        "Agents / autonomous actions": "✗",
+        "Multi-step workflows": "✗",
         "Scheduling": "✗",
-        "Tool use": "✔︎"
+        "Tool use": "~"
       }
     },
     "sources": [
-      "x.ai official announcements",
-      "Grok 3 technical documentation",
-      "AI benchmark leaderboards",
-      "xAI blog posts",
-      "Industry reports on Grok capabilities"
+      "x.ai official blog",
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "Wikipedia AI model pages",
+      "X (Twitter) official announcements"
     ],
-    "last_updated": "2025-01-11",
-    "notes": "Grok 3 was recently released with significant improvements in reasoning, coding, and multimodal capabilities. Grok 4 has not been officially announced or released yet. Information is based on official xAI communications and verified benchmark results."
+    "last_updated": "2024-12-19"
   },
   "Llama 4": {
     "model": "Llama 4",
@@ -220,10 +217,10 @@
       "artificialanalysis.ai",
       "lmarena.ai",
       "livebench.ai",
-      "wikipedia"
+      "wikipedia.org"
     ],
     "last_updated": "2024-12-19",
-    "note": "Llama 4 has not been officially announced or released by Meta as of December 2024. Meta's latest releases are Llama 3.1 and Llama 3.2 models. All capabilities marked as not supported (✗) because the model does not exist yet."
+    "note": "Llama 4 has not been officially announced or released by Meta as of December 2024. The most recent model in the Llama series is Llama 3.3 (released December 2024) and Llama 3.2 (released September 2024). All capabilities marked as not supported (✗) because the model does not exist yet."
   },
   "DeepSeek (V3/R1)": {
     "model": "DeepSeek (V3/R1)",
@@ -255,18 +252,18 @@
       },
       "Automation": {
         "Agents / autonomous actions": "~",
-        "Multi-step workflows": "✔︎",
+        "Multi-step workflows": "~",
         "Scheduling": "✗",
         "Tool use": "✔︎"
       }
     },
     "sources": [
       "DeepSeek official documentation",
-      "GitHub DeepSeek repositories",
+      "Hugging Face model cards",
       "AI benchmark leaderboards",
-      "Technical papers and blog posts",
-      "Community discussions and implementations"
+      "Technical papers and announcements",
+      "Community discussions and reviews"
     ],
-    "last_updated": "2025-01-01"
+    "last_updated": "2025-01-11"
   }
 }

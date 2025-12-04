@@ -16,13 +16,13 @@
 | Audio understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
 | Audio generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **System abilities** |  |  |  |  |  |  |
-| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
+| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
 | File handling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| API calling | ✔︎ | ✗ | ✔︎ | ✗ | ✗ | ✔︎ |
+| API calling | ✔︎ | ✗ | ✔︎ | ✗ | ✗ | ~ |
 | Computer use | ✔︎ | ✗ | ~ | ✗ | ✗ | ✗ |
 | **Automation** |  |  |  |  |  |  |
-| Agents / autonomous actions | ~ | ✗ | ✔︎ | ✗ | ✗ | ~ |
-| Multi-step workflows | ~ | ✗ | ✔︎ | ✗ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ~ | ✗ | ✗ | ✗ |
-| Tool use | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| Agents / autonomous actions | ~ | ✗ | ~ | ✗ | ✗ | ~ |
+| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ~ |
+| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Tool use | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |

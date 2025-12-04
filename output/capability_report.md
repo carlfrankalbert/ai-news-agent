@@ -20,16 +20,16 @@
 | Audio understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
 | Audio generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **System abilities** |  |  |  |  |  |  |
-| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
+| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
 | File handling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| API calling | ✔︎ | ✗ | ✔︎ | ✗ | ✗ | ✔︎ |
+| API calling | ✔︎ | ✗ | ✔︎ | ✗ | ✗ | ~ |
 | Computer use | ✔︎ | ✗ | ~ | ✗ | ✗ | ✗ |
 | **Automation** |  |  |  |  |  |  |
-| Agents / autonomous actions | ~ | ✗ | ✔︎ | ✗ | ✗ | ~ |
-| Multi-step workflows | ~ | ✗ | ✔︎ | ✗ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ~ | ✗ | ✗ | ✗ |
-| Tool use | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
+| Agents / autonomous actions | ~ | ✗ | ~ | ✗ | ✗ | ~ |
+| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ~ |
+| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Tool use | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
 
 ### Legend
 
@@ -40,38 +40,42 @@
 
 ### Sources
 
-- AI benchmark leaderboards
-- Anthropic's official announcements
-- Community discussions and reviews
+- AI benchmark repositories
+- Available benchmark data
+- Chatbot Arena leaderboards
 - DeepSeek official documentation
-- Hugging Face model cards
+- HuggingFace model pages
+- Public documentation
 - Technical papers and announcements
 - Various tech news sources
-- Wikipedia AI model pages
-- X (Twitter) official announcements
+- Various tech news sources covering Gemini updates
+- Wikipedia
+- X.com (Twitter) announcements
 - ai.meta.com
-- anthropic.com/claude
+- anthropic.com
 - artificialanalysis.ai
-- blog.google.com
-- docs.anthropic.com
+- artificialanalysis.ai - AI model benchmarks
+- blog.google.com - Official Google AI blog posts
+- claude.ai documentation
+- en.wikipedia.org/wiki/GPT-5
+- general AI model knowledge
 - livebench.ai
 - lmarena.ai
+- lmarena.ai - Language model arena rankings
 - openai.com/blog
-- openai.com/index
-- wikipedia.org
-- wikipedia.org/wiki/GPT-5
-- x.ai official blog
+- wikipedia.org - Gemini AI model information
+- x.ai official website
 
 ### Changes from Previous Update
 
-- Claude Opus 4.5: Automation - Multi-step workflows changed from ✔︎ to ~
-- Gemini (2.5/3 Pro): Visual abilities - Image generation changed from ✔︎ to ✗
 - Gemini (2.5/3 Pro): System abilities - Computer use changed from ✗ to ~
-- Gemini (2.5/3 Pro): Automation - Agents / autonomous actions changed from ~ to ✔︎
-- Gemini (2.5/3 Pro): Automation - Scheduling changed from ✗ to ~
+- Gemini (2.5/3 Pro): Automation - Scheduling changed from ~ to ✗
 - Grok 3/4: System abilities - Document & PDF understanding changed from ✔︎ to ~
 - Grok 3/4: System abilities - File handling changed from ✔︎ to ~
-- Grok 3/4: System abilities - API calling changed from ~ to ✗
+- Grok 3/4: System abilities - API calling changed from ✔︎ to ✗
 - Grok 3/4: Automation - Agents / autonomous actions changed from ~ to ✗
-- Grok 3/4: Automation - Multi-step workflows changed from ~ to ✗
 - Grok 3/4: Automation - Tool use changed from ✔︎ to ~
+- DeepSeek (V3/R1): System abilities - Web search / browsing changed from ~ to ✗
+- DeepSeek (V3/R1): System abilities - API calling changed from ✔︎ to ~
+- DeepSeek (V3/R1): Automation - Multi-step workflows changed from ✔︎ to ~
+- DeepSeek (V3/R1): Automation - Tool use changed from ✔︎ to ~
