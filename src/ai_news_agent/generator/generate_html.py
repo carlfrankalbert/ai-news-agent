@@ -1068,8 +1068,13 @@ DESIGN_HTML = """<!DOCTYPE html>
             cursor: pointer;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 4px;
             user-select: none;
+        }}
+
+        .rankings-header span:first-child {{
+            justify-content: flex-start;
         }}
 
         .rankings-header span:hover {{
@@ -1206,7 +1211,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             font-family: 'IBM Plex Mono', monospace;
             font-size: 14px;
             font-weight: 500;
-            text-align: right;
+            text-align: center;
         }}
 
         .score-high {{ color: #3f3f46; }}
