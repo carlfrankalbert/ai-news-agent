@@ -10,7 +10,7 @@
 | Memory (context) | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | Multilingual / Norwegian | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 | **Visual abilities** |  |  |  |  |  |  |
-| Image generation | ✗ | ✗ | ✗ | ✔︎ | ✗ | ✗ |
+| Image generation | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Image understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
 | Video generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | Video understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
@@ -20,15 +20,15 @@
 | Audio understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
 | Audio generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **System abilities** |  |  |  |  |  |  |
-| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
+| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | File handling | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ~ |
 | API calling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ✔︎ |
-| Computer use | ✔︎ | ✗ | ~ | ✗ | ✗ | ✗ |
+| Computer use | ✔︎ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | **Automation** |  |  |  |  |  |  |
 | Agents / autonomous actions | ~ | ✗ | ~ | ~ | ✗ | ~ |
-| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ~ | ✗ | ✗ | ✗ |
+| Multi-step workflows | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
+| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
 | Tool use | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
 
 ### Legend
@@ -40,27 +40,32 @@
 
 ### Sources
 
-- AI benchmark leaderboards
+- AI community discussions and reviews
 - Anthropic's official announcements
-- ArXiv papers on DeepSeek V3
-- Claude API documentation
-- Current knowledge base as of April 2024
+- ArXiv paper: DeepSeek-V3 Technical Report
+- Benchmark leaderboards (Chatbot Arena, LiveBench)
+- Claude 3.5 model documentation
 - DeepSeek official documentation
-- GitHub repositories
-- Hugging Face model cards
-- Tech news articles from December 2024/January 2025
-- Various tech news outlets reporting on Grok 3 launch
+- DeepSeek-R1 reasoning model announcements
+- General web search results
+- GitHub DeepSeek-V3 repository
+- Various AI news sources and documentation
+- Wikipedia AI model pages
 - ai.google.dev
 - ai.meta.com
 - anthropic.com
 - artificialanalysis.ai
 - artificialanalysis.ai benchmarks
 - blog.google.com
+- blog.openai.com
 - deepmind.google
 - livebench.ai
+- livebench.ai evaluations
 - lmarena.ai
 - lmarena.ai leaderboards
 - openai.com
+- various tech news sources
+- wikipedia AI model pages
 - wikipedia.org
 - x.ai official blog
 
