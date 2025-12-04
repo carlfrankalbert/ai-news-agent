@@ -478,7 +478,7 @@ def generate_category_table_html(category: dict) -> str:
         expand_button = f"""
                     <div class="expand-section">
                         <button class="expand-button" data-category="{category_data_attr}" onclick="toggleExpand('{category_data_attr}')">
-                            <span class="expand-text">Vis alle</span>
+                            <span class="expand-text" data-i18n="show-all">Vis alle</span>
                         </button>
                     </div>"""
     
@@ -493,12 +493,12 @@ def generate_category_table_html(category: dict) -> str:
                 </div>
                 <div class="rankings-table">
                     <div class="rankings-header">
-                        <span>Navn</span>
-                        <span>Buzz</span>
-                        <span>Sentiment</span>
-                        <span>Nytte</span>
-                        <span>Pris</span>
-                        <span>Trend</span>
+                        <span data-i18n="table-name">Navn</span>
+                        <span data-i18n="table-buzz">Buzz</span>
+                        <span data-i18n="table-sentiment">Sentiment</span>
+                        <span data-i18n="table-utility">Nytte</span>
+                        <span data-i18n="table-price">Pris</span>
+                        <span data-i18n="table-trend">Trend</span>
                         <span></span>
                     </div>
 {rows_html}{expand_button}
@@ -1729,7 +1729,7 @@ DESIGN_HTML = """<!DOCTYPE html>
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
             <!-- Hero Section -->
             <section class="hero">
-                <h1>FYRK AI Score</h1>
+                <h1 data-i18n="hero-title">FYRK AI Score</h1>
                 <p class="hero-subtitle" data-i18n="hero-subtitle">Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi</p>
             </section>
 
@@ -1741,7 +1741,7 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <button class="filter-pill active" data-category="all" data-i18n="filter-all">Alle</button>
                     <button class="filter-pill" data-category="core-llm" data-i18n="cat-core-llm">Kjerne-LLM-er</button>
                     <button class="filter-pill" data-category="code-assistants" data-i18n="cat-code">Kodeassistenter</button>
-                    <button class="filter-pill" data-category="builder-platform">Builder & API</button>
+                    <button class="filter-pill" data-category="builder-platform" data-i18n="cat-builder-platform">Builder & API</button>
                     <button class="filter-pill" data-category="image-video" data-i18n="cat-image">Bilde & Video</button>
                     <button class="filter-pill" data-category="audio-voice" data-i18n="cat-audio">Lyd & Stemme</button>
                     <button class="filter-pill" data-category="agents" data-i18n="cat-agents">Agenter</button>
@@ -1851,9 +1851,17 @@ DESIGN_HTML = """<!DOCTYPE html>
         // Translations
         const translations = {{
             no: {{
+                'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Oppdatert {period_display}',
                 'version-badge': 'v2.1.0',
                 'hero-subtitle': 'Månedlig rangering av AI-verktøy basert på buzz, sentiment og nytteverdi',
+                'table-name': 'Navn',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Nytte',
+                'table-price': 'Pris',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
                 'new-this-month': 'Ny denne måneden',
                 'biggest-changes': 'Største endringer',
                 'metrics-title': 'Slik leser du dataene',
@@ -1880,8 +1888,8 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'last-updated': 'Sist oppdatert: {last_updated}',
                 'show-all': 'Vis alle',
                 'show-fewer': 'Vis færre',
-                'tab-scores': 'Rankings',
-                'tab-capabilities': 'Model Abilities',
+                'tab-scores': 'Rankinger',
+                'tab-capabilities': 'Kapabiliteter',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Et eksperiment – ikke en benchmark.',
                 'les-mer': 'Les mer',
@@ -1915,8 +1923,16 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'disclaimer': 'Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.'
             }},
             sv: {{
+                'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Uppdaterad {period_display}',
                 'hero-subtitle': 'Månadsvis rangering av AI-verktyg baserat på buzz, sentiment och nytta',
+                'table-name': 'Namn',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Nytta',
+                'table-price': 'Pris',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
                 'new-this-month': 'Nytt denna månad',
                 'biggest-changes': 'Största förändringarna',
                 'metrics-title': 'Så här läser du datan',
@@ -1943,8 +1959,8 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'last-updated': 'Senast uppdaterad: {last_updated}',
                 'show-all': 'Visa alla',
                 'show-fewer': 'Visa färre',
-                'tab-scores': 'Rankings',
-                'tab-capabilities': 'Model Abilities',
+                'tab-scores': 'Rankingar',
+                'tab-capabilities': 'Kapabiliteter',
                 'lab-badge': '🧪 FYRK Lab',
                 'lab-text': 'Ett experiment – inte en benchmark.',
                 'les-mer': 'Läs mer',
@@ -1978,8 +1994,16 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'disclaimer': 'Inte vetenskapligt – använd som inspiration, inte facit.'
             }},
             en: {{
+                'hero-title': 'FYRK AI Score',
                 'hero-badge': 'Updated {period_display}',
                 'hero-subtitle': 'Monthly ranking of AI tools based on buzz, sentiment, and utility',
+                'table-name': 'Name',
+                'table-buzz': 'Buzz',
+                'table-sentiment': 'Sentiment',
+                'table-utility': 'Utility',
+                'table-price': 'Price',
+                'table-trend': 'Trend',
+                'cat-builder-platform': 'Builder & API',
                 'new-this-month': 'New This Month',
                 'biggest-changes': 'Biggest Movers',
                 'metrics-title': 'How to Read the Data',
@@ -2058,6 +2082,15 @@ DESIGN_HTML = """<!DOCTYPE html>
                 const key = el.dataset.i18n;
                 if (translations[lang] && translations[lang][key]) {{
                     el.textContent = translations[lang][key];
+                }}
+            }});
+            
+            // Translate aria-label attributes
+            document.querySelectorAll('[data-i18n-attr]').forEach(el => {{
+                const attrName = el.dataset.i18nAttr || 'aria-label';
+                const key = el.dataset.i18nAttrKey;
+                if (key && translations[lang] && translations[lang][key]) {{
+                    el.setAttribute(attrName, translations[lang][key]);
                 }}
             }});
             
