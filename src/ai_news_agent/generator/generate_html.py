@@ -403,7 +403,8 @@ def generate_category_table_html(category: dict) -> str:
     category_data_attr = CATEGORY_MAP.get(slug, slug)
     
     rows_html = ""
-    all_items = category.get("top3", [])
+    # Try top10 first, fallback to top3, then items
+    all_items = category.get("top10", category.get("top3", category.get("items", [])))
     
     # Limit to max 10 items
     all_items = all_items[:10]
