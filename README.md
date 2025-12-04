@@ -1,6 +1,6 @@
 # AI News Agent
 
-En AI-agent som scanner Hacker News og GitHub for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format.
+En AI-agent som scanner Hacker News, GitHub, Reddit og X/Twitter for omtaler av AI-verktøy, analyserer dataene med Claude, og genererer en rangert oversikt i JSON og HTML-format.
 
 **Live**: [FYRK AI Radar](https://ai-radar.fyrk.no)
 
@@ -10,8 +10,10 @@ En AI-agent som scanner Hacker News og GitHub for omtaler av AI-verktøy, analys
 # 1. Installer dependencies
 pip install -r requirements.txt
 
-# 2. Sett Anthropic API-nøkkel
-export ANTHROPIC_API_KEY="sk-ant-..."
+# 2. Sett API-nøkler (opprett .env fil)
+export ANTHROPIC_API_KEY="sk-ant-..."  # Påkrevd
+export GITHUB_TOKEN="ghp_..."          # Valgfri (høyere rate limit)
+export TWITTER_BEARER_TOKEN="..."      # Valgfri (for Twitter-innsamling)
 
 # 3. Kjør full pipeline
 python main.py
@@ -25,7 +27,7 @@ python generate_html.py
 ```
 ai-news-agent/
 ├── src/ai_news_agent/         # Hovedpakke (all Python-kode)
-│   ├── collectors/            # Datainnsamling (HN, GitHub)
+│   ├── collectors/            # Datainnsamling (HN, GitHub, Reddit, Twitter)
 │   ├── analyzer/              # Analyse med Claude + trender
 │   ├── generator/             # HTML-generering
 │   └── utils/                 # Hjelpefunksjoner
@@ -66,12 +68,25 @@ python generate_html.py
 python generate_html.py --dummy
 ```
 
+## 📡 Datakilder
+
+Systemet samler data fra fire kilder:
+
+1. **Hacker News** - AI-relaterte posts fra topstories/beststories (gratis, ingen auth)
+2. **GitHub** - Trending AI-repositories (gratis, token valgfri for høyere rate limit)
+3. **Reddit** - AI-relaterte posts fra relevante subreddits (gratis, ingen auth)
+4. **X/Twitter** - AI-relaterte tweets med høy engagement (krever Bearer Token)
+
+Se [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md) for detaljert dokumentasjon om hver datakilde.
+
 ## 🏗 Arkitektur
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐     ┌──────────┐
 │   main.py   │────▶│  collectors/ │────▶│  analyzer   │────▶│  output/ │
-│ (orkestrer) │     │ (HN, GitHub) │     │  (Claude)   │     │  (JSON)  │
+│ (orkestrer) │     │ (HN, GitHub, │     │  (Claude)   │     │  (JSON)  │
+│             │     │  Reddit,     │     │             │     │          │
+│             │     │  Twitter)    │     │             │     │          │
 └─────────────┘     └──────────────┘     └─────────────┘     └──────────┘
                                                                    │
                                                                    ▼
