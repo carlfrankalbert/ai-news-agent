@@ -1,0 +1,273 @@
+{
+  "Claude Opus 4.5": {
+    "model": "Claude 3.5 Sonnet (latest available)",
+    "note": "Claude Opus 4.5 does not exist. The latest Claude model is Claude 3.5 Sonnet.",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "✔︎",
+        "Computer use": "✔︎"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "key_features": [
+      "200K token context window",
+      "Computer use capability (beta)",
+      "Advanced reasoning and coding",
+      "Image analysis and understanding",
+      "Tool use and function calling",
+      "PDF and document processing"
+    ],
+    "sources": [
+      "anthropic.com",
+      "Claude API documentation",
+      "Anthropic's official announcements"
+    ],
+    "last_updated": "2024-12-19"
+  },
+  "ChatGPT (GPT-5)": {
+    "model": "ChatGPT (GPT-5)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✗",
+        "Coding": "✗",
+        "Memory (context)": "✗",
+        "Multilingual / Norwegian": "✗"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✗",
+        "File handling": "✗",
+        "API calling": "✗",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "✗",
+        "Multi-step workflows": "✗",
+        "Scheduling": "✗",
+        "Tool use": "✗"
+      }
+    },
+    "sources": [
+      "openai.com",
+      "Current knowledge base as of April 2024"
+    ],
+    "last_updated": "2024-12-28",
+    "note": "GPT-5 has not been officially released or announced by OpenAI as of the last available information. All capabilities marked as not supported because the model does not exist in released form. Current latest model from OpenAI is GPT-4 and its variants (GPT-4 Turbo, GPT-4o)."
+  },
+  "Gemini (2.5/3 Pro)": {
+    "model": "Gemini 2.5 Pro",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✔︎"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✔︎",
+        "Text-to-speech": "✔︎",
+        "Audio understanding": "✔︎",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✔︎",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "✔︎",
+        "Computer use": "~"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "✔︎",
+        "Scheduling": "~",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "blog.google.com",
+      "deepmind.google",
+      "ai.google.dev",
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "wikipedia.org"
+    ],
+    "last_updated": "2025-01-11"
+  },
+  "Grok 3/4": {
+    "model": "Grok 3",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✔︎",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✔︎",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "~",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "x.ai official blog",
+      "artificialanalysis.ai benchmarks",
+      "lmarena.ai leaderboards",
+      "Various tech news outlets reporting on Grok 3 launch"
+    ],
+    "last_updated": "2024-12-30"
+  },
+  "Llama 4": {
+    "model": "Llama 4",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✗",
+        "Coding": "✗",
+        "Memory (context)": "✗",
+        "Multilingual / Norwegian": "✗"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "✗",
+        "File handling": "✗",
+        "API calling": "✗",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "✗",
+        "Multi-step workflows": "✗",
+        "Scheduling": "✗",
+        "Tool use": "✗"
+      }
+    },
+    "sources": [
+      "ai.meta.com",
+      "artificialanalysis.ai",
+      "lmarena.ai",
+      "livebench.ai",
+      "wikipedia.org"
+    ],
+    "last_updated": "2024-12-28",
+    "note": "Llama 4 has not been officially announced or released by Meta as of December 2024. The most recent model in the Llama series is Llama 3.3 (released December 2024), with Llama 3.1 and Llama 3.2 being the previous major releases. All capabilities marked as not supported (✗) because the model does not exist yet."
+  },
+  "DeepSeek (V3/R1)": {
+    "model": "DeepSeek (V3/R1)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✗",
+        "Image understanding": "✗",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✗",
+        "Text-to-speech": "✗",
+        "Audio understanding": "✗",
+        "Audio generation": "✗"
+      },
+      "System abilities": {
+        "Web search / browsing": "✗",
+        "Document & PDF understanding": "~",
+        "File handling": "~",
+        "API calling": "✔︎",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "DeepSeek official documentation",
+      "Hugging Face model cards",
+      "ArXiv papers on DeepSeek V3",
+      "AI benchmark leaderboards",
+      "GitHub repositories",
+      "Tech news articles from December 2024/January 2025"
+    ],
+    "last_updated": "2025-01-27"
+  }
+}
