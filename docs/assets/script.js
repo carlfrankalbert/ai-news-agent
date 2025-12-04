@@ -366,16 +366,8 @@ const CapabilitiesUtils = {
         const cell = document.createElement('td');
         const cellContent = document.createElement('div');
         cellContent.className = `capability-cell capability-${score}`;
-        
-        // Use different symbols based on score type
-        if (score === 'best') {
-            // Best uses a filled circle (handled by CSS)
-            cellContent.textContent = '';
-        } else {
-            const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
-            cellContent.textContent = symbol;
-        }
-        
+        const symbol = CAPABILITIES_CONFIG.scoreSymbols[score] || '';
+        cellContent.textContent = symbol;
         cell.appendChild(cellContent);
         return cell;
     },
