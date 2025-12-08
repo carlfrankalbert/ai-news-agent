@@ -7,6 +7,44 @@
     <meta name="description" content="En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {{
+            theme: {{
+                extend: {{
+                    colors: {{
+                        'fyrk-base': '#fafafa',
+                        'fyrk-card': '#ffffff',
+                        'fyrk-muted': '#f4f4f5',
+                        'fyrk-primary': '#18181b',
+                        'fyrk-secondary': '#71717a',
+                        'fyrk-accent': '#2563eb',
+                        'fyrk-success': '#16a34a',
+                        'fyrk-warning': '#ea580c',
+                        'fyrk-danger': '#dc2626',
+                        'fyrk-gold': '#ca8a04',
+                        'fyrk-silver': '#71717a',
+                        'fyrk-bronze': '#a16207',
+                    }},
+                    fontFamily: {{
+                        'sans': ['DM Sans', 'system-ui', '-apple-system', 'sans-serif'],
+                        'mono': ['IBM Plex Mono', 'monospace'],
+                    }},
+                    borderRadius: {{
+                        'fyrk-sm': '6px',
+                        'fyrk-md': '10px',
+                        'fyrk-lg': '16px',
+                    }},
+                    boxShadow: {{
+                        'fyrk-sm': '0 1px 2px rgba(0,0,0,0.04)',
+                        'fyrk-md': '0 4px 12px rgba(0,0,0,0.06)',
+                        'fyrk-lg': '0 8px 24px rgba(0,0,0,0.08)',
+                    }},
+                }}
+            }}
+        }}
+    </script>
     <style>
         :root {{
             --bg-base: #fafafa;
