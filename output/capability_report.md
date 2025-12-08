@@ -1,35 +1,35 @@
 # AI Model Capability Comparison
 
-*Last updated: 2025-12-04*
+*Last updated: 2025-12-08*
 
 | Capability | Claude Opus 4.5 | ChatGPT (GPT-5) | Gemini (2.5/3 Pro) | Grok 3/4 | Llama 4 | DeepSeek (V3/R1) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
 | **Cognitive abilities** |  |  |  |  |  |  |
-| Reasoning | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
-| Coding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
-| Memory (context) | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
-| Multilingual / Norwegian | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✔︎ |
+| Reasoning | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✔︎ |
+| Coding | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✔︎ |
+| Memory (context) | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✔︎ |
+| Multilingual / Norwegian | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✔︎ |
 | **Visual abilities** |  |  |  |  |  |  |
-| Image generation | ✗ | ✗ | ✗ | ✔︎ | ✗ | ✗ |
-| Image understanding | ✔︎ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
-| Video generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| Video understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
+| Image generation | ✗ | ✔︎ | ✗ | ✗ | N/A | ✗ |
+| Image understanding | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✗ |
+| Video generation | ✗ | ✗ | ✗ | ✗ | N/A | ✗ |
+| Video understanding | ✗ | ✗ | ✔︎ | ✗ | N/A | ✗ |
 | **Audio & speech** |  |  |  |  |  |  |
-| Speech-to-text | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
-| Text-to-speech | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
-| Audio understanding | ✗ | ✗ | ✔︎ | ✗ | ✗ | ✗ |
-| Audio generation | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
+| Speech-to-text | ✗ | ✔︎ | ✔︎ | ✗ | N/A | ✗ |
+| Text-to-speech | ✗ | ✔︎ | ✔︎ | ✗ | N/A | ✗ |
+| Audio understanding | ✗ | ✔︎ | ✔︎ | ✗ | N/A | ✗ |
+| Audio generation | ✗ | ~ | ✗ | ✗ | N/A | ✗ |
 | **System abilities** |  |  |  |  |  |  |
-| Web search / browsing | ✗ | ✗ | ✔︎ | ✔︎ | ✗ | ✗ |
-| Document & PDF understanding | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| File handling | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| API calling | ✔︎ | ✗ | ✔︎ | ✗ | ✗ | ~ |
-| Computer use | ✔︎ | ✗ | ~ | ✗ | ✗ | ✗ |
+| Web search / browsing | ✗ | ✔︎ | ✔︎ | ✔︎ | N/A | ✗ |
+| Document & PDF understanding | ✗ | ✔︎ | ✔︎ | ~ | N/A | ~ |
+| File handling | ✗ | ✔︎ | ✔︎ | ~ | N/A | ~ |
+| API calling | ✗ | ✔︎ | ✔︎ | ✗ | N/A | ✔︎ |
+| Computer use | ✗ | ✗ | ✔︎ | ✗ | N/A | ✗ |
 | **Automation** |  |  |  |  |  |  |
-| Agents / autonomous actions | ~ | ✗ | ~ | ✗ | ✗ | ~ |
-| Multi-step workflows | ~ | ✗ | ✔︎ | ~ | ✗ | ~ |
-| Scheduling | ✗ | ✗ | ✗ | ✗ | ✗ | ✗ |
-| Tool use | ✔︎ | ✗ | ✔︎ | ~ | ✗ | ~ |
+| Agents / autonomous actions | ✗ | ~ | ✔︎ | ✗ | N/A | ~ |
+| Multi-step workflows | ✗ | ~ | ✔︎ | ~ | N/A | ~ |
+| Scheduling | ✗ | ✗ | ~ | ✗ | N/A | ✗ |
+| Tool use | ✗ | ✔︎ | ✔︎ | ~ | N/A | ✔︎ |
 
 ### Legend
 
@@ -40,42 +40,83 @@
 
 ### Sources
 
-- AI benchmark repositories
-- Available benchmark data
-- Chatbot Arena leaderboards
+- AI model comparison sites
+- Community discussions and reviews
 - DeepSeek official documentation
-- HuggingFace model pages
-- Public documentation
-- Technical papers and announcements
+- Google AI documentation
+- TechCrunch - Gemini 2.5 Pro coverage
+- Technical benchmarks and evaluations
 - Various tech news sources
-- Various tech news sources covering Gemini updates
+- Various tech news sources covering Grok 3 release
+- VentureBeat - AI model comparisons
 - Wikipedia
-- X.com (Twitter) announcements
+- X (Twitter) xAI announcements
 - ai.meta.com
 - anthropic.com
 - artificialanalysis.ai
-- artificialanalysis.ai - AI model benchmarks
-- blog.google.com - Official Google AI blog posts
-- claude.ai documentation
-- en.wikipedia.org/wiki/GPT-5
-- general AI model knowledge
+- artificialanalysis.ai - Benchmark results
+- blog.google.com - Gemini 2.5 Pro announcement
 - livebench.ai
 - lmarena.ai
-- lmarena.ai - Language model arena rankings
-- openai.com/blog
-- wikipedia.org - Gemini AI model information
-- x.ai official website
+- lmarena.ai - Model leaderboard
+- lmarena.ai benchmark data
+- openai.com
+- wikipedia.org
+- x.ai official blog
 
 ### Changes from Previous Update
 
-- Gemini (2.5/3 Pro): System abilities - Computer use changed from ✗ to ~
-- Gemini (2.5/3 Pro): Automation - Scheduling changed from ~ to ✗
-- Grok 3/4: System abilities - Document & PDF understanding changed from ✔︎ to ~
-- Grok 3/4: System abilities - File handling changed from ✔︎ to ~
-- Grok 3/4: System abilities - API calling changed from ✔︎ to ✗
-- Grok 3/4: Automation - Agents / autonomous actions changed from ~ to ✗
-- Grok 3/4: Automation - Tool use changed from ✔︎ to ~
+- Claude Opus 4.5: Cognitive abilities - Reasoning changed from ✔︎ to ✗
+- Claude Opus 4.5: Cognitive abilities - Coding changed from ✔︎ to ✗
+- Claude Opus 4.5: Cognitive abilities - Memory (context) changed from ✔︎ to ✗
+- Claude Opus 4.5: Cognitive abilities - Multilingual / Norwegian changed from ✔︎ to ✗
+- Claude Opus 4.5: Visual abilities - Image understanding changed from ✔︎ to ✗
+- Claude Opus 4.5: System abilities - Document & PDF understanding changed from ✔︎ to ✗
+- Claude Opus 4.5: System abilities - File handling changed from ✔︎ to ✗
+- Claude Opus 4.5: System abilities - API calling changed from ✔︎ to ✗
+- Claude Opus 4.5: System abilities - Computer use changed from ✔︎ to ✗
+- Claude Opus 4.5: Automation - Agents / autonomous actions changed from ~ to ✗
+- Claude Opus 4.5: Automation - Multi-step workflows changed from ~ to ✗
+- Claude Opus 4.5: Automation - Tool use changed from ✔︎ to ✗
+- ChatGPT (GPT-5): Cognitive abilities - Reasoning changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Cognitive abilities - Coding changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Cognitive abilities - Memory (context) changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Cognitive abilities - Multilingual / Norwegian changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Visual abilities - Image generation changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Visual abilities - Image understanding changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Audio & speech - Speech-to-text changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Audio & speech - Text-to-speech changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Audio & speech - Audio understanding changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Audio & speech - Audio generation changed from ✗ to ~
+- ChatGPT (GPT-5): System abilities - Web search / browsing changed from ✗ to ✔︎
+- ChatGPT (GPT-5): System abilities - Document & PDF understanding changed from ✗ to ✔︎
+- ChatGPT (GPT-5): System abilities - File handling changed from ✗ to ✔︎
+- ChatGPT (GPT-5): System abilities - API calling changed from ✗ to ✔︎
+- ChatGPT (GPT-5): Automation - Agents / autonomous actions changed from ✗ to ~
+- ChatGPT (GPT-5): Automation - Multi-step workflows changed from ✗ to ~
+- ChatGPT (GPT-5): Automation - Tool use changed from ✗ to ✔︎
+- Gemini (2.5/3 Pro): System abilities - Computer use changed from ~ to ✔︎
+- Grok 3/4: Visual abilities - Image generation changed from ✔︎ to ✗
+- Grok 3/4: Automation - Multi-step workflows changed from ✗ to ~
+- Llama 4: Cognitive abilities - Reasoning changed from ✗ to N/A
+- Llama 4: Cognitive abilities - Coding changed from ✗ to N/A
+- Llama 4: Cognitive abilities - Memory (context) changed from ✗ to N/A
+- Llama 4: Cognitive abilities - Multilingual / Norwegian changed from ✗ to N/A
+- Llama 4: Visual abilities - Image generation changed from ✗ to N/A
+- Llama 4: Visual abilities - Image understanding changed from ✗ to N/A
+- Llama 4: Visual abilities - Video generation changed from ✗ to N/A
+- Llama 4: Visual abilities - Video understanding changed from ✗ to N/A
+- Llama 4: Audio & speech - Speech-to-text changed from ✗ to N/A
+- Llama 4: Audio & speech - Text-to-speech changed from ✗ to N/A
+- Llama 4: Audio & speech - Audio understanding changed from ✗ to N/A
+- Llama 4: Audio & speech - Audio generation changed from ✗ to N/A
+- Llama 4: System abilities - Web search / browsing changed from ✗ to N/A
+- Llama 4: System abilities - Document & PDF understanding changed from ✗ to N/A
+- Llama 4: System abilities - File handling changed from ✗ to N/A
+- Llama 4: System abilities - API calling changed from ✗ to N/A
+- Llama 4: System abilities - Computer use changed from ✗ to N/A
+- Llama 4: Automation - Agents / autonomous actions changed from ✗ to N/A
+- Llama 4: Automation - Multi-step workflows changed from ✗ to N/A
+- Llama 4: Automation - Scheduling changed from ✗ to N/A
+- Llama 4: Automation - Tool use changed from ✗ to N/A
 - DeepSeek (V3/R1): System abilities - Web search / browsing changed from ~ to ✗
-- DeepSeek (V3/R1): System abilities - API calling changed from ✔︎ to ~
-- DeepSeek (V3/R1): Automation - Multi-step workflows changed from ✔︎ to ~
-- DeepSeek (V3/R1): Automation - Tool use changed from ✔︎ to ~
