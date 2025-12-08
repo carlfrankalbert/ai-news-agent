@@ -7,6 +7,44 @@
     <meta name="description" content="En månedlig oversikt over hva som faktisk skjer i AI. Basert på signaler fra Hacker News, Github, X og sentimentanalyse.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {{
+            theme: {{
+                extend: {{
+                    colors: {{
+                        'fyrk-base': '#fafafa',
+                        'fyrk-card': '#ffffff',
+                        'fyrk-muted': '#f4f4f5',
+                        'fyrk-primary': '#18181b',
+                        'fyrk-secondary': '#71717a',
+                        'fyrk-accent': '#2563eb',
+                        'fyrk-success': '#16a34a',
+                        'fyrk-warning': '#ea580c',
+                        'fyrk-danger': '#dc2626',
+                        'fyrk-gold': '#ca8a04',
+                        'fyrk-silver': '#71717a',
+                        'fyrk-bronze': '#a16207',
+                    }},
+                    fontFamily: {{
+                        'sans': ['DM Sans', 'system-ui', '-apple-system', 'sans-serif'],
+                        'mono': ['IBM Plex Mono', 'monospace'],
+                    }},
+                    borderRadius: {{
+                        'fyrk-sm': '6px',
+                        'fyrk-md': '10px',
+                        'fyrk-lg': '16px',
+                    }},
+                    boxShadow: {{
+                        'fyrk-sm': '0 1px 2px rgba(0,0,0,0.04)',
+                        'fyrk-md': '0 4px 12px rgba(0,0,0,0.06)',
+                        'fyrk-lg': '0 8px 24px rgba(0,0,0,0.08)',
+                    }},
+                }}
+            }}
+        }}
+    </script>
     <style>
         :root {{
             --bg-base: #fafafa;
@@ -1027,53 +1065,88 @@
             justify-content: center;
         }}
 
-        /* Capabilities Section */
+        /* Capabilities Section - Nordic Minimalism Theme (QA Refined) */
+
+        /* Light wrapper container - Section 1 */
+        .capabilities-wrapper {{
+            background: #F6F7F8;
+            border-radius: 24px;
+            padding: 48px 32px;
+            margin: 24px auto 48px;
+        }}
+
+        /* Table surface - Section 3 */
         .capabilities-section {{
-            margin-bottom: var(--space-lg);
-            background: var(--bg-card);
-            border: 0.5px solid var(--border);
-            border-radius: var(--radius-lg);
+            margin-bottom: 0;
+            background: linear-gradient(180deg, #141820 0%, #0F131A 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 22px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow:
+                0px 8px 28px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }}
 
         .capabilities-header {{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            padding: var(--space-md) var(--space-lg);
-            border-bottom: 0.5px solid var(--border);
+            padding: 28px 28px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.12);
         }}
 
         .capabilities-title-group {{
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 8px;
         }}
 
+        /* Section 2 - Title typography */
         .capabilities-title {{
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 600;
+            color: #f9fafb;
+            letter-spacing: -0.2px;
+            margin-bottom: 4px;
         }}
 
         .capabilities-subtitle {{
-            font-size: 13px;
-            color: var(--text-secondary);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.5;
+        }}
+
+        .capabilities-legend-wrapper {{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
         }}
 
         .capabilities-legend {{
             display: flex;
             align-items: center;
-            gap: var(--space-md);
-            font-size: 12px;
-            color: var(--text-secondary);
+            gap: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
         }}
 
         .legend-item {{
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+        }}
+
+        .legend-item span:first-child {{
+            font-size: 14px;
+        }}
+
+        /* Section 4 - Metadata hint */
+        .capabilities-meta {{
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 2px;
         }}
 
         .capabilities-content {{
@@ -1082,21 +1155,79 @@
 
         .capabilities-table {{
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }}
 
+        /* Section 2 - Column subtitles */
         .capabilities-table th {{
-            padding: var(--space-md);
+            padding: 16px 20px;
             text-align: left;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border);
+            font-weight: 500;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            background: rgba(0, 0, 0, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }}
 
+        .capabilities-table th:first-child {{
+            padding-left: 28px;
+        }}
+
+        /* Provider names under model names */
+        .capabilities-table th .text-gray-500 {{
+            color: rgba(255, 255, 255, 0.55) !important;
+            letter-spacing: 0.02em;
+        }}
+
+        .capabilities-table tbody tr {{
+            background: transparent;
+            transition: background 0.2s ease;
+        }}
+
+        .capabilities-table tbody tr:nth-child(odd) {{
+            background: rgba(255, 255, 255, 0.012);
+        }}
+
+        /* Section 3 - Hover state */
+        .capabilities-table tbody tr:hover {{
+            background: rgba(255, 255, 255, 0.03);
+        }}
+
+        /* Section 2 - Category headers */
+        .capabilities-table tbody tr.category-header {{
+            background: rgba(255, 255, 255, 0.025);
+        }}
+
+        .capabilities-table tbody tr.category-header:hover {{
+            background: rgba(255, 255, 255, 0.025);
+        }}
+
+        .capabilities-table tbody tr.category-header td {{
+            padding: 20px 28px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.88);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }}
+
+        /* Section 2 - Capability row labels */
         .capabilities-table td {{
-            padding: var(--space-md);
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 18px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 14px;
+            line-height: 1.55;
+        }}
+
+        .capabilities-table td:first-child {{
+            padding-left: 28px;
+            font-weight: 500;
+            color: #f9fafb;
         }}
 
         .capability-cell {{
@@ -1104,27 +1235,55 @@
             font-size: 16px;
         }}
 
+        .capability-cell.capability-best {{
+            color: #fbbf24;
+        }}
+
+        .capability-cell.capability-yes {{
+            color: #34d399;
+        }}
+
+        .capability-cell.capability-no {{
+            color: rgba(255, 255, 255, 0.28);
+        }}
+
         .capabilities-mobile {{
             display: none;
         }}
 
-        /* About Section */
+        /* Model name badges in header */
+        .capabilities-table th[data-tool-index] {{
+            text-align: center;
+        }}
+
+        /* About Section - Section 5 refined */
         .about-section {{
-            margin-top: var(--space-2xl);
-            padding: var(--space-xl);
-            background: var(--bg-card);
+            margin-top: 32px;
+            padding: 32px 28px;
+            background: #FFFFFF;
             border-radius: var(--radius-lg);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }}
 
         .about-section h2 {{
-            font-size: 24px;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
             margin-bottom: var(--space-md);
+            color: var(--text-primary);
         }}
 
         .about-section h3 {{
-            font-size: 18px;
+            font-size: 15px;
+            font-weight: 600;
             margin-top: var(--space-lg);
             margin-bottom: var(--space-sm);
+        }}
+
+        .about-section p {{
+            color: var(--text-secondary);
+            line-height: 1.6;
         }}
 
         .about-section ul {{
@@ -1135,13 +1294,15 @@
         .about-section ul li {{
             padding-left: var(--space-lg);
             position: relative;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }}
 
         .about-section ul li::before {{
             content: "•";
             position: absolute;
             left: 0;
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }}
 
         .disclaimer {{
@@ -1151,6 +1312,7 @@
             border-radius: var(--radius-md);
             font-style: italic;
             color: var(--text-secondary);
+            font-size: 13px;
         }}
     </style>
 </head>
@@ -1258,38 +1420,72 @@
             <!-- Kapabiliteter Tab Content -->
             <div class="tab-content hidden" id="tab-kapabiliteter" role="tabpanel" aria-labelledby="tab-btn-kapabiliteter">
                 <!-- Capabilities Matrix -->
+                <div class="capabilities-wrapper">
                 <section class="capabilities-section" id="capabilities-section">
                     <div class="capabilities-header">
                         <div class="capabilities-title-group">
                             <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
                             <p class="capabilities-subtitle" data-i18n="capabilities-subtitle">Hva kan hver modell?</p>
                         </div>
-                        <div class="capabilities-legend">
-                            <span class="legend-item">
-                                <span>⭐</span>
-                                <span data-i18n="legend-best">Best</span>
-                            </span>
-                            <span class="legend-item">
-                                <span>✓</span>
-                                <span data-i18n="legend-yes">Ja</span>
-                            </span>
-                            <span class="legend-item">
-                                <span>✗</span>
-                                <span data-i18n="legend-no">Nei</span>
-                            </span>
+                        <div class="capabilities-legend-wrapper">
+                            <div class="capabilities-legend">
+                                <span class="legend-item">
+                                    <span class="text-amber-400">⭐</span>
+                                    <span data-i18n="legend-best">Best</span>
+                                </span>
+                                <span class="legend-item">
+                                    <span class="text-emerald-400">✓</span>
+                                    <span data-i18n="legend-yes">Ja</span>
+                                </span>
+                                <span class="legend-item">
+                                    <span class="text-gray-500">✗</span>
+                                    <span data-i18n="legend-no">Nei</span>
+                                </span>
+                            </div>
+                            <p class="capabilities-meta" data-i18n="capabilities-meta">Oppdateres automatisk • Offentlige data og FYRK-vurderinger</p>
                         </div>
                     </div>
                     <div class="capabilities-content">
                         <table class="capabilities-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th data-tool-index="0">Claude</th>
-                                    <th data-tool-index="1">GPT-4o</th>
-                                    <th data-tool-index="2">Gemini</th>
-                                    <th data-tool-index="3">Llama</th>
-                                    <th data-tool-index="4">DeepSeek</th>
-                                    <th data-tool-index="5">Grok</th>
+                                    <th class="!text-left">CAPABILITY</th>
+                                    <th data-tool-index="0">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Claude</span>
+                                            <span class="text-xs text-gray-500 font-normal">Anthropic</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="1">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">GPT-4o</span>
+                                            <span class="text-xs text-gray-500 font-normal">OpenAI</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="2">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Gemini</span>
+                                            <span class="text-xs text-gray-500 font-normal">Google</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="3">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Llama</span>
+                                            <span class="text-xs text-gray-500 font-normal">Meta</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">DeepSeek</span>
+                                            <span class="text-xs text-gray-500 font-normal">DeepSeek</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="5">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Grok</span>
+                                            <span class="text-xs text-gray-500 font-normal">xAI</span>
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="capabilities-tbody">
@@ -1307,6 +1503,7 @@
                         </div>
                     </div>
                 </section>
+                </div>
 
                 <!-- About Section -->
                 <section id="om" class="about-section">
@@ -1391,6 +1588,7 @@
                 'legend-best': 'Best',
                 'legend-yes': 'Ja',
                 'legend-no': 'Nei',
+                'capabilities-meta': 'Oppdateres automatisk • Offentlige data og FYRK-vurderinger',
                 'cap-header-cognitive': 'Kognitiv',
                 'cap-koding': 'Koding',
                 'cap-resonnering': 'Resonnering',
@@ -1453,6 +1651,7 @@
                 'legend-best': 'Bäst',
                 'legend-yes': 'Ja',
                 'legend-no': 'Nej',
+                'capabilities-meta': 'Uppdateras automatiskt • Offentliga data och FYRK-bedömningar',
                 'cap-header-cognitive': 'Kognitiv',
                 'cap-koding': 'Kodning',
                 'cap-resonnering': 'Resonemang',
@@ -1515,6 +1714,7 @@
                 'legend-best': 'Best',
                 'legend-yes': 'Yes',
                 'legend-no': 'No',
+                'capabilities-meta': 'Updated automatically • Public data and FYRK assessments',
                 'cap-header-cognitive': 'Cognitive',
                 'cap-koding': 'Coding',
                 'cap-resonnering': 'Reasoning',
