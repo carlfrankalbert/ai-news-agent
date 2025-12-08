@@ -1065,53 +1065,59 @@
             justify-content: center;
         }}
 
-        /* Capabilities Section */
+        /* Capabilities Section - Dark Theme */
         .capabilities-section {{
             margin-bottom: var(--space-lg);
-            background: var(--bg-card);
-            border: 0.5px solid var(--border);
-            border-radius: var(--radius-lg);
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
         }}
 
         .capabilities-header {{
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--space-md) var(--space-lg);
-            border-bottom: 0.5px solid var(--border);
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: #0d1117;
         }}
 
         .capabilities-title-group {{
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 4px;
         }}
 
         .capabilities-title {{
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 600;
+            color: #f9fafb;
+            letter-spacing: -0.02em;
         }}
 
         .capabilities-subtitle {{
-            font-size: 13px;
-            color: var(--text-secondary);
+            font-size: 14px;
+            color: #9ca3af;
         }}
 
         .capabilities-legend {{
             display: flex;
             align-items: center;
-            gap: var(--space-md);
-            font-size: 12px;
-            color: var(--text-secondary);
+            gap: 20px;
+            font-size: 13px;
+            color: #9ca3af;
         }}
 
         .legend-item {{
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+        }}
+
+        .legend-item span:first-child {{
+            font-size: 14px;
         }}
 
         .capabilities-content {{
@@ -1120,21 +1126,68 @@
 
         .capabilities-table {{
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }}
 
         .capabilities-table th {{
-            padding: var(--space-md);
+            padding: 14px 20px;
             text-align: left;
+            font-weight: 500;
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #0d1117;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }}
+
+        .capabilities-table th:first-child {{
+            padding-left: 24px;
+        }}
+
+        .capabilities-table tbody tr {{
+            background: #111827;
+            transition: background 0.15s ease;
+        }}
+
+        .capabilities-table tbody tr:nth-child(odd) {{
+            background: #0f172a;
+        }}
+
+        .capabilities-table tbody tr:hover {{
+            background: #1e293b;
+        }}
+
+        .capabilities-table tbody tr.category-header {{
+            background: #0d1117;
+        }}
+
+        .capabilities-table tbody tr.category-header:hover {{
+            background: #0d1117;
+        }}
+
+        .capabilities-table tbody tr.category-header td {{
+            padding: 12px 24px;
+            font-size: 11px;
             font-weight: 600;
-            font-size: 13px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border);
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }}
 
         .capabilities-table td {{
-            padding: var(--space-md);
-            border-bottom: 1px solid var(--border-subtle);
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            color: #e5e7eb;
+            font-size: 14px;
+        }}
+
+        .capabilities-table td:first-child {{
+            padding-left: 24px;
+            font-weight: 500;
+            color: #f9fafb;
         }}
 
         .capability-cell {{
@@ -1142,8 +1195,25 @@
             font-size: 16px;
         }}
 
+        .capability-cell.capability-best {{
+            color: #fbbf24;
+        }}
+
+        .capability-cell.capability-yes {{
+            color: #34d399;
+        }}
+
+        .capability-cell.capability-no {{
+            color: #6b7280;
+        }}
+
         .capabilities-mobile {{
             display: none;
+        }}
+
+        /* Model name badges in header */
+        .capabilities-table th[data-tool-index] {{
+            text-align: center;
         }}
 
         /* About Section */
@@ -1304,15 +1374,15 @@
                         </div>
                         <div class="capabilities-legend">
                             <span class="legend-item">
-                                <span>⭐</span>
+                                <span class="text-amber-400">⭐</span>
                                 <span data-i18n="legend-best">Best</span>
                             </span>
                             <span class="legend-item">
-                                <span>✓</span>
+                                <span class="text-emerald-400">✓</span>
                                 <span data-i18n="legend-yes">Ja</span>
                             </span>
                             <span class="legend-item">
-                                <span>✗</span>
+                                <span class="text-gray-500">✗</span>
                                 <span data-i18n="legend-no">Nei</span>
                             </span>
                         </div>
@@ -1321,13 +1391,43 @@
                         <table class="capabilities-table">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th data-tool-index="0">Claude</th>
-                                    <th data-tool-index="1">GPT-4o</th>
-                                    <th data-tool-index="2">Gemini</th>
-                                    <th data-tool-index="3">Llama</th>
-                                    <th data-tool-index="4">DeepSeek</th>
-                                    <th data-tool-index="5">Grok</th>
+                                    <th class="!text-left">CAPABILITY</th>
+                                    <th data-tool-index="0">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Claude</span>
+                                            <span class="text-xs text-gray-500 font-normal">Anthropic</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="1">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">GPT-4o</span>
+                                            <span class="text-xs text-gray-500 font-normal">OpenAI</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="2">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Gemini</span>
+                                            <span class="text-xs text-gray-500 font-normal">Google</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="3">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Llama</span>
+                                            <span class="text-xs text-gray-500 font-normal">Meta</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="4">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">DeepSeek</span>
+                                            <span class="text-xs text-gray-500 font-normal">DeepSeek</span>
+                                        </div>
+                                    </th>
+                                    <th data-tool-index="5">
+                                        <div class="flex flex-col items-center gap-1">
+                                            <span class="text-white font-semibold">Grok</span>
+                                            <span class="text-xs text-gray-500 font-normal">xAI</span>
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="capabilities-tbody">
