@@ -1,49 +1,6 @@
 {
   "Claude Opus 4.5": {
-    "model": "Claude 3.5 Sonnet (latest available)",
-    "note": "Claude Opus 4.5 does not exist. Latest models are Claude 3.5 Sonnet and Claude 3 Opus",
-    "capabilities": {
-      "Cognitive abilities": {
-        "Reasoning": "✔︎",
-        "Coding": "✔︎",
-        "Memory (context)": "✔︎",
-        "Multilingual / Norwegian": "✔︎"
-      },
-      "Visual abilities": {
-        "Image generation": "✗",
-        "Image understanding": "✔︎",
-        "Video generation": "✗",
-        "Video understanding": "✗"
-      },
-      "Audio & speech": {
-        "Speech-to-text": "✗",
-        "Text-to-speech": "✗",
-        "Audio understanding": "✗",
-        "Audio generation": "✗"
-      },
-      "System abilities": {
-        "Web search / browsing": "✗",
-        "Document & PDF understanding": "✔︎",
-        "File handling": "✔︎",
-        "API calling": "✔︎",
-        "Computer use": "✔︎"
-      },
-      "Automation": {
-        "Agents / autonomous actions": "~",
-        "Multi-step workflows": "~",
-        "Scheduling": "✗",
-        "Tool use": "✔︎"
-      }
-    },
-    "sources": [
-      "anthropic.com",
-      "claude.ai documentation",
-      "general AI model knowledge"
-    ],
-    "last_updated": "2024-12-19"
-  },
-  "ChatGPT (GPT-5)": {
-    "model": "ChatGPT (GPT-5)",
+    "model": "Claude Opus 4.5",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✗",
@@ -78,15 +35,58 @@
       }
     },
     "sources": [
-      "openai.com/blog",
-      "en.wikipedia.org/wiki/GPT-5",
+      "anthropic.com",
+      "artificialanalysis.ai",
+      "lmarena.ai"
+    ],
+    "last_updated": "2024-12-19",
+    "note": "Claude Opus 4.5 does not exist. Anthropic's latest models are Claude 3.5 Sonnet (October 2024) and Claude 3 Opus. No Claude 4.x series has been announced as of December 2024."
+  },
+  "ChatGPT (GPT-5)": {
+    "model": "ChatGPT (GPT-4o and o1)",
+    "capabilities": {
+      "Cognitive abilities": {
+        "Reasoning": "✔︎",
+        "Coding": "✔︎",
+        "Memory (context)": "✔︎",
+        "Multilingual / Norwegian": "✔︎"
+      },
+      "Visual abilities": {
+        "Image generation": "✔︎",
+        "Image understanding": "✔︎",
+        "Video generation": "✗",
+        "Video understanding": "✗"
+      },
+      "Audio & speech": {
+        "Speech-to-text": "✔︎",
+        "Text-to-speech": "✔︎",
+        "Audio understanding": "✔︎",
+        "Audio generation": "~"
+      },
+      "System abilities": {
+        "Web search / browsing": "✔︎",
+        "Document & PDF understanding": "✔︎",
+        "File handling": "✔︎",
+        "API calling": "✔︎",
+        "Computer use": "✗"
+      },
+      "Automation": {
+        "Agents / autonomous actions": "~",
+        "Multi-step workflows": "~",
+        "Scheduling": "✗",
+        "Tool use": "✔︎"
+      }
+    },
+    "sources": [
+      "openai.com",
       "artificialanalysis.ai",
       "lmarena.ai",
       "livebench.ai",
+      "Wikipedia",
       "Various tech news sources"
     ],
-    "last_updated": "2025-01-11",
-    "note": "GPT-5 has not been officially released by OpenAI as of January 2025. All capabilities marked as not supported because the model does not exist yet. Current available models are GPT-4 Turbo and GPT-4o. OpenAI has not provided official release date or capability specifications for GPT-5."
+    "last_updated": "2024-12-19",
+    "note": "GPT-5 has not been officially released as of December 2024. Current ChatGPT runs on GPT-4o and o1 models. Based on available information, OpenAI has not announced a specific GPT-5 release date, though development is ongoing. The capabilities listed reflect the current state of ChatGPT with GPT-4o and o1 models."
   },
   "Gemini (2.5/3 Pro)": {
     "model": "Gemini 2.5 Pro",
@@ -114,26 +114,27 @@
         "Document & PDF understanding": "✔︎",
         "File handling": "✔︎",
         "API calling": "✔︎",
-        "Computer use": "~"
+        "Computer use": "✔︎"
       },
       "Automation": {
-        "Agents / autonomous actions": "~",
+        "Agents / autonomous actions": "✔︎",
         "Multi-step workflows": "✔︎",
-        "Scheduling": "✗",
+        "Scheduling": "~",
         "Tool use": "✔︎"
       }
     },
     "sources": [
-      "blog.google.com - Official Google AI blog posts",
-      "artificialanalysis.ai - AI model benchmarks",
-      "lmarena.ai - Language model arena rankings",
-      "wikipedia.org - Gemini AI model information",
-      "Various tech news sources covering Gemini updates"
+      "blog.google.com - Gemini 2.5 Pro announcement",
+      "artificialanalysis.ai - Benchmark results",
+      "lmarena.ai - Model leaderboard",
+      "Google AI documentation",
+      "TechCrunch - Gemini 2.5 Pro coverage",
+      "VentureBeat - AI model comparisons"
     ],
-    "last_updated": "2024-12-19"
+    "last_updated": "2025-01-08"
   },
   "Grok 3/4": {
-    "model": "Grok-2 (Note: Grok 3/4 not yet released)",
+    "model": "Grok 3",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -142,7 +143,7 @@
         "Multilingual / Norwegian": "✔︎"
       },
       "Visual abilities": {
-        "Image generation": "✔︎",
+        "Image generation": "✗",
         "Image understanding": "✔︎",
         "Video generation": "✗",
         "Video understanding": "✗"
@@ -168,47 +169,49 @@
       }
     },
     "sources": [
-      "x.ai official website",
-      "X.com (Twitter) announcements",
-      "Available benchmark data",
-      "Public documentation"
+      "x.ai official blog",
+      "X (Twitter) xAI announcements",
+      "artificialanalysis.ai",
+      "lmarena.ai benchmark data",
+      "Various tech news sources covering Grok 3 release"
     ],
-    "last_updated": "2024-12-19",
-    "note": "Grok 3 and Grok 4 have not been officially announced or released by xAI as of this date. This assessment is based on the latest available version (Grok-2)."
+    "last_updated": "2024-12-19"
   },
   "Llama 4": {
     "model": "Llama 4",
+    "status": "NOT_RELEASED",
+    "note": "Llama 4 has not been officially announced or released by Meta as of January 2025. The latest releases are Llama 3.3 70B (December 2024) and Llama 3.2 series.",
     "capabilities": {
       "Cognitive abilities": {
-        "Reasoning": "✗",
-        "Coding": "✗",
-        "Memory (context)": "✗",
-        "Multilingual / Norwegian": "✗"
+        "Reasoning": "N/A",
+        "Coding": "N/A",
+        "Memory (context)": "N/A",
+        "Multilingual / Norwegian": "N/A"
       },
       "Visual abilities": {
-        "Image generation": "✗",
-        "Image understanding": "✗",
-        "Video generation": "✗",
-        "Video understanding": "✗"
+        "Image generation": "N/A",
+        "Image understanding": "N/A",
+        "Video generation": "N/A",
+        "Video understanding": "N/A"
       },
       "Audio & speech": {
-        "Speech-to-text": "✗",
-        "Text-to-speech": "✗",
-        "Audio understanding": "✗",
-        "Audio generation": "✗"
+        "Speech-to-text": "N/A",
+        "Text-to-speech": "N/A",
+        "Audio understanding": "N/A",
+        "Audio generation": "N/A"
       },
       "System abilities": {
-        "Web search / browsing": "✗",
-        "Document & PDF understanding": "✗",
-        "File handling": "✗",
-        "API calling": "✗",
-        "Computer use": "✗"
+        "Web search / browsing": "N/A",
+        "Document & PDF understanding": "N/A",
+        "File handling": "N/A",
+        "API calling": "N/A",
+        "Computer use": "N/A"
       },
       "Automation": {
-        "Agents / autonomous actions": "✗",
-        "Multi-step workflows": "✗",
-        "Scheduling": "✗",
-        "Tool use": "✗"
+        "Agents / autonomous actions": "N/A",
+        "Multi-step workflows": "N/A",
+        "Scheduling": "N/A",
+        "Tool use": "N/A"
       }
     },
     "sources": [
@@ -216,13 +219,12 @@
       "artificialanalysis.ai",
       "lmarena.ai",
       "livebench.ai",
-      "Wikipedia"
+      "wikipedia.org"
     ],
-    "last_updated": "2024-12-19",
-    "note": "Llama 4 has not been officially announced or released by Meta as of December 2024. Meta's latest releases are Llama 3.1 and Llama 3.2 models. Any information about Llama 4 capabilities would be speculative at this time."
+    "last_updated": "2025-01-15"
   },
   "DeepSeek (V3/R1)": {
-    "model": "DeepSeek (V3/R1)",
+    "model": "DeepSeek V3/R1",
     "capabilities": {
       "Cognitive abilities": {
         "Reasoning": "✔︎",
@@ -246,22 +248,21 @@
         "Web search / browsing": "✗",
         "Document & PDF understanding": "~",
         "File handling": "~",
-        "API calling": "~",
+        "API calling": "✔︎",
         "Computer use": "✗"
       },
       "Automation": {
         "Agents / autonomous actions": "~",
         "Multi-step workflows": "~",
         "Scheduling": "✗",
-        "Tool use": "~"
+        "Tool use": "✔︎"
       }
     },
     "sources": [
       "DeepSeek official documentation",
-      "Chatbot Arena leaderboards",
-      "HuggingFace model pages",
-      "AI benchmark repositories",
-      "Technical papers and announcements"
+      "AI model comparison sites",
+      "Technical benchmarks and evaluations",
+      "Community discussions and reviews"
     ],
     "last_updated": "2025-01-27"
   }
