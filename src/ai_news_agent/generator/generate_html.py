@@ -1561,47 +1561,488 @@ DESIGN_HTML = """<!DOCTYPE html>
             justify-content: center;
         }}
 
-        /* Capabilities Section */
-        .capabilities-section {{
-            margin-bottom: var(--space-lg);
-            background: var(--bg-card);
-            border: 0.5px solid var(--border);
-            border-radius: var(--radius-lg);
+        /* Scores Section - Same Dark Design as Capabilities */
+        .scores-wrapper {{
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            margin: var(--space-md) 0 80px 0;
+            max-width: 100%;
+            width: 100%;
+        }}
+
+        .scores-section {{
+            margin-bottom: 0;
+            background: linear-gradient(180deg, #0f172a 0%, #0f172a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
+            box-shadow:
+                0px 8px 28px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            max-width: 100%;
+            width: 100%;
+        }}
+
+        /* Responsive: Horizontal scroll on mobile */
+        @media (max-width: 768px) {{
+            .scores-section .rankings-table,
+            .capabilities-content {{
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }}
+
+            .scores-section .rankings-header {{
+                min-width: 600px;
+            }}
+
+            .scores-section .ranking-row {{
+                min-width: 600px;
+                display: grid;
+                grid-template-columns: 1fr 80px 80px 80px 80px 60px 30px;
+                gap: var(--space-md);
+                padding: 12px var(--space-lg);
+            }}
+        }}
+
+        .scores-header {{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 32px 28px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.12);
+            margin-bottom: 4px;
+        }}
+
+        .scores-title-group {{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }}
+
+        .scores-title {{
+            font-size: 24px;
+            font-weight: 600;
+            color: #f9fafb;
+            letter-spacing: -0.2px;
+            margin-bottom: 8px;
+        }}
+
+        .scores-subtitle {{
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            margin-top: 4px;
+        }}
+
+        .scores-meta {{
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 2px;
+        }}
+
+        .scores-content {{
+            padding: 0;
+        }}
+
+        /* Update elements inside scores-section for dark theme */
+        .scores-section .highlights {{
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }}
+
+        .scores-section .highlight-card {{
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.08) 100%);
+            border: 1.5px solid rgba(245, 158, 11, 0.3);
+            color: #f9fafb;
+            border-radius: 100px;
+            padding: 10px 24px;
+            font-weight: 500;
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.2);
+        }}
+
+        .scores-section .highlight-card span[data-i18n="new-this-month"] {{
+            color: #f59e0b;
+            font-weight: 600;
+        }}
+
+        .scores-section .filter-bar {{
+            padding: 32px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }}
+
+        .scores-section .filter-pill {{
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+            padding: 10px 18px;
+            min-height: 40px;
+        }}
+
+        .scores-section .filter-pill:hover {{
+            background: rgba(255, 255, 255, 0.09);
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-1px);
+        }}
+
+        .scores-section .filter-pill.active {{
+            background: rgba(255, 255, 255, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }}
+
+        .scores-section .category-section {{
+            padding: 0 28px;
+        }}
+
+        .scores-section .category-section:first-of-type {{
+            padding-top: 28px;
+        }}
+
+        .scores-section .category-section:last-of-type {{
+            padding-bottom: 28px;
+        }}
+
+        .scores-section .category-header {{
+            margin-bottom: 20px;
+        }}
+
+        .scores-section .category-title {{
+            color: #f9fafb;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }}
+
+        .scores-section .rankings-table {{
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: none;
+        }}
+
+        .scores-section .rankings-table::before {{
+            display: none;
+        }}
+
+        .scores-section .rankings-header {{
+            background: rgba(0, 0, 0, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.72);
+            backdrop-filter: none;
+            padding: 16px var(--space-lg);
+            display: grid;
+            grid-template-columns: 1fr 80px 80px 80px 80px 60px 30px;
+            gap: var(--space-md);
+        }}
+
+        .scores-section .rankings-header span {{
+            color: rgba(156, 163, 175, 1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            min-height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }}
+
+        .scores-section .rankings-header span:nth-child(n+2):nth-child(-n+6) {{
+            text-align: center;
+        }}
+
+        .scores-section .rankings-header span:hover {{
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.05);
+        }}
+
+        .scores-section .ranking-row {{
+            display: grid;
+            grid-template-columns: 1fr 80px 80px 80px 80px 60px 30px;
+            gap: var(--space-md);
+            padding: 16px var(--space-lg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.2s ease;
+            min-height: 64px;
+            position: relative;
+            align-items: center;
+        }}
+
+        .scores-section .ranking-row:nth-child(even) {{
+            background: rgba(255, 255, 255, 0.012);
+        }}
+
+        .scores-section .ranking-row:hover {{
+            background: rgba(255, 255, 255, 0.05) !important;
+        }}
+
+        .scores-section .ranking-row.hidden-row {{
+            display: none;
+        }}
+
+        .scores-section .ranking-row.hidden-row.expanded {{
+            display: grid;
+        }}
+
+        .scores-section .ranking-row[data-rank="1"] {{
+            background: rgba(16, 185, 129, 0.08) !important;
+            border-left: 3px solid #10b981;
+        }}
+
+        .scores-section .ranking-row[data-rank="1"]:hover {{
+            background: rgba(16, 185, 129, 0.12) !important;
+        }}
+
+        .scores-section .item-info {{
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }}
+
+        .scores-section .item-name {{
+            color: #f9fafb;
+            padding: 8px 4px;
+            display: inline-block;
+            min-height: 32px;
+            line-height: 1.5;
+            font-size: 15px;
+            font-weight: 500;
+        }}
+
+        .scores-section .item-name:hover {{
+            color: rgba(255, 255, 255, 0.95);
+        }}
+
+        .scores-section .item-provider {{
+            color: rgba(156, 163, 175, 1);
+            padding: 4px;
+            display: inline-block;
+            font-size: 12px;
+        }}
+
+        .scores-section .item-provider a {{
+            color: rgba(156, 163, 175, 1);
+            padding: 4px 6px;
+            display: inline-block;
+            min-height: 28px;
+            line-height: 1.4;
+            font-size: 12px;
+        }}
+
+        .scores-section .item-provider a:hover {{
+            color: rgba(255, 255, 255, 0.9);
+        }}
+
+        .scores-section .score-cell {{
+            color: rgba(255, 255, 255, 0.92);
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            font-variant-numeric: tabular-nums;
+            padding: 12px 8px;
+        }}
+
+        .scores-section .score-cell.score-high {{
+            color: #10b981;
+        }}
+
+        .scores-section .score-cell.score-mid {{
+            color: #f59e0b;
+        }}
+
+        .scores-section .score-cell.score-low {{
+            color: #6b7280;
+        }}
+
+        .scores-section .trend-cell {{
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 16px;
+            padding: 12px 8px;
+        }}
+
+        .scores-section .trend-cell.trend-up::before {{
+            content: '↑';
+            color: #10b981;
+        }}
+
+        .scores-section .trend-cell.trend-down::before {{
+            content: '↓';
+            color: #ef4444;
+        }}
+
+        .scores-section .trend-cell.trend-up-right::before {{
+            content: '↗';
+            color: #10b981;
+        }}
+
+        .scores-section .trend-cell.trend-down-right::before {{
+            content: '↘';
+            color: #ef4444;
+        }}
+
+        .scores-section .trend-cell.trend-neutral::before {{
+            content: '—';
+            color: rgba(255, 255, 255, 0.5);
+        }}
+
+        .scores-section .expand-button {{
+            color: rgba(255, 255, 255, 0.7);
+        }}
+
+        .scores-section .expand-button:hover {{
+            color: rgba(255, 255, 255, 0.95);
+        }}
+
+        .scores-section .cta-section {{
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #f9fafb;
+        }}
+
+        .scores-section .cta-section h3 {{
+            color: #f9fafb;
+        }}
+
+        .scores-section .cta-section p {{
+            color: rgba(255, 255, 255, 0.75);
+        }}
+
+        .scores-section .cta-button {{
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }}
+
+        .scores-section .cta-button:hover {{
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }}
+
+        .scores-section .cta-button span:last-child {{
+            color: rgba(255, 255, 255, 0.8);
+        }}
+
+        .scores-section .about-section {{
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #f9fafb;
+        }}
+
+        .scores-section .about-section h2 {{
+            color: #f9fafb;
+        }}
+
+        .scores-section .about-section p {{
+            color: rgba(255, 255, 255, 0.75);
+        }}
+
+        .scores-section .about-section .disclaimer {{
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }}
+
+        .capabilities-section .about-section {{
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #f9fafb;
+        }}
+
+        .capabilities-section .about-section h2 {{
+            color: #f9fafb;
+        }}
+
+        .capabilities-section .about-section p {{
+            color: rgba(255, 255, 255, 0.75);
+        }}
+
+        .capabilities-section .about-section .disclaimer {{
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }}
+
+        /* Capabilities Section - Dark Design */
+        .capabilities-wrapper {{
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            margin: var(--space-md) 0 80px 0;
+            max-width: 100%;
+            width: 100%;
+        }}
+
+        .capabilities-section {{
+            margin-bottom: 0;
+            background: linear-gradient(180deg, #0f172a 0%, #0f172a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow:
+                0px 8px 28px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            max-width: 100%;
+            width: 100%;
         }}
 
         .capabilities-header {{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            padding: var(--space-md) var(--space-lg);
-            border-bottom: 0.5px solid var(--border);
+            padding: 32px 28px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.12);
+            margin-bottom: 4px;
         }}
 
         .capabilities-title-group {{
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 10px;
         }}
 
         .capabilities-title {{
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 600;
+            color: #f9fafb;
+            letter-spacing: -0.2px;
+            margin-bottom: 8px;
         }}
 
         .capabilities-subtitle {{
-            font-size: 14px;
-            color: var(--text-secondary);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            margin-top: 4px;
+        }}
+
+        .capabilities-legend-wrapper {{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
         }}
 
         .capabilities-legend {{
             display: flex;
             align-items: center;
-            gap: var(--space-md);
+            gap: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }}
+
+        .capabilities-meta {{
             font-size: 12px;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 2px;
         }}
 
         .legend-item {{
@@ -1616,64 +2057,111 @@ DESIGN_HTML = """<!DOCTYPE html>
 
         .capabilities-table {{
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }}
 
         .capabilities-table th {{
-            padding: 16px;
+            padding: 16px 12px;
             text-align: left;
             font-weight: 600;
-            font-size: 13px;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            color: rgba(156, 163, 175, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(0, 0, 0, 0.18);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }}
 
-        .capabilities-table td {{
-            padding: 20px 16px;
-            border-bottom: 1px solid var(--border-subtle);
-            min-height: 60px;
-        }}
-
-        .capabilities-table .category-header-spacer td {{
-            padding: 0;
-            border: none;
-            height: 24px;
-        }}
-
-        .capability-cell {{
+        .capabilities-table th[data-tool-index] {{
             text-align: center;
-            font-size: 16px;
         }}
 
-        .capability-category-header {{
-            background: var(--bg-muted);
+        .capabilities-table th:first-child {{
+            padding-left: 28px;
         }}
 
-        .capability-category-header td {{
-            padding: 12px 16px;
+        .capabilities-table th[data-tool-index] {{
             font-size: 11px;
             font-weight: 600;
-            color: #52525b;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
         }}
 
-        .capability-category-header:first-child td {{
+        .capabilities-table tbody tr {{
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }}
+
+        .capabilities-table tbody tr:nth-child(odd) {{
+            background: rgba(255, 255, 255, 0.012);
+        }}
+
+        .capabilities-table tbody tr:hover {{
+            background: rgba(255, 255, 255, 0.05);
+        }}
+
+        .capabilities-table tbody tr.category-header,
+        .capabilities-table tbody tr.capability-category-header {{
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }}
+
+        .capabilities-table tbody tr.category-header:hover,
+        .capabilities-table tbody tr.capability-category-header:hover {{
+            background: rgba(0, 0, 0, 0.2);
+        }}
+
+        .capabilities-table tbody tr.category-header td,
+        .capabilities-table tbody tr.capability-category-header td {{
+            padding: 12px 28px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(156, 163, 175, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }}
+
+        .capabilities-table tbody tr.category-header:first-child td,
+        .capabilities-table tbody tr.capability-category-header:first-child td {{
             border-top: none;
         }}
 
-        .capabilities-table tbody tr:not(.capability-category-header):nth-child(even) {{
-            background: rgba(0, 0, 0, 0.015);
+        .capabilities-table td {{
+            padding: 16px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }}
 
-        .capabilities-table tbody tr:not(.capability-category-header):hover {{
-            background: rgba(0, 0, 0, 0.03);
+        .capabilities-table td:not(:first-child) {{
+            text-align: center;
         }}
 
-        .capabilities-table tbody tr td {{
-            vertical-align: middle;
+        .capabilities-table td[data-tool-index] {{
+            padding: 16px 8px;
+        }}
+
+        .capabilities-table td:first-child {{
+            padding-left: 28px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+        }}
+
+        .capabilities-table tbody tr {{
+            transition: background 0.2s ease;
+        }}
+
+        .capabilities-table tbody tr:hover {{
+            background: rgba(255, 255, 255, 0.05);
+        }}
+
+        .capabilities-table td:first-child a,
+        .scores-section .item-name,
+        .scores-section .item-provider a {{
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }}
+
+        .capabilities-table th[data-tool-index] {{
+            color: rgba(156, 163, 175, 1);
+            font-weight: 600;
         }}
 
         .capabilities-mobile {{
@@ -1759,12 +2247,18 @@ DESIGN_HTML = """<!DOCTYPE html>
 
             <!-- Scores Tab Content -->
             <div class="tab-content" id="tab-scores" role="tabpanel" aria-labelledby="tab-btn-scores">
-            <!-- Hero Section -->
-            <section class="hero">
-                <h1 data-i18n="hero-title">FYRK AI Score</h1>
-                <p class="hero-subtitle" data-i18n="hero-subtitle">Rangert etter buzz, sentiment og nytteverdi</p>
-            </section>
-
+            <div class="scores-wrapper">
+                <section class="scores-section" id="scores-section">
+                    <div class="scores-header">
+                        <div class="scores-title-group">
+                            <h2 class="scores-title" data-i18n="scores-title">Rankinger</h2>
+                            <p class="scores-subtitle" data-i18n="scores-subtitle">Rangert etter buzz, sentiment og nytteverdi</p>
+                        </div>
+                        <div>
+                            <p class="scores-meta" data-i18n="scores-meta">Oppdateres automatisk • Offentlige data og FYRK-vurderinger</p>
+                        </div>
+                    </div>
+                    <div class="scores-content">
 {highlights_html}
 
             <!-- Filter Controls -->
@@ -1791,16 +2285,22 @@ DESIGN_HTML = """<!DOCTYPE html>
                     <span>→</span>
                 </a>
             </section>
+                    </div>
+                </section>
+            </div>
             </div>
 
             <!-- Kapabiliteter Tab Content -->
             <div class="tab-content hidden" id="tab-kapabiliteter" role="tabpanel" aria-labelledby="tab-btn-kapabiliteter">
                 <!-- Capabilities Matrix -->
+                <div class="capabilities-wrapper">
                 <section class="capabilities-section" id="capabilities-section">
                     <div class="capabilities-header">
                         <div class="capabilities-title-group">
                             <h2 class="capabilities-title" data-i18n="capabilities-title">Kapabiliteter</h2>
+                            <p class="capabilities-subtitle" data-i18n="capabilities-subtitle">Hva kan hver modell?</p>
                         </div>
+                        <div class="capabilities-legend-wrapper">
                         <div class="capabilities-legend">
                             <span class="legend-item">
                                 <span>⭐</span>
@@ -1814,6 +2314,8 @@ DESIGN_HTML = """<!DOCTYPE html>
                                 <span>✗</span>
                                 <span data-i18n="legend-no">Nei</span>
                             </span>
+                            </div>
+                            <p class="capabilities-meta" data-i18n="capabilities-meta">Oppdateres automatisk • Offentlige data og FYRK-vurderinger</p>
                         </div>
                     </div>
                     <div class="capabilities-content">
@@ -1843,17 +2345,18 @@ DESIGN_HTML = """<!DOCTYPE html>
                             <!-- Populated by JavaScript -->
                         </div>
                     </div>
-                </section>
 
                 <!-- About Section -->
                 <section id="om" class="about-section">
-                    <h2 data-i18n="about-title">Om AI Score</h2>
+                        <h2 data-i18n="about-capabilities-title">Om AI kapabiliteter</h2>
                     <p data-i18n="about-intro">Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.</p>
                     
                     <p>Datakilder: Offentlig tilgjengelig informasjon, egne praktiske tester, inntrykk fra utviklere og AI-miljøer, samt vurderinger generert og validert med AI.</p>
                     
                     <p class="disclaimer" data-i18n="disclaimer">Ikke vitenskapelig – bruk som inspirasjon, ikke fasit.</p>
+                    </section>
                 </section>
+                </div>
             </div>
     </div>
     </main>
@@ -1945,6 +2448,7 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cap-api-short': 'API',
                 'cap-computer-use-short': 'Computer Use',
                 'about-title': 'Om AI Score',
+                'about-capabilities-title': 'Om AI kapabiliteter',
                 'about-intro': 'Et eksperiment fra FYRK Lab hvor vi utforsker hvordan man kan sammenligne AI-modeller på en enkel måte.',
                 'about-sources-title': 'Datakilder',
                 'source-1': 'Offentlig tilgjengelig informasjon',
@@ -2016,6 +2520,7 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cap-api-short': 'API',
                 'cap-computer-use-short': 'Computer Use',
                 'about-title': 'Om AI Score',
+                'about-capabilities-title': 'Om AI-kapabiliteter',
                 'about-intro': 'Ett experiment från FYRK Lab där vi utforskar hur man kan jämföra AI-modeller på ett enkelt sätt.',
                 'about-sources-title': 'Datakällor',
                 'source-1': 'Offentligt tillgänglig information',
@@ -2087,6 +2592,7 @@ DESIGN_HTML = """<!DOCTYPE html>
                 'cap-api-short': 'API',
                 'cap-computer-use-short': 'Computer Use',
                 'about-title': 'About AI Score',
+                'about-capabilities-title': 'About AI Capabilities',
                 'about-intro': 'An experiment from FYRK Lab exploring how to compare AI models in a simple way.',
                 'about-sources-title': 'Data Sources',
                 'source-1': 'Publicly available information',
