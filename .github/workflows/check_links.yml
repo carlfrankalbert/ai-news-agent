@@ -1,14 +1,13 @@
 name: Check Provider Links
 
+# ⏸️ PAUSED - Prosjekt på pause, planlagt integrering i FYRK.no senere
+# Fjern 'if: false' under jobs for å reaktivere
+
 on:
-  schedule:
-    # Run daily at 02:00 UTC (04:00 CET / 03:00 CEST) - only on main
-    - cron: '0 2 * * *'
-  workflow_dispatch:  # Allow manual trigger
-  push:
-    branches:
-      - main
-      - dev
+  # schedule:
+  #   # Run daily at 02:00 UTC (04:00 CET / 03:00 CEST) - only on main
+  #   - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual trigger (beholdt for testing)
 
 jobs:
   check-links:

@@ -1,13 +1,12 @@
 name: Monthly AI Capability Update
 
+# ⏸️ PAUSED - Prosjekt på pause, planlagt integrering i FYRK.no senere
+# Fjern 'if: false' under jobs for å reaktivere
+
 on:
-  schedule:
-    - cron: '0 9 1 * *'  # Run at 09:00 UTC on the 1st of each month (only on main)
-  workflow_dispatch:  # Manual trigger
-  push:
-    branches:
-      - main
-      - dev
+  # schedule:
+  #   - cron: '0 9 1 * *'  # Run at 09:00 UTC on the 1st of each month (only on main)
+  workflow_dispatch:  # Manual trigger (beholdt for testing)
 
 jobs:
   update-capabilities:
