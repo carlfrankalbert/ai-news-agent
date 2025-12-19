@@ -1,13 +1,12 @@
 name: Daily AI News Scan
 
+# ⏸️ PAUSED - Prosjekt på pause, planlagt integrering i FYRK.no senere
+# Fjern 'if: false' under jobs for å reaktivere
+
 on:
-  schedule:
-    - cron: '0 6 * * *'  # Kjør 06:00 UTC daglig (only on main)
-  workflow_dispatch:  # Manuell trigger
-  push:
-    branches:
-      - main
-      - dev
+  # schedule:
+  #   - cron: '0 6 * * *'  # Kjør 06:00 UTC daglig (only on main)
+  workflow_dispatch:  # Manuell trigger (beholdt for testing)
 
 jobs:
   scan:
